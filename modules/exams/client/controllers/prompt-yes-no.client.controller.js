@@ -8,7 +8,6 @@
   PromptController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance','old_exam', 'string_header', 'question'];
 
   function PromptController($scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, old_exam, string_header, question) {
-
     $scope.string_header = string_header;
     $scope.yes = function(){
       if(old_exam != null){

@@ -22,6 +22,7 @@
 .question-container .answer-container{
 	padding-left:25px;
 }
+
 .answer-row-container{
 	width:100%;
 	-webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
@@ -181,9 +182,13 @@
 	padding-bottom:2px;
 }
 
+.exam-select .uib-tab{
+padding:0;
+margin:0;
+}
+
 .exam-selector .uib-tab a{
 	width:100%;
-	 font-size: 120%;
 	 color:black;
 	 background: #AAAABB;
 	 border:1px solid white;

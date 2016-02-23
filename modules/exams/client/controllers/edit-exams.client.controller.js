@@ -25,6 +25,26 @@
 			$scope.class_types.push($scope.exams[i].class);
 		}
 	}
+
+	$scope.add_exam = function(){
+		var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: '/modules/exams/client/views/add-exam.client.view.html',
+        controller: 'AddExamController',
+        windowClass: 'add-question-modal',
+        size: 'lg',
+        resolve: {
+		  old_exam: function(){
+			return null;
+		  }
+        }
+      });
+	  
+      modalInstance.result.then(function (result) {
+      }, function () {
+		  
+      });
+	};
 	
 	if($scope.class_types){
 		$scope.selected_class_type = $scope.class_types[0];

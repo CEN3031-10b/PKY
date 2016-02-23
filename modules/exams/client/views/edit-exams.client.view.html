@@ -33,6 +33,13 @@
 		<!-- show all tests without any class grouping -->
 		<div class="col-md-2 exam-selector">
 			<uib-tabset vertical="true" type="pills">
+			<uib-tab ng-click="add_exam()">
+									<uib-tab-heading>	
+									<p style="font-size:80%;">Add a new question
+									<i class="glyphicon glyphicon-plus"></i>		
+									</uib-tab-heading>
+									</p>
+			</uib-tab>
 				<uib-tab active="exam.active" ng-repeat= "exam in exams" heading="{{exam.title}}" ng-click="activate_tab(exam)"></uib-tab>
 			</uib-tabset>	
 		</div>		

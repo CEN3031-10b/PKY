@@ -23,21 +23,19 @@
         windowClass: 'prompt-modal',
         size: 'lg',
         resolve: {
-      old_exam: function(){
-      return _exam;
+      question: function(){
+      return null;
       },
       string_header: function(){
-        return 'Are you sure you want to premanantly delete ' + _exam.title + '?';
+       return 'Are you sure you want to premanantly delete ' + _exam.title + '?';
+      },
+      old_exam: function(){
+        return _exam;
       }
         }
       });
-    
-      modalInstance.result.then(function (result) {
-      }, function () {
-      
-      });
-  };
-
+    };
+ 
   $scope.delete_question = function(_question){
     var modalInstance = $uibModal.open({
         animation: true,
@@ -85,7 +83,7 @@
       });
 	};
 	
-	$scope.delete_exam = function(_exam){
+	$scope.delete_exam1 = function(_exam){
       ExamsService.delete_exam(_exam._id)
         .then(function(response){
 
