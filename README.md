@@ -1,324 +1,143 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
+# PK-Yonge-App
+A web-based application that allows students at [PK Yonge Developmental Research School](http://pkyonge.ufl.edu/) (in Gainesville, FL) to practice for their end-of-course exams.
+This application was created for the Introduction to Software Engineering (CEN3031) class at the University of Florida, using the MEAN stack.
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/meanjs/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
-[![Coverage Status](https://coveralls.io/repos/meanjs/mean/badge.svg?branch=master&service=github)](https://coveralls.io/github/meanjs/mean?branch=master)
+The group working on this project (as of Spring 2016) consists of the following members:
+- Travis Atkins [@Atkins945](https://github.com/Atkins945)
+- James Bocinsky [@jbocinsky](https://github.com/jbocinsky)
+- Brandon Duong [@Bduong30](https://github.com/Bduong30)
+- Kevin Marin [@KMarin](https://github.com/KMarin)
+- Michael Rodriguez [@microdr](https://github.com/microdr)
 
-MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+The group working on this project (as of Fall 2015) consists of the following members:
+- Bailey Anderson [@baileyanderson](https://github.com/baileyanderson)
+- Cody Fitzpatrick [@CodyFitzpatrick](https://github.com/CodyFitzpatrick)
+- Nicola Frachesen [@Nicola37](https://github.com/Nicola37)
+- Guilain Huyghes-Despointes [@ghDespointes](https://github.com/ghDespointes)
+- Sara Lichtenstein [@saralich](https://github.com/saralich)
+- Terry Philippe [@tjphilippe](https://github.com/tjphilippe)
+- Xiaoxi Zheng [@XiaoxiZheng](https://github.com/XiaoxiZheng)
 
-## Before You Begin
-Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
-* MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
-* Express - The best way to understand express is through its [Official Website](http://expressjs.com/), which has a [Getting Started](http://expressjs.com/starter/installing.html) guide, as well as an [ExpressJS Guide](http://expressjs.com/guide/error-handling.html) guide for general express topics. You can also go through this [StackOverflow Thread](http://stackoverflow.com/questions/8144214/learning-express-for-node-js) for more resources.
-* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
-* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
+## Deployment
 
+#### Site URL: http://pky-eoc.herokuapp.com/
+Our app is deployed through HEROKU. Deployment information can be found [here](https://devcenter.heroku.com/articles/deploying-nodejs). Please contact [@Nicola37](https://github.com/Nicola37) for further deployment questions.
 
-## Prerequisites
-Make sure you have installed all of the following prerequisites on your development machine:
-* Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js.
-  * Node v5 IS NOT SUPPORTED AT THIS TIME! 
-* MongoDB - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
-* Ruby - [Download & Install Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-* Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages. Make sure you've installed Node.js and npm first, then install bower globally using npm:
+### Running the App Locally
+- Install all necessary packages and libraries by following [this installation guide](https://docs.google.com/document/d/1B7aqptx0jsWHLqm7W9BT1oKHYNCKkvwtjjUtsj6C-ks/edit?pli=1) 
+- After cloning the remote repository to a local repository on your computer and navigating to the directory in which the app contents are located, you can run the app by using Grunt, "The Javascript Task Runner". Please see the below terminal commands that detail this process. The repository only needs to be cloned once, during the installation of the app.
 
-```bash
-$ npm install -g bower
-```
-
-* Grunt - You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process. Make sure you've installed Node.js and npm first, then install grunt globally using npm:
-
-```bash
-$ npm install -g grunt-cli
-```
-
-* Sass - You're going to use [Sass](http://sass-lang.com/) to compile CSS during your grunt task. Make sure you have ruby installed, and then install Sass using gem install:
-
-```bash
-$ gem install sass
-```
-
-```bash
-$ npm install -g grunt-cli
-```
-
-* Gulp - (Optional) You may use Gulp for Live Reload, Linting, and SASS or LESS.
-
-```bash
-$ npm install gulp -g
-```
-
-## Downloading MEAN.JS
-There are several ways you can get the MEAN.JS boilerplate:
-
-### Cloning The GitHub Repository
-The recommended way to get MEAN.js is to use git to directly clone the MEAN.JS repository:
-
-```bash
-$ git clone https://github.com/meanjs/mean.git meanjs
-```
-
-This will clone the latest version of the MEAN.JS repository to a **meanjs** folder.
-
-### Downloading The Repository Zip File
-Another way to use the MEAN.JS boilerplate is to download a zip copy from the [master branch on GitHub](https://github.com/meanjs/mean/archive/master.zip). You can also do this using `wget` command:
-
-```bash
-$ wget https://github.com/meanjs/mean/archive/master.zip -O meanjs.zip; unzip meanjs.zip; rm meanjs.zip
-```
-
-Don't forget to rename **mean-master** after your project name.
-
-### Yo Generator
-Another way would be to use the [Official Yo Generator](http://meanjs.org/generator.html), which generates a copy of the MEAN.JS 0.4.x boilerplate and supplies an application generator to ease your daily development cycles.
-
-## Quick Install
-Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your MEAN application.
-
-The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application. To learn more about the modules installed visit the NPM & Package.json section.
-
-To install Node.js dependencies you're going to use npm again. In the application folder run this in the command-line:
-
-```bash
-$ npm install
-```
-
-This command does a few things:
-* First it will install the dependencies needed for the application to run.
-* If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
-* Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
-
-## Running Your Application
-After the install process is over, you'll be able to run your application using Grunt, just run grunt default task:
-
-```
+```sh
+$ git clone https://github.com/CEN3031-Project-9C/PK-Yonge-App
+$ cd PK-Yonge-App
 $ grunt
+
 ```
 
-Your application should run on port 3000 with the *development* environment configuration, so in your browser just go to [http://localhost:3000](http://localhost:3000)
+**Note!** This app was developed using Node version 0.12.7. A newer version of Node may cause this app to run differently or break altogether. 
 
-That's it! Your application should be running. To proceed with your development, check the other sections in this documentation.
-If you encounter any problems, try the Troubleshooting section.
+### Updating the database connection
+- In the file `PK-Yonge-App\config\env\development.js`
+- Change lines 6 to 14 to be your respective login credentials and mongoLab information
 
-* explore `config/env/development.js` for development environment configuration options
+## Completed Features
+- Allow a user to **create an account**, **modify their profile information**, **log in**, **log out**, and **retrieve a forgotten password**.
+    - We used the default MEAN application's functionality in the "users" module for this, located in `modules/users/`.
+    - User details are saved in the `users` collection in MongoDB.
+    - Email credentials used to send the forgotten password emails are located in `config/env/local.js`.
+    -  Emailing scripts are located in `scripts/reset-password.js/` 
+- Allow a user to **select a test** they'd like to take.
+    - Accomplished via custom functionality in the "choose-test" module, located in `modules/choose-test/`.
+    - The user's test choice is stored within a templated object that is created and then saved as a document in the `user_sessions` collection in MongoDB (in `modules/choose-test/choose-test.client.controller.js`). This specific document (as each user_session is associated with a different testing session) should be updated as the user takes the test  in order to save their answers, notes, mark-for-review flags, etcetera, but as described below in the "Buggy Features" section, this functionality is not working.
+- Allow the user to **take a test** (view questions specific to their chosen test, select answers, and save those answers).
+    - As follows are various working features that aid in the test-taking process.
+        - A basic four function calculator
+        - Formula Sheet
+        - Navigation between different questions
+        - Notepad that properly stores notes for every individual question
+        - Mark for review and that will be reflected in the drop down navigation, and on the individual questions
+        - Pop-up warnings when navigating between questions without answering
+        - Pop-up warnings when there are questions unanswered when submitting the test
+        - Pop-up warnings when time is up
+    - The user_session object (that is first instantiated and then stored in the `user_sessions` collection in MongoDB via `$scope.startTest` function in `modules/choose-test/choose-test.client.controller.js`) is updated as the user takes the test (i.e. if the user selects an answer for question 1, then the value is updated in slot 0 in the `user_answers' array - this array is a property of the `user_session` object in the aforementioned controller  as well as a property of the document in the `user_sessions` collection in MongoDB); this is done for all properties:
+        - `time`
+        - `complete`
+        - `user_notepad`
+        - `user_answer`
+        - `review`
+        - `correct`
+    - Please note how the aforementioned property names and types are consistent across the application in the MongoDB collections and the Mongoose Schema "Models" found throughout the application. Some of the aforementioned propeties are updated explicity as the user takes the test (i.e. user_notepad if user updates a question's notes, user_answer if they select or change an answer to a question, review if they mark a question for a review) but time, completed, and correct, are updated in the background (time is counted down as the user takes the test, complete is marked true if the user has answered the question, and correct is marked true if the user got the question correct during the grading process).
+- Allow the user to **review test performance** for a previously-taken test.
+    - The user can see how they did on a test they just submitted, but this information is only stored locally and there is no page for the user to review ALL of their previous tests (see "Buggy Features" section).
 
-### Running in Production mode
-To run your application with *production* environment configuration, execute grunt as follows:
+## Incomplete Features Being Implemented 2016
+- **Saving the user's test information to the database**. This information is currently being stored locally on the user's computer and is lost after the user exits the application.
+- **Allowing the user to view their previous tests via the "Review Tests" page**. This page is supposed to display all of the user's previous tests and allow them to review each test (i.e. their answers for each question, the correct answer for each question, the standard being tested for each question, and their overall grade on the test)
+    - The user should also be able to **resume paused tests** from this page (i.e. hop back into a previous testing session), if this functionality is desired
+- The **test timer**, which is displayed when a user is taking a test and offers them a visual cue as to how much time they have remaining for their test, does not pause and resume correctly.
 
-```bash
-$ grunt prod
-```
+These bugs are explained further on the *Issues* page (https://github.com/CEN3031-Project-9C/PK-Yonge-App/issues).
 
-* explore `config/env/production.js` for production environment configuration options
+## Unstarted Features
+- Test question types
+    - Drag-and-drop
+    - Graphing
+- Test-taking features
+    - Line reader
+    - Zoom in and out
+- Allow the user to take the test as a guest
+    - This may only require a "guest" account that the user is automatically logged in to after select to take a test as a guest
+- Use WolframAlpha API to render algebric expressions (rather than in plain text)
+- Administrative panel for teachers and faculty to create tests, add questions, and manage testing sessions (i.e. provide access to specific students, start and begin the test session, hide/display grades, etc.)
 
-### Running with User Seed
-To have default account(s) seeded at runtime:
+## Screenshots 
+The homepage.
 
-In Development:
-```bash
-MONGO_SEED=true grunt
-```
-It will try to seed the users 'user' and 'admin'. If one of the user already exists, it will display an error message on the console. Just grab the passwords from the console.
+![Homepage](modules/core/client/img/screenshots/homepage.PNG?raw=true)
 
-In Production:
-```bash
-MONGO_SEED=true grunt prod
-```
-This will seed the admin user one time if the user does not already exist. You have to copy the password from the console and save it.
+Reading instructions for the test.
 
-### Running with TLS (SSL)
-Application will start by default with secure configuration (SSL mode) turned on and listen on port 8443.
-To run your application in a secure manner you'll need to use OpenSSL and generate a set of self-signed certificates. Unix-based users can use the following command:
+![Instructions](modules/core/client/img/screenshots/instructions.PNG?raw=true)
 
-```bash
-$ sh ./scripts/generate-ssl-certs.sh
-```
+Signing in.
 
-Windows users can follow instructions found [here](http://www.websense.com/support/article/kbarticle/How-to-use-OpenSSL-and-Microsoft-Certification-Authority).
-After you've generated the key and certificate, place them in the *config/sslcerts* folder.
+![Sign in](modules/core/client/img/screenshots/signIn.PNG?raw=true)
 
-Finally, execute grunt's prod task `grunt prod`
-* enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
+Taking a mutiple choice question.
 
+![Test](modules/core/client/img/screenshots/basicTest.PNG?raw=true)
 
-## Testing Your Application
-You can run the full test suite included with MEAN.JS with the test task:
+Taking a muti-select question.
 
-```bash
-$ grunt test
-```
+![Test](modules/core/client/img/screenshots/checkbox.PNG?raw=true)
 
-This will run both the server-side tests (located in the app/tests/ directory) and the client-side tests (located in the public/modules/*/tests/).
+Taking a fill in the blank question with calculator.
 
-To execute only the server tests, run the test:server task:
+![Test](modules/core/client/img/screenshots/calculator.PNG?raw=true)
 
-```bash
-$ grunt test:server
-```
+Mark for review feature
 
-And to run only the client tests, run the test:client task:
+![Test](modules/core/client/img/screenshots/mark.PNG?raw=true)
 
-```bash
-$ grunt test:client
-```
+Timer Feature
 
-## Running your application with Gulp
+![Test](modules/core/client/img/screenshots/markNTimer.PNG?raw=true)
 
-After the install process, you can easily run your project with:
+Grading a test.
 
-```bash
-$ gulp
-```
-or
-
-```bash
-$ gulp default
-```
-
-The server is now running on http://localhost:3000 if you are using the default settings. 
-
-### Running Gulp Development Environment
-
-Start the development environment with:
-
-```bash
-$ gulp dev
-```
-
-### Running in Production mode
-To run your application with *production* environment configuration, execute gulp as follows:
-
-```bash
-$ gulp prod
-```
-
-### Testing Your Application with Gulp
-Using the full test suite included with MEAN.JS with the test task:
-
-### Run all tests
-```bash
-$ gulp test
-```
-
-### Run server tests
-```bash
-gulp test:server
-```
-
-### Run client tests
-```bash
-gulp test:client
-```
-
-### Run e2e tests
-```bash
-gulp test:e2e
-```
-
-## Development and deployment With Docker
-
-* Install [Docker](https://docs.docker.com/installation/#installation)
-* Install [Compose](https://docs.docker.com/compose/install/)
-
-* Local development and testing with compose:
-```bash
-$ docker-compose up
-```
-
-* Local development and testing with just Docker:
-```bash
-$ docker build -t mean .
-$ docker run -p 27017:27017 -d --name db mongo
-$ docker run -p 3000:3000 --link db:db_1 mean
-$
-```
-
-* To enable live reload, forward port 35729 and mount /app and /public as volumes:
-```bash
-$ docker run -p 3000:3000 -p 35729:35729 -v /Users/mdl/workspace/mean-stack/mean/public:/home/mean/public -v /Users/mdl/workspace/mean-stack/mean/app:/home/mean/app --link db:db_1 mean
-```
-
-## Getting Started With MEAN.JS
-You have your application running, but there is a lot of stuff to understand. We recommend you go over the [Official Documentation](http://meanjs.org/docs.html).
-In the docs we'll try to explain both general concepts of MEAN components and give you some guidelines to help you improve your development process. We tried covering as many aspects as possible, and will keep it updated by your request. You can also help us develop and improve the documentation by checking out the *gh-pages* branch of this repository.
-
-## Community
-* Use the [Official Website](http://meanjs.org) to learn about changes and the roadmap.
-* Join #meanjs on freenode.
-* Discuss it in the new [Google Group](https://groups.google.com/d/forum/meanjs)
-* Ping us on [Twitter](http://twitter.com/meanjsorg) and [Facebook](http://facebook.com/meanjs)
-
-## Contributing
-We welcome pull requests from the community! Just be sure to read the [contributing](https://github.com/meanjs/mean/blob/master/CONTRIBUTING.md) doc to get started.
-
-## Deploying To Cloud Foundry
-
-Cloud Foundry is an open source platform-as-a-service (PaaS).  The MEANJS project
-can easily be deployed to any Cloud Foundry instance.  The easiest way to deploy the
-MEANJS project to Cloud Foundry is to use a public hosted instance.  The two most popular
-instances are [Pivotal Web Services](https://run.pivotal.io/) and
-[IBM Bluemix](https://bluemix.net).  Both provide free trials and support pay-as-you-go models
-for hosting applications in the cloud.  After you have an account follow the below steps to deploy MEANJS.
-
-* Install the [Cloud Foundry command line tools](http://docs.cloudfoundry.org/devguide/installcf/install-go-cli.html).
-* Now you need to log into Cloud Foundry from the Cloud Foundry command line.
-  *  If you are using Pivotal Web Services run `$ cf login -a api.run.pivotal.io`.
-  *  If you are using IBM Bluemix run `$ cf login -a api.ng.bluemix.net`.
-* Create a Mongo DB service.
-+  *  If you are using Pivotal Web Services run `$ cf create-service mongolab sandbox mean-mongo`
-+  *  If you are using IBM Bluemix run `$ cf create-service mongodb 100 mean-mongo`
-* Clone the GitHub repo for MEANJS if you have not already done so
-  * `$ git clone https://github.com/meanjs/mean.git && cd mean`
-* Run `$ npm install`
-* Run the Grunt Build task to build the optimized JavaScript and CSS files
-  * `$ grunt build`
-* Deploy MEANJS to Cloud Foundry
-  * `$ cf push`
-
-After `cf push` completes you will see the URL to your running MEANJS application 
-(your URL will be different).
-
-    requested state: started
-    instances: 1/1
-    usage: 128M x 1 instances
-    urls: mean-humbler-frappa.mybluemix.net
-
-Open your browser and go to that URL and your should see your MEANJS app running!
-
-###  Deploying MEANJS To IBM Bluemix
-IBM Bluemix is a Cloud Foundry based PaaS.  By clicking the button below you can signup for Bluemix and deploy
-a working copy of MEANJS to the cloud without having to do the steps above.
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https%3A%2F%2Fgithub.com%2Fmeanjs%2Fmean)
-
-After the deployment is finished you will be left with a copy of the MEANJS code in your own private Git repo
-in Bluemix complete with a pre-configured build and deploy pipeline.  Just clone the Git repo, make your changes, and
-commit them back.  Once your changes are committed, the build and deploy pipeline will run automatically deploying
-your changes to Bluemix.
+![Test](modules/core/client/img/screenshots/gradeTest.PNG?raw=true)
 
 ## Credits
-Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
-The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/49262866911/the-mean-stack-mongodb-expressjs-angularjs-and)
 
-## License
-(The MIT License)
+This project incorporates a number of open source projects:
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+* [MEAN Stack](http://mean.io/#!/) - MongoDB, Express, Angular, and Node
+* [AngularJS] - HTML enhanced for web apps!
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [MongoDB](https://www.mongodb.org/) - NoSQL Database 
+* [jQuery] - For basic Javascript functionalities
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
+* [Thom Porter](http://www.thomporter.com/apps/angularjs_calc) - Calculator used in the app
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+And of course the PK-Yonge-App lives here on GitHub, in [this public repository](https://github.com/CEN3031-Project-9C/PK-Yonge-App).
