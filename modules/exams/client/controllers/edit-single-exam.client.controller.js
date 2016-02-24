@@ -10,6 +10,8 @@
   function EditSingleExamController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal, exam) {
 	
 	$scope.exam = null;
+	$scope.loading = false;
+	$scope.loading_question = false;
 	
 	if(exam){
 		$scope.exam = exam.data;
@@ -39,8 +41,10 @@
 		function (yes) {
 		  // question deletion confirmed
 		  if(yes){
+			$scope.loading = true;
 			ExamsService.delete_exam(_exam._id)
 			.then(function(response){
+				
 				//remove exam from array
 				//for(var i = 0; i < $scope.exams.length; ++i){
 				//	if($scope.exams[i]._id == _exam._id){
@@ -53,8 +57,10 @@
 				// TODO: better fix 
 				$state.go('edit-exams', {}, {reload: true});
 				
+				// TODO: causes flashing, maybe okay 
+				//$scope.loading = false;
 			}, function(error){
-
+				$scope.loading = false;
 			});
 		  }
 		});
@@ -84,12 +90,13 @@
 	  function (yes) {
 		  // question deletion confirmed
 		  if(yes){
+			_question.loading = true;
 			ExamsService.delete_question(_question._id)
 			.then(function(response){
 				// remove question from array
 				_exam.questions.splice(_exam.questions.indexOf(_question), 1);
 			}, function(error){
-
+				_question.loading = false;
 			});
 		  }
 	  });
@@ -114,9 +121,9 @@
 		  // question deletion confirmed
 		  if(edited_exam){
 			  for(var i = 0; i < $scope.exams.length; ++i){
-				  if($scope.exams[i]._id = edited_exam._id){
+				  if($scope.exams[i]._id == edited_exam._id){
 					  $scope.exams[i] = edited_exam;
-					  $scope.exams[i].active = true;
+					  $scope.activate_tab($scope.exams[i]);
 					  break;
 				  }
 			  }

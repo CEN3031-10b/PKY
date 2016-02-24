@@ -20,10 +20,13 @@
 		</td>
 	</tr>
 	</table>			
-
-
 </div>
-<div class="modal-body">
+
+<div class="loading ng-hide" ng-show="loading">
+	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
+</div>
+
+<div class="modal-body" ng-hide="loading">
     <div ng-show="!old_question" class="btn-group" uib-dropdown>
 	  <button type="button" class="btn btn-primary" uib-dropdown-toggle>
         {{selected_type ||'Select Question Type'}} <span class="caret"></span>

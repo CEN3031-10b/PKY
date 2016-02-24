@@ -1,4 +1,7 @@
-<div class="row">
+<div class="loading ng-hide" ng-show="loading">
+	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
+</div>
+<div class="row" ng-hide="loading">
 	<div class = "col-md-12 main-table-container" ng-show="exam">
 		<table class="main-table">
 			<tr class = "main-table-header-row">
@@ -30,11 +33,22 @@
 					</table>
 				</td>
 			</tr>
+			<!--<tr><td>
+				<div class="loading ng-hide" ng-show="loading_question">
+					<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+				</div>
+			</td></tr>-->
 			<tr class="question-row" ng-repeat= "question in exam.questions" ng-mouseover="question_hover=true" ng-mouseleave="question_hover=false">
 				<td class="question-row-container">
 					<table>
 						<tr>
-							<td class="question-container" >
+							<td ng-show="question.loading">
+								<div class="loading ng-hide" ng-show="question.loading">
+									<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+								</div>
+							</td>
+						
+							<td class="question-container" ng-hide="question.loading">
 								<table class="inside-tbl">
 									<tr class="question-content-row" >
 										<td>

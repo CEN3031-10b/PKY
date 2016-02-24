@@ -15,7 +15,7 @@
 	$scope.question.answers = [];
 	$scope.question.exam = selected_exam._id;
 	$scope.alert = {};
-	
+	$scope.loading = false;
 	// edit mode
 	if(old_question){
 		// copy hack to prevent question from changing beneath modal
@@ -43,10 +43,12 @@
     };
   
     $scope.submit = function(){
+	$scope.loading = true;
 	// if edit mode, update question
 	if(old_question){
 		ExamsService.update_question($scope.question)
 		.then(function(response){
+			$scope.loading = false;
 			// update old question which is a reference to the question being edited	
 			old_question.content = response.data.content;
 			old_question.answers = response.data.answers;
@@ -54,6 +56,7 @@
 			
 			$scope.ok();
         }, function(error){
+			$scope.loading = false;
 			if(error.data && error.data.message)
 			$scope.set_alert(error.data.message);
         });
@@ -67,6 +70,7 @@
 			selected_exam.questions.push(response.data);
 			$scope.ok();
         }, function(error){
+			$scope.loading = false;
 			if(error.data && error.data.message)
 			$scope.set_alert(error.data.message);
         });

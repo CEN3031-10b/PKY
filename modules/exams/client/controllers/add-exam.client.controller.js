@@ -12,6 +12,7 @@
     $scope.exam = {};
 	$scope.alert = null;
 	$scope.old_exam = old_exam;
+	$scope.loading = false;
 	
 	// edit mode
 	if(old_exam){
@@ -22,14 +23,16 @@
     $scope.classes = ['Algebra 1', 'Algebra 2'];
 	
 	$scope.submit = function(){
-		
+		$scope.loading = true;
 		if(old_exam){
 			ExamsService.update_exam($scope.exam)
 			.then(function(response){
 				old_exam.class = response.data.class;
 				old_exam.title = response.data.title;
 				$uibModalInstance.close(response.data);
+				$scope.loading = false;
 			}, function(error){
+				$scope.loading = false;
 				//TODO
 			});
 			
@@ -39,7 +42,9 @@
 		ExamsService.create_exam($scope.exam)
 		.then(function(response){
 			$uibModalInstance.close(response.data);
+			$scope.loading = false;
 		}, function(error){
+			$scope.loading = false;
 			//TODO
 		});
 	};
