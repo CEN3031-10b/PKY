@@ -9,6 +9,8 @@
 
   function EditExamsController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal,$templateCache,exams) {
 
+	$scope.load = false;
+  
 	// init child state with no parameters
 	$state.go('edit-exams.single');
 
@@ -60,8 +62,12 @@
 			$scope.exams[i].active = false;
 		}
 		if(_exam){
+			$scope.load = true;
 			_exam.active = true;
-			$state.go('edit-exams.single',{exam_id: _exam._id});
+			$state.go('edit-exams.single',{exam_id: _exam._id})
+			.then(function(){
+			$scope.load = false;
+			});
 		}
 	};	
 	

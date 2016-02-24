@@ -16,7 +16,12 @@
 			</uib-tabset>	
 		</div>		
 		<div class="col-md-10">
-			<div ui-view></div>
+			<div class="loading ng-hide" ng-show="load">
+				<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+			</div>
+			<div ng-hide="load">
+				<ui-view></ui-view>
+			</div>
 		</div>
 	</div>
 </div>

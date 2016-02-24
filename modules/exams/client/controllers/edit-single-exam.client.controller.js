@@ -10,6 +10,7 @@
   function EditSingleExamController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal, exam) {
 	
 	$scope.exam = null;
+	$scope.load = false;
 	$scope.loading = false;
 	$scope.loading_question = false;
 	
