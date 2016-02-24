@@ -39,7 +39,6 @@ body {
   opacity: 0.8;
   height: 28px;
   width: 28px;
-  border-radius: 50%;
   margin-right: 5px;
 }
 .open .header-profile-image,
@@ -132,4 +131,41 @@ a:hover .header-profile-image {
 .btn-default {
   background: rgb(255,255,255);
   background: rgba(255,255,255,.5);
+}
+
+.home-thumb{
+  margin-bottom:1px;
+}
+
+.home-img{
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.navbar-inverse {
+  background-image: none;
+  background-color: #1e5f8c;
+  border-bottom: 3px solid #144978;
+}
+
+.navbar-brand, .navbar-nav > li > a {
+  color: #fefefe !important;
+  text-shadow: none !important;
+}
+
+.title,
+.subtitle { 
+  font-family: 'Wire One', Helvetica, Arial, sans-serif !important;
+  font-size:5em;
+  margin-bottom:15px; 
+  color: #fff !important; 
+  line-height:1em;
+}
+.subtitle { 
+  line-height:.9em;
+  font-size:5.5em;
+  font-weight: bold;
+  margin-top:0;
+  margin-bottom:40px; 
+  color: #fff !important; 
 }

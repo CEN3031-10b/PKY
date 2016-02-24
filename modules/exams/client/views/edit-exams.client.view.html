@@ -32,11 +32,14 @@
 		
 		<!-- show all tests without any class grouping -->
 		<div class="col-md-2 exam-selector">
+
 			<uib-tabset vertical="true" type="pills">
-			<uib-tab ng-click="add_exam()">
-									<uib-tab-heading>	
-									<p style="font-size:80%;">Add a new question
-									<i class="glyphicon glyphicon-plus"></i>		
+			<uib-tab>
+									<uib-tab-heading>
+									<div class="btn btn-primary" ng-click="add_exam()">
+										Add a new exam
+										<i class="glyphicon glyphicon-plus"></i>		
+									</div>	
 									</uib-tab-heading>
 									</p>
 			</uib-tab>

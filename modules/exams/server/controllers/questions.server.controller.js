@@ -9,6 +9,10 @@ var path = require('path'),
   Exam = mongoose.model('Exam'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+process.on('uncaughtException', function(err){
+  console.log('Caught exception: ' + err);
+});
+
 /**
  * Create a question
  */
@@ -60,7 +64,6 @@ exports.update = function (req, res) {
 
   question.save(function (err) {
     if (err) {
-		console.log(err);
 		console.log(JSON.stringify(err));
       return res.status(400).send({
         //message: err

@@ -44,6 +44,7 @@
   
     $scope.submit = function(){
 	// if edit mode, update question
+    console.log($scope.question);
 	if(old_question){
 		ExamsService.update_question($scope.question)
 		.then(function(response){
