@@ -15,54 +15,86 @@
 		$scope.exam = exam.data;
 	}
 
-  $scope.delete_exam = function(_exam){
-    var modalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: '/modules/exams/client/views/prompt-yes-no.client.view.html',
-        controller: 'PromptController',
-        windowClass: 'prompt-modal',
-        size: 'lg',
-        resolve: {
-      question: function(){
-      return null;
-      },
-      string_header: function(){
-       return 'Are you sure you want to premanantly delete ' + _exam.title + '?';
-      },
-      old_exam: function(){
-        return _exam;
-      }
-        }
-      });
-    };
- 
-  $scope.delete_question = function(_question){
-    var modalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: '/modules/exams/client/views/prompt-yes-no.client.view.html',
-        controller: 'PromptController',
-        windowClass: 'prompt-modal',
-        size: 'lg',
-        resolve: {
-      question: function(){
-      return _question;
-      },
-      string_header: function(){
-        return 'Are you sure you want to premanantly delete this question?';
-      },
-      old_exam: function(){
-        return null;
-      }
-        }
-      });
-    
-      modalInstance.result.then(function (result) {
-      }, function () {
-      
-      });
-  };
+	$scope.delete_exam = function(_exam){
+		var modalInstance = $uibModal.open({
+			animation: true,
+			templateUrl: '/modules/exams/client/views/prompt-yes-no.client.view.html',
+			controller: 'PromptController',
+			windowClass: 'prompt-modal',
+			size: 'lg',
+			resolve: {
+				question: function(){
+					return null;
+				},
+				string_header: function(){
+					return 'Are you sure you want to premanantly delete ' + _exam.title + '?';
+				},
+				old_exam: function(){
+					return _exam;
+				}
+			}
+		  });
+		  
+		modalInstance.result.then(
+		function (yes) {
+		  // question deletion confirmed
+		  if(yes){
+			ExamsService.delete_exam(_exam._id)
+			.then(function(response){
+				//remove exam from array
+				//for(var i = 0; i < $scope.exams.length; ++i){
+				//	if($scope.exams[i]._id == _exam._id){
+				//		$scope.exams.splice(i,1);
+				//		$state.go('edit-exams');
+				//		break;
+				//	}
+				//}
+							
+				// TODO: better fix 
+				$state.go('edit-exams', {}, {reload: true});
+				
+			}, function(error){
 
-  
+			});
+		  }
+		});
+	};
+ 
+	$scope.delete_question = function(_exam, _question){
+		var modalInstance = $uibModal.open({
+			animation: true,
+			templateUrl: '/modules/exams/client/views/prompt-yes-no.client.view.html',
+			controller: 'PromptController',
+			windowClass: 'prompt-modal',
+			size: 'lg',
+			resolve: {
+				question: function(){
+					return _question;
+				},
+				string_header: function(){
+					return 'Are you sure you want to premanantly delete this question?';
+				},
+				old_exam: function(){
+					return null;
+				}
+			}
+		});
+
+	  modalInstance.result.then(
+	  function (yes) {
+		  // question deletion confirmed
+		  if(yes){
+			ExamsService.delete_question(_question._id)
+			.then(function(response){
+				// remove question from array
+				_exam.questions.splice(_exam.questions.indexOf(_question), 1);
+			}, function(error){
+
+			});
+		  }
+	  });
+	};
+
 	$scope.edit_exam = function(_exam){
 		var modalInstance = $uibModal.open({
         animation: true,
@@ -75,21 +107,21 @@
 			return _exam;
 		  }
         }
-      });
-	  
-      modalInstance.result.then(function (result) {
-      }, function () {
-		  
-      });
-	};
-	
-	$scope.delete_exam1 = function(_exam){
-      ExamsService.delete_exam(_exam._id)
-        .then(function(response){
-
-        }, function(error){
-
         });
+	  
+		modalInstance.result.then(
+		function (edited_exam) {
+		  // question deletion confirmed
+		  if(edited_exam){
+			  for(var i = 0; i < $scope.exams.length; ++i){
+				  if($scope.exams[i]._id = edited_exam._id){
+					  $scope.exams[i] = edited_exam;
+					  $scope.exams[i].active = true;
+					  break;
+				  }
+			  }
+		  }
+		});
 	};
 
 	$scope.add_question_to_exam = function (_exam) {	
@@ -108,14 +140,7 @@
 		  }
         }
       });
-	  
-      modalInstance.result.then(function (result) {
-      }, function () {
-		  
-      });
     };
-	
-	console.log($rootScope);
 	
 	$scope.edit_question = function(_exam, _question){
 		var modalInstance = $uibModal.open({
@@ -132,11 +157,6 @@
 			return _question;
 		  }
         }
-      });
-	  
-      modalInstance.result.then(function (result) {
-      }, function () {
-		  
       });
 	};
 	

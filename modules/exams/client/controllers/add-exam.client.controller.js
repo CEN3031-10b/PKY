@@ -28,7 +28,7 @@
 			.then(function(response){
 				old_exam.class = response.data.class;
 				old_exam.title = response.data.title;
-				$scope.ok();
+				$uibModalInstance.close(response.data);
 			}, function(error){
 				//TODO
 			});
@@ -38,7 +38,7 @@
 	
 		ExamsService.create_exam($scope.exam)
 		.then(function(response){
-			$scope.ok();
+			$uibModalInstance.close(response.data);
 		}, function(error){
 			//TODO
 		});

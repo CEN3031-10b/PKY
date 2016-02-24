@@ -5,9 +5,9 @@
     .module('exams')
     .controller('EditExamsController', EditExamsController);
 
-  EditExamsController.$inject = ['$scope','$state','$stateParams', 'ExamsService', 'Authentication','$uibModal','exams'];
+  EditExamsController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication','$uibModal','$templateCache','exams'];
 
-  function EditExamsController($scope, $state, $stateParams, ExamsService, Authentication, $uibModal,exams) {
+  function EditExamsController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal,$templateCache,exams) {
 
 	// init child state with no parameters
 	$state.go('edit-exams.single');
@@ -40,10 +40,14 @@
         }
       });
 	  
-      modalInstance.result.then(function (result) {
-      }, function () {
-		  
-      });
+	  modalInstance.result.then(
+	    // exam was added to db, returned as _exam
+		function (_exam) {
+		  if(_exam){
+			$scope.exams.unshift(_exam);
+		  }
+		});
+	  
 	};
 	
 	if($scope.class_types){
@@ -64,6 +68,11 @@
 	// init all tabs inactive
 	$scope.activate_tab();
 	
+	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) { 
+		if(toState != fromState)
+		$scope.activate_tab();
+	});
+
   }
   
 })();
