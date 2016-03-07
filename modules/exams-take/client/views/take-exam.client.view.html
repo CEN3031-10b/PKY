@@ -1,0 +1,28 @@
+<h1>{{exam.title}}</h1>
+<h4>{{exam.class}}</h4>
+<br>
+<br>
+<table>
+	<tr ng-repeat="question in attempt.questions">
+		<td style="padding-bottom: 30px;">
+			<!-- replace with ng-include -->
+			<table ng-if="question.type === 'multiple choice'">
+				<tr>
+					<td>
+						<h3>{{question.content}}</h3>
+					</td>
+				</tr>
+				<tr ng-repeat="answer in question.answers">
+					<td style="padding-left:20px">
+						<input type="radio" 
+						ng-model="question.selected_answer" 
+						value="{{answer._id}}" 
+						ng-click="save_mc_answer(question,answer)">
+							{{answer.content}}
+						</input>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

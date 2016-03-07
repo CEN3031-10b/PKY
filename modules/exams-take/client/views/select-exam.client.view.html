@@ -1,0 +1,23 @@
+<table>
+<th> title </th>
+<th> class </th>
+	<tr ng-repeat="exam in exams">
+		<td>{{exam.title}}</td>
+		<td>{{exam.class}}</td>
+		<td style="padding-bottom:20px" class="btn btn-primary" ng-click="start_exam(exam)">
+			begin
+		</td>
+	</tr>
+</table>
+<br>
+<table>
+<th>Attempts:</th>
+	<tr ng-repeat="attempt in attempts">
+		<td>
+			<button class="btn btn-warning x" type="button" ng-click="delete_attempt(attempt)">
+				<i class="glyphicon glyphicon-remove"></i>
+			</button>	
+		</td>
+		<td style="padding-bottom:20px"><pre> {{attempt | json}}</pre> </td>
+	</tr>
+</table>
