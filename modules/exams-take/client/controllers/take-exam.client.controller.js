@@ -9,20 +9,22 @@
 
   function TakeExamController($scope,$rootScope, $state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
 	
+	if(!$stateParams.exam){
+		$state.go('exams-take.select');
+	}
+	
 	// init 
 	$scope.exam = $stateParams.exam;
-	$scope.attempt = {};
+	$scope.attempt = {};	
 
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($scope.exam._id)
 	.then(function(response){
 		$scope.attempt = response.data;
-		//console.log(response.data);
 		$scope.set_answers($scope.attempt);
 	}, function(error){
 		console.log(error);
 	});
-	
 	
 	$scope.save_mc_answer = function(_question, _answer){
 		
@@ -59,11 +61,11 @@
 		for(var i = 0; i < _attempt.questions.length; ++i){
 			for(var j = 0; j < _attempt.student_answers.length; ++j){
 				// multiple choice
-				if(_attempt.questions[i].type === 'multiple choice' 
-				&& _attempt.student_answers[j].question_id === _attempt.questions[i]._id){
-					for(var k = 0; k < _attempt.questions[i].answers.length; ++k){
-						if(_attempt.questions[i].answers[k]._id === _attempt.student_answers[j].answer_id){
-							_attempt.questions[i].selected_answer = _attempt.questions[i].answers[k]._id;
+				if(_attempt.questions[i].data.type === 'multiple choice' 
+				&& _attempt.student_answers[j].question_id === _attempt.questions[i].data._id){
+					for(var k = 0; k < _attempt.questions[i].data.answers.length; ++k){
+						if(_attempt.questions[i].data.answers[k]._id === _attempt.student_answers[j].answer_id){
+							_attempt.questions[i].selected_answer = _attempt.questions[i].data.answers[k]._id;
 						}
 					}
 				}
@@ -75,7 +77,6 @@
 		ExamsAnalysisService.submit_attempt($scope.attempt)
 		.then(function(response){
 			$state.go('exams-take.select');
-			console.log(response.data);
 		}, function(error){
 			console.log(error);
 		});

@@ -30,12 +30,13 @@
 <th>Submitted Attempts:</th>
 	<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted">
 	
-		<td>attempt.exam_title</td>
+		<td>{{attempt.exam_title}}</td>
 		<td>
 			<table>
 				<tr ng-repeat="question in attempt.questions">
-					<td>{{question.data._id}}</td>
-					<td>{{question.points_earned}}</td>
+					<td>{{question.data.content}}</td>
+					<td> &nbsp </td>
+					<td style="width:150px">{{question.points_earned}} / {{question.data.points}}</td>
 				</tr>
 			</table>
 		</td>

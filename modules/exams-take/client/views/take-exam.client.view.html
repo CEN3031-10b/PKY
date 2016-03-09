@@ -1,6 +1,6 @@
 <h1>{{exam.title}}</h1>
 <h4>{{exam.class}}</h4>
-<button class="btn btn-warning x" type="button" ng-click="submit_attempt()">
+<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
 	<i class="glyphicon glyphicon-plus">Submit</i>
 </button>	
 
@@ -22,7 +22,7 @@
 						<input type="radio" 
 						ng-model="question.selected_answer" 
 						value="{{answer._id}}" 
-						ng-click="save_mc_answer(question,answer)">
+						ng-click="save_mc_answer(question.data,answer)">
 							{{answer.content}}
 						</input>
 					</td>

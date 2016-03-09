@@ -145,7 +145,6 @@ exports.attemptByID = function (req, res, next, id) {
 			});
 		}
 		
-		console.log(attempt);
 		req.attempt = attempt;
 		next();
     });
@@ -154,16 +153,9 @@ exports.attemptByID = function (req, res, next, id) {
 exports.gradeAttempt = function(req,res,next){
 	var attempt = req.attempt;
 	attempt.submitted = true;
-	
-	
-	//console.log(attempt);
-	//console.log(attempt.student_answers);
-	//console.log('==================================');
-	//console.log(attempt.questions);
-	
-	
 	for(var i = 0; i < attempt.questions.length; ++i){
 		attempt.questions[i].points_earned = 0;
+		console.log(attempt.questions[i].data);
 		if(attempt.questions[i].data.type === 'multiple choice'){
 			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
 				// find the correct answer for the multiple choice question
@@ -172,8 +164,8 @@ exports.gradeAttempt = function(req,res,next){
 					for(var k = 0; k < attempt.student_answers.length; ++k){
 					
 						//console.log(attempt.student_answers[k].question_id, attempt.questions[i].data._id);
-						if(attempt.student_answers[k].question_id === attempt.questions[i].data._id
-						&& attempt.student_answers[k].answer_id === attempt.questions[i].data.answers[j]._id){
+						if(attempt.questions[i].data._id.equals(attempt.student_answers[k].question_id)   
+						&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)){
 							console.log("CORRECT ANSWER");
 							attempt.questions[i].points_earned = attempt.questions[i].data.points;
 						}
@@ -200,8 +192,6 @@ exports.gradeAttempt = function(req,res,next){
 			});
 		}
 	});
-	
-	
 }
 
 exports.validateNewAttempt = function(req,res,next){
@@ -257,7 +247,6 @@ exports.validateNewAttempt = function(req,res,next){
 					// exam and questions checked, set all the values of the attempt
 					attempt.questions = [];
 					for(var i=0; i < exam.questions.length; ++i){
-						console.log(exam.questions[i]._id);
 						attempt.questions.push({'data':exam.questions[i]._id});
 					}
 					
