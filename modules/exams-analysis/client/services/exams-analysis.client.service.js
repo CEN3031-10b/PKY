@@ -21,6 +21,9 @@
 			},
 			save_answers: function(attempt){
 				return $http.put('/api/attempts/' + attempt._id, attempt);
+			},
+			submit_attempt: function(attempt){
+				return $http.post('/api/attempts/' + attempt._id);
 			}
       };
 

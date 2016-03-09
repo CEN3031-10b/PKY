@@ -1,9 +1,12 @@
 <h1>{{exam.title}}</h1>
 <h4>{{exam.class}}</h4>
+<button class="btn btn-warning x" type="button" ng-click="submit_attempt()">
+	<i class="glyphicon glyphicon-plus">Submit</i>
+</button>	
+
 <br>
 <br>
 
-<pre>{{attempt |json}}</pre>
 <table>
 	<tr ng-repeat="question in attempt.questions">
 		<td style="padding-bottom: 30px;">

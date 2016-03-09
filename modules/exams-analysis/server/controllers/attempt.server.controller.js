@@ -144,31 +144,64 @@ exports.attemptByID = function (req, res, next, id) {
 				message: 'No attempt found.'
 			});
 		}
+		
+		console.log(attempt);
 		req.attempt = attempt;
 		next();
     });
 };
 
-exports.gradeAttempt = function(){
+exports.gradeAttempt = function(req,res,next){
 	var attempt = req.attempt;
 	attempt.submitted = true;
+	
+	
+	//console.log(attempt);
+	//console.log(attempt.student_answers);
+	//console.log('==================================');
+	//console.log(attempt.questions);
+	
+	
 	for(var i = 0; i < attempt.questions.length; ++i){
-		attempt.questions[i].grade = 0;
+		attempt.questions[i].points_earned = 0;
 		if(attempt.questions[i].data.type === 'multiple choice'){
 			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
 				// find the correct answer for the multiple choice question
 				if(attempt.questions[i].data.answers[j].correct){
 					// search for this answer in the student answers
 					for(var k = 0; k < attempt.student_answers.length; ++k){
-						if(attempt.student_answers[k].question_id == attempt.questions[i].data._id
-						&& attempt.student_answers[k].answer_id == attempt.questions[i].data.answers[j]._id){
-							attempt.questions[i].grade = attempt.questions[i].data.points;
+					
+						//console.log(attempt.student_answers[k].question_id, attempt.questions[i].data._id);
+						if(attempt.student_answers[k].question_id === attempt.questions[i].data._id
+						&& attempt.student_answers[k].answer_id === attempt.questions[i].data.answers[j]._id){
+							console.log("CORRECT ANSWER");
+							attempt.questions[i].points_earned = attempt.questions[i].data.points;
 						}
 					}
 				}
 			}
 		}
 	}
+	
+	attempt.save(function (err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} 
+		else {
+			attempt.populate('questions.data', function(err, a){
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				}
+				res.json(a);
+			});
+		}
+	});
+	
+	
 }
 
 exports.validateNewAttempt = function(req,res,next){
@@ -223,7 +256,6 @@ exports.validateNewAttempt = function(req,res,next){
 
 					// exam and questions checked, set all the values of the attempt
 					attempt.questions = [];
-					console.log(exam);
 					for(var i=0; i < exam.questions.length; ++i){
 						console.log(exam.questions[i]._id);
 						attempt.questions.push({'data':exam.questions[i]._id});

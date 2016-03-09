@@ -56,8 +56,8 @@ var AttemptSchema = new Schema({
 			required:true			
 		},
 		points_earned:{
-				type: Number,
-				default: 0
+			type: Number,
+			default: 0
 		}
 	}],
 	

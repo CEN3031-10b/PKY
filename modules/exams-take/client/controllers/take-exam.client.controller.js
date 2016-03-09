@@ -71,6 +71,15 @@
 		}
 	};
 	
+	$scope.submit_attempt = function(){
+		ExamsAnalysisService.submit_attempt($scope.attempt)
+		.then(function(response){
+			$state.go('exams-take.select');
+			console.log(response.data);
+		}, function(error){
+			console.log(error);
+		});
+	};
 	
   }
   
