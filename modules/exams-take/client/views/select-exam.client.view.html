@@ -1,6 +1,9 @@
+<div class="container">
+<div class="row">
+<div class="col-md-8">
 <table>
-<th> title </th>
-<th> class </th>
+	<th> title </th>
+	<th> class </th>
 	<tr ng-repeat="exam in exams">
 		<td>{{exam.title}}</td>
 		<td>{{exam.class}}</td>
@@ -21,3 +24,23 @@
 		<td style="padding-bottom:20px"><pre> {{attempt | json}}</pre> </td>
 	</tr>
 </table>
+</div>
+<div class="col-md-4">
+<table>
+<th>Submitted Attempts:</th>
+	<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted">
+		<td>
+			<table>
+				<tr ng-repeat="question in attempt.questions">
+					<td>{{question.data._id}}</td>
+					<td>{{question.grade}}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+
+</div>
+</div>
+

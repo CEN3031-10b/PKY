@@ -17,6 +17,7 @@
 	ExamsAnalysisService.create_attempt($scope.exam._id)
 	.then(function(response){
 		$scope.attempt = response.data;
+		//console.log(response.data);
 		$scope.set_answers($scope.attempt);
 	}, function(error){
 		console.log(error);

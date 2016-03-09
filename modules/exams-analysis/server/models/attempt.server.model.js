@@ -50,42 +50,35 @@ var AttemptSchema = new Schema({
 		required:true
 	},
 	questions: [{
-		type: Schema.Types.ObjectId, 
-		ref: 'Question', 
-		required:true
+		data:{
+			type: Schema.Types.ObjectId, 
+			ref: 'Question', 
+			required:true			
+		},
+		points_earned:{
+				type: Number,
+				default: 0
+		}
 	}],
+	
+	// student answers separate from questions for updating convenience
 	student_answers: [{
-		/*
-		duplicate ids of question and an answer element
-		*/
-			question_id:{
-				type: Schema.Types.ObjectId,
-				required:true
-			},
-			answer_id:{
-				type: Schema.Types.ObjectId,
-				required:true
-			},
-		/*
-		duplicate response fields of an answer
-		*/
-			points_available:{
-				type: Number,
-				default: 0
-			},
-			points_acquired:{
-				type: Number,
-				default: 0
-			},
-			value: {
-			  type: Number
-			},
-			correct:{
-			  type: Boolean,
-			  default:false,
-			}
+		question_id:{
+			type: Schema.Types.ObjectId,
+			required:true
+		},
+		answer_id:{
+			type: Schema.Types.ObjectId,
+			required:true
+		},
+		value: {
+			type: Number
+		},
+		correct:{
+			type: Boolean,
+			default:false,
+		}
 	}]
-
 });
 
 

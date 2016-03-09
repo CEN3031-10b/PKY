@@ -21,17 +21,17 @@ exports.create = function (req, res) {
     } 
 	else {
 		// populate questions, remove answers 
-		attempt.populate('questions', function(err, a){
+		attempt.populate('questions.data', function(err, a){
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});
 			}
 			for(var i = 0; i < a.questions.length; ++i){
-				for( var j = 0; j < a.questions[i].answers.length; ++j){
-					delete a.questions[i].answers[j].value;
-					delete a.questions[i].answers[j].tolerance;
-					delete a.questions[i].answers[j].correct;
+				for( var j = 0; j < a.questions[i].data.answers.length; ++j){
+					delete a.questions[i].data.answers[j].value;
+					delete a.questions[i].data.answers[j].tolerance;
+					delete a.questions[i].data.answers[j].correct;
 				}
 			}
 			res.json(a);
@@ -64,7 +64,7 @@ exports.updateAnswers = function(req,res){
 			});
 		} 
 		else {
-			attempt.populate('questions', function(err, a){
+			attempt.populate('questions.data', function(err, a){
 				if (err) {
 					return res.status(400).send({
 						message: errorHandler.getErrorMessage(err)
@@ -81,7 +81,7 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 	Attempt.find({'user':req.user._id})
 	.sort('-created')
 	.populate('exam')
-	.populate('questions')
+	.populate('questions.data')
 	.exec(function (err, attempts) {
 		if (err) {
 			return res.status(400).send({
@@ -106,7 +106,7 @@ exports.getAllAttempts = function (req, res, next) {
 	Attempt.find({})
 	.sort('-created')
 	.populate('exam')
-	.populate('questions')
+	.populate('questions.data')
 	.exec(function (err, attempts) {
 		if (err) {
 			return res.status(400).send({
@@ -134,7 +134,7 @@ exports.attemptByID = function (req, res, next, id) {
 
 	Attempt.findById(id)
 	.populate('exam')
-	.populate('questions.ref')
+	.populate('questions.data')
 	.exec(function (err, attempt) {
 		if (err) {
 			return next(err);
@@ -150,7 +150,25 @@ exports.attemptByID = function (req, res, next, id) {
 };
 
 exports.gradeAttempt = function(){
-	
+	var attempt = req.attempt;
+	attempt.submitted = true;
+	for(var i = 0; i < attempt.questions.length; ++i){
+		attempt.questions[i].grade = 0;
+		if(attempt.questions[i].data.type === 'multiple choice'){
+			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
+				// find the correct answer for the multiple choice question
+				if(attempt.questions[i].data.answers[j].correct){
+					// search for this answer in the student answers
+					for(var k = 0; k < attempt.student_answers.length; ++k){
+						if(attempt.student_answers[k].question_id == attempt.questions[i].data._id
+						&& attempt.student_answers[k].answer_id == attempt.questions[i].data.answers[j]._id){
+							attempt.questions[i].grade = attempt.questions[i].data.points;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 exports.validateNewAttempt = function(req,res,next){
@@ -160,7 +178,7 @@ exports.validateNewAttempt = function(req,res,next){
 	attempt.user = req.user._id;
 	
 	Attempt.findOne({'user':attempt.user,'exam':attempt.exam,'submitted':false})
-	.populate('questions')
+	.populate('questions.data')
 	.exec(function(err, prevAttempt){
 		
 		if (err) {
@@ -172,10 +190,10 @@ exports.validateNewAttempt = function(req,res,next){
 		// if an attempt is already in progress for this exam
 		if(prevAttempt){
 				for(var i = 0; i < prevAttempt.questions.length; ++i){
-					for( var j = 0; j < prevAttempt.questions[i].answers.length; ++j){
-						delete prevAttempt.questions[i].answers[j].value;
-						delete prevAttempt.questions[i].answers[j].tolerance;
-						delete prevAttempt.questions[i].answers[j].correct;
+					for( var j = 0; j < prevAttempt.questions[i].data.answers.length; ++j){
+						delete prevAttempt.questions[i].data.answers[j].value;
+						delete prevAttempt.questions[i].data.answers[j].tolerance;
+						delete prevAttempt.questions[i].data.answers[j].correct;
 					}
 				}			
 				return res.json(prevAttempt);					
@@ -205,8 +223,10 @@ exports.validateNewAttempt = function(req,res,next){
 
 					// exam and questions checked, set all the values of the attempt
 					attempt.questions = [];
+					console.log(exam);
 					for(var i=0; i < exam.questions.length; ++i){
-						attempt.questions.push(exam.questions[i]._id);
+						console.log(exam.questions[i]._id);
+						attempt.questions.push({'data':exam.questions[i]._id});
 					}
 					
 					attempt.start_time = Date.now();

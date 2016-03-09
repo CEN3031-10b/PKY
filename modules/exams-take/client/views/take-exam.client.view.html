@@ -2,17 +2,19 @@
 <h4>{{exam.class}}</h4>
 <br>
 <br>
+
+<pre>{{attempt |json}}</pre>
 <table>
 	<tr ng-repeat="question in attempt.questions">
 		<td style="padding-bottom: 30px;">
 			<!-- replace with ng-include -->
-			<table ng-if="question.type === 'multiple choice'">
+			<table ng-if="question.data.type === 'multiple choice'">
 				<tr>
 					<td>
-						<h3>{{question.content}}</h3>
+						<h3>{{question.data.content}}</h3>
 					</td>
 				</tr>
-				<tr ng-repeat="answer in question.answers">
+				<tr ng-repeat="answer in question.data.answers">
 					<td style="padding-left:20px">
 						<input type="radio" 
 						ng-model="question.selected_answer" 
