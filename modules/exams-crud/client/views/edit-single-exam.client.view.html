@@ -82,7 +82,30 @@
 									<tr>
 										<td class="answer-container">
 											<table class="answer-row-container">
-												<tr class="answer-row" ng-repeat="answer in question.answers">
+												<tr class="answer-row" ng-if="question.type === 'fill in the blank' "ng-repeat="answer in question.answers">
+													<td>
+														numeric: {{answer.is_numeric}}
+													</td>
+													<td>
+														label: {{answer.label}}
+													</td>
+													<td ng-if="!answer.is_numeric">
+														answer: {{answer.content}}
+													</td>
+													<td ng-if="!answer.is_numeric">
+														
+													</td>
+													<td ng-if="answer.is_numeric">
+														value: {{answer.value}}
+													</td>
+													<td ng-if="answer.is_numeric">
+														tolerance: {{answer.tolerance}}
+													</td>
+													
+												</tr>
+												
+												<tr class="answer-row" ng-if="question.type === 'multiple choice' || question.type === 'multiple select'"
+												ng-repeat="answer in question.answers">								
 													<td class="answer-text">
 														{{answer.content}}
 													</td>

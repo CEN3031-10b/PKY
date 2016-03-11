@@ -28,6 +28,23 @@
 					</td>
 				</tr>
 			</table>
+			<table ng-if="question.data.type === 'multiple select'">
+				<tr>
+					<td>
+						<h3>{{question.data.content}}</h3>
+					</td>
+				</tr>
+				<tr ng-repeat="answer in question.data.answers">
+					<td style="padding-left:20px">
+						<input type="checkbox" 
+						ng-model="question.selected_answer" 
+						value="{{answer._id}}" 
+						ng-click="save_mc_answer(question.data,answer)">
+							{{answer.content}}
+						</input>
+					</td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 </table>

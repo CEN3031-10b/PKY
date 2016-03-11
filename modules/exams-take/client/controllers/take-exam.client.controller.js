@@ -26,6 +26,10 @@
 		console.log(error);
 	});
 	
+	$scope.save_ms_answer = function(_question,_answer){
+		
+	};
+	
 	$scope.save_mc_answer = function(_question, _answer){
 		
 		// only call this function on multiple choice questions

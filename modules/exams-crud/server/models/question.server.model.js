@@ -40,7 +40,6 @@ var QuestionSchema = new Schema({
 		},
 		content:{
 			type: String,
-			required: true,  
 			unique: true
 		},
 		is_numeric:{
