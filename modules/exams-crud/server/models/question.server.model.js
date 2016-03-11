@@ -16,12 +16,13 @@ var QuestionSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	/* 
-	TODO: tests standards fields 
-	*/
+	standard:{
+		type: String, 
+		required: 'Question type cannot be blank'
+	},
 	type: {
 		type: String, 
-		/*enum: QuestionTypes,*/
+		enum: QuestionTypes,
 		required: 'Question type cannot be blank'
 	},
 	content: {
@@ -33,18 +34,26 @@ var QuestionSchema = new Schema({
 		required: true  
 	},
 	answers: [{
+		label:{
+			type: String,
+			unique: true
+		},
 		content:{
 			type: String,
 			required: true,  
 			unique: true
 		},
+		is_numeric:{
+			type: Boolean,
+			required: true
+		},
 		value: {
 			type: Number,
-			default: -1,
+			required: true,
 		},
 		tolerance:{
 			type: Number,
-			default: 0
+			required: true,
 		},
 		correct:{
 			type: Boolean,

@@ -52,25 +52,6 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
 	
-	/* 
-	// old update the existing question
-	var question = req.question;
-	question.content = req.body.content;
-	question.answers = req.body.answers;
-	question.type = req.body.type;
-
-	question.save(function (err) {
-	if (err) {
-	  return res.status(400).send({
-		//message: err
-		message: errorHandler.getErrorMessage(err)
-	  });
-	} else {
-	  res.json(question);
-	}
-	});
-	*/
-
 	// create a new question, preserving old one for attempt history
 	// then disassociate with tests and add the updated question
 	var question = {};

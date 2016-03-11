@@ -5,7 +5,7 @@
     .module('exams')
     .controller('EditSingleExamController', EditSingleExamController);
 
-  EditSingleExamController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication','$uibModal','exam'];
+  EditSingleExamController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModal', 'exam'];
 
   function EditSingleExamController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal, exam) {
 	
@@ -128,7 +128,7 @@
 		  // question deletion confirmed
 		  if(edited_exam){
 			  for(var i = 0; i < $scope.exams.length; ++i){
-				  if($scope.exams[i]._id == edited_exam._id){
+				  if($scope.exams[i]._id === edited_exam._id){
 					  $scope.exams[i] = edited_exam;
 					  $scope.activate_tab($scope.exams[i]);
 					  break;
@@ -139,51 +139,50 @@
 	};
 
 	$scope.add_question_to_exam = function (_exam) {	
-      var modalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: '/modules/exams-crud/client/views/add-question.client.view.html',
-        controller: 'AddQuestionController',
-        windowClass: 'add-question-modal',
-        size: 'lg',
-        resolve: {
-          selected_exam: function () {
-            return _exam;
-          },
-		  old_question: function(){
-			return null;
-		  }
-        }
-      });
+		var modalInstance = $uibModal.open({
+		animation: true,
+		templateUrl: '/modules/exams-crud/client/views/add-question.client.view.html',
+		controller: 'AddQuestionController',
+		windowClass: 'add-question-modal',
+		size: 'lg',
+		resolve: {
+			selected_exam: function () {
+					return _exam;
+				},
+			old_question: function(){
+					return null;
+				}
+		}
+		});
 	
-	modalInstance.result.then(
-	function(){
-		$scope.calculate_points(_exam);
-	});
+		modalInstance.result.then(
+		function(){
+			$scope.calculate_points(_exam);
+		});
 	
     };
 	
 	$scope.edit_question = function(_exam, _question){
 		var modalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: '/modules/exams-crud/client/views/add-question.client.view.html',
-        controller: 'AddQuestionController',
-        windowClass: 'add-question-modal',
-        size: 'lg',
-        resolve: {
-          selected_exam: function () {
-			return _exam;
-          },
-		  old_question: function(){
-			return _question;
-		  }
-        }
-      });
+		animation: true,
+		templateUrl: '/modules/exams-crud/client/views/add-question.client.view.html',
+		controller: 'AddQuestionController',
+		windowClass: 'add-question-modal',
+		size: 'lg',
+		resolve: {
+			selected_exam: function () {
+				return _exam;
+			},
+			old_question: function(){
+				return _question;
+			}
+		}
+		});
 	  
-	modalInstance.result.then(
-	function(){
-		$scope.calculate_points(_exam);
-	});
-	  
+		modalInstance.result.then(
+		function(){
+			$scope.calculate_points(_exam);
+		});
 	  
 	};
 	

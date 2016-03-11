@@ -32,16 +32,27 @@
         {{selected_type ||'Select Question Type'}} <span class="caret"></span>
       </button>
       <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-        <li role="menuitem" ng-click="question.type = 'multiple choice'"><a href="#">multiple choice</a></li>
-        <li role="menuitem" ng-click="question.type = 'multiple select'"><a href="#">multiple select</a></li>
+        <li role="menuitem" ng-click="set_type(multiple_choice)"><a href="#">{{multiple_choice}}</a></li>
+        <li role="menuitem" ng-click="set_type(multiple_select)"><a href="#">{{multiple_select}}</a></li>
+		<li role="menuitem" ng-click="set_type(fill_in_the_blank)"><a href="#">{{fill_in_the_blank}}</a></li>
       </ul>
 	</div>
-
-	<!-- Multiple Choice -->
-	<div class="Multiple-Choice" ng-show="question.type == 'multiple choice'">
+	<h3 ng-show="old_question" style="padding:0; margin:0; width:100%;">
+		Type:
+		<span class="label label-info">{{old_question.type}}</span>
+	</h3>
+	<br>
+	
+	<!-- TODO: rename css classes -->
+	<div class="multiple-choice" ng-show="selected_type">
+		<!-- attributes common to all question types -->
 		<div class="question-content" >
 			<h4>Point Value</h4>
 			<input class="form-control" type="number" ng-model="question.points" min="0">
+		</div>
+		<div class="question-content" >
+			<h4>Standard</h4>
+			<textarea class="form-control" ng-model="question.standard"></textarea>
 		</div>
 		<div class="question-content" >
 			<h4>Question</h4>
@@ -49,13 +60,14 @@
 		</div>
 		<div class="answer-content">	
 			<h4>Answers</h4>
-			<div class="btn btn-primary" ng-click="add_new_mc_answer()">
+			<div class="btn btn-primary" ng-click="add_new_answer(question)">
 				<span>Add a new answer</span>
 				<i class="glyphicon glyphicon-plus"></i>		
 			</div>
-			<table class="mc-answer">
+			<!-- multiple choice -->
+			<table class="mc-answer" ng-show="selected_type === multiple_choice">
 				<tr ng-repeat="answer in question.answers">
-					<td>
+					<td style = "width:100%;">
 						<textarea class="form-control" ng-model="answer.content"></textarea>
 					</td>
 					<td>	
@@ -65,9 +77,58 @@
 						Correct Answer 
 							<i class="glyphicon glyphicon-ok"></i>
 						</button>
+						<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
+							Delete 
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>		
+					</td>
+				</tr>
+			</table>
+			<!-- multiple select -->
+			<table class="mc-answer" ng-show="selected_type === multiple_select">
+				<tr ng-repeat="answer in question.answers">
+					<td>
+						<textarea class="form-control" ng-model="answer.content"></textarea>
+					</td>
+					<td>	
+						<button class="btn btn-primary mc_incorrect" type="button" 
+						ng-click="answer.correct = true" 
+						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
+						Correct Answer 
+							<i class="glyphicon glyphicon-ok"></i>
+						</button>						
+						<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
+							Delete 
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>	
+					</td>
+				</tr>
+			</table>
+			<!-- fill in the blank -->
+			<table class="mc-answer" ng-show="selected_type === fill_in_the_blank">
+				<tr ng-repeat="answer in question.answers">
+					<td>
+						<input type="checkbox" ng-model="answer.is_numeric"> 
 					</td>
 					<td>
-						<button class="btn btn-warning x" type="button" ng-click="remove_mc_answer($index)">
+						<textarea class="form-control" ng-model="answer.label"></textarea>
+					</td>					
+					<!-- numeric answer -->
+					<td ng-show="answer.is_numeric">
+						<input class="form-control" type="number" ng-model="answer.value">
+					</td>
+					<td ng-show="answer.is_numeric">
+						<input class="form-control" type="number" ng-model="answer.tolerance" min="0">
+					</td>
+					<!-- non numeric -->
+					
+					<td ng-show="!answer.is_numeric">
+						<textarea class="form-control" ng-model="answer.content"></textarea>
+					</td>
+					<td ng-show="!answer.is_numeric">&nbsp </td>
+					<!---->
+					<td>
+						<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
 							Delete 
 							<i class="glyphicon glyphicon-remove"></i>
 						</button>		
@@ -76,8 +137,5 @@
 			</table>
 		</div>
 	</div>
-	<!-- Multiple Select -->
-	
-	
 	
 </div>

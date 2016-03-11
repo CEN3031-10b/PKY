@@ -27,8 +27,7 @@
 		if(old_exam){
 			ExamsService.update_exam($scope.exam)
 			.then(function(response){
-				old_exam.class = response.data.class;
-				old_exam.title = response.data.title;
+				old_exam = response.data;		
 				$uibModalInstance.close(response.data);
 				$scope.loading = false;
 			}, function(error){

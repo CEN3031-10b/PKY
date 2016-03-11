@@ -39,6 +39,10 @@ exports.update = function (req, res) {
   var exam = req.exam;
   exam.title = req.body.title;
   exam.class = req.body.class;
+  exam.allotted_time = req.body.allotted_time;
+  exam.allowed_attempts = req.body.allowed_attempts;
+  exam.published = req.body.published;
+  
   exam.save(function (err) {
     if (err) {
       return res.status(400).send({

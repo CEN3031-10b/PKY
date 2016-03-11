@@ -9,14 +9,35 @@
 	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
 </div>
 
+
 <div class="modal-body" ng-hide = "loading">
 	<table>
-	<tr>
-		<td>Name:</td>
-		<td><input ng-model="exam.title"></input></td>
-	</tr>
-	<tr>
-		<td>Class:</td>
-		<td><select ng-model="exam.class" ng-options="c as c for c in classes"></select></td></tr>
+		<tr>
+			<td>Title: </td>
+			<td> &nbsp </td>
+			<td><input ng-model="exam.title"></input></td>
+		</tr>
+		<tr>
+			<td>Class: </td>
+			<td> &nbsp </td>
+			<td><select ng-model="exam.class" ng-options="c as c for c in classes"></select></td>
+		</tr>
+		<tr>
+			<td>Allotted time (minutes): </td>
+			<td> &nbsp </td>
+			<td><input class="form-control" type="number" ng-model="exam.allotted_time" step="1" min="0"></td>
+		</tr>
+		<tr>
+			<td>Number of allowed attempts: </td>
+			<td> &nbsp </td>
+			<td><input class="form-control" type="number" ng-model="exam.allowed_attempts" step="1" min="0"></td>
+		</tr>
+		<tr>
+			<td>Available to students: </td>
+			<td> &nbsp </td>
+			<td><input type="checkbox" ng-model="exam.published"> </td>
+		</tr>
 	</table>
 </div>
+
+<pre>{{exam |json}}</pre>

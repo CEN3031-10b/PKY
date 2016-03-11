@@ -14,18 +14,41 @@ var ClassTypes = ['Algebra 1', 'Algebra 2'];
 var ExamSchema = new Schema({
   created: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+	required: true
+  },
+  modified: {
+    type: Date,
+    default: Date.now,
+	required: true
   },
   title: {
-    type: String  
+    type: String,  
+	required: true
   },
   version: {
 	type: Number,
-	default: 0
+	default: 0,
+	required: true
+  },
+  allotted_time:{
+	type: Number,
+	default: 0,
+	required: true
+  },
+  allowed_attempts:{
+	type: Number,
+	default: 0,
+	required: true,
+  },
+  published:{
+	  type: Boolean,
+	  default:false,
+	  required:true
   },
   class: {
     type: String,
-    /*enum: ClassTypes,*/
+    enum: ClassTypes,
     required: 'Exam class cannot be blank'
   },
   questions: [{ 
@@ -33,6 +56,34 @@ var ExamSchema = new Schema({
     ref: 'Question' 
   }]
  
+});
+
+ExamSchema.pre("save", function(next){
+	var self = this;
+	var err = new Error();
+	err.errors = [];
+	
+	if(self.isNew){
+		self.created = Date.now();
+	}
+	else{
+		self.modified = Date.now();
+	}
+	
+	// enforce integer attributes
+	self.allotted_time = Math.floor(self.allotted_time);
+	if(self.allotted_time < 1){
+		err.errors[0] = { message: "Allotted time must be greater than 1 minute."};
+		next(err);
+	}
+	self.allowed_attempts = Math.floor(self.allowed_attempts);
+	if(self.allowed_attempts < 1){
+		err.errors[0] = { message: "Allowed attempts must be greater than 1."};
+		next(err);
+	}
+	
+	next();
+
 });
 
 mongoose.model('Exam', ExamSchema);

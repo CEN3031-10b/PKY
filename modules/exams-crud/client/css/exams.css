@@ -293,7 +293,6 @@
 	float:right;
 }
 
-
 .modal-title{
   float:left;
   color: black;
@@ -310,13 +309,15 @@
 .mc-answer{
   width:100%;
 }
+
 .mc-answer textarea{
   width: 100%;
 }
 
-.mc-answer {
+.mc-answer input{
   width: 100%;
 }
+
 
 .mc-answer tr{
   width: 100%;
@@ -325,7 +326,6 @@
 .mc-answer td{
   padding: 10px;
   padding-left: 0;
-  width: 100%;
 }
 
 .mc_incorrect.mc_correct i {

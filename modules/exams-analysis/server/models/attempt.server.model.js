@@ -27,7 +27,6 @@ var AttemptSchema = new Schema({
 	},
 	exam_allotted_time:{
 		type: Number,
-		default: 60,
 		required:true
 	},
 	start_time: {
@@ -37,7 +36,8 @@ var AttemptSchema = new Schema({
 	},
 	submitted:{
 		type: Boolean,
-		default: false
+		default: false,
+		required:true
 	},
 	user:{
 		type: Schema.Types.ObjectId, 
@@ -57,7 +57,8 @@ var AttemptSchema = new Schema({
 		},
 		points_earned:{
 			type: Number,
-			default: 0
+			default: 0,
+			required:true
 		}
 	}],
 	
@@ -72,14 +73,28 @@ var AttemptSchema = new Schema({
 			required:true
 		},
 		value: {
-			type: Number
+			type: Number,
+			required:true
 		},
 		correct:{
 			type: Boolean,
 			default:false,
+			required:true
 		}
 	}]
 });
 
+AttemptSchema.pre("save", function(next){
+	var self = this;
+	var err = new Error();
+	err.errors = [];
+	
+	if(self.isNew){
+		self.start_time = Date.now();
+		self.submitted = false;
+	}
+
+	next();
+});
 
 mongoose.model('Attempt', AttemptSchema);
