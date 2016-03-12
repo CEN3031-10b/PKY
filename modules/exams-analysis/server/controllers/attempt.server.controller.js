@@ -11,10 +11,11 @@ var path = require('path'),
 
 
 exports.create = function (req, res) {
-  // req.attempt is the newly created attempt from validateNewAttempt
+  console.log(req.attempt);
   var attempt = new Attempt(req.attempt);
   attempt.save(function (err) {
     if (err) {
+		console.log("hREEEEEEEEEEEEE", err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -28,12 +29,16 @@ exports.create = function (req, res) {
 				});
 			}
 			for(var i = 0; i < a.questions.length; ++i){
-				for( var j = 0; j < a.questions[i].data.answers.length; ++j){
-					delete a.questions[i].data.answers[j].value;
-					delete a.questions[i].data.answers[j].tolerance;
-					delete a.questions[i].data.answers[j].correct;
-				}
+				for(var j = 0; j < a.questions[i].data.answers.length; ++j){
+					a.questions[i].data.answers[j].value = null;
+					a.questions[i].data.answers[j].tolerance = null;
+					a.questions[i].data.answers[j].correct = null;
+					if(a.questions[i].data.type === 'fill in the blank'){
+						a.questions[i].data.answers[j].content = null;
+					}
+				}					
 			}
+
 			res.json(a);
 		});
     }
@@ -53,7 +58,7 @@ exports.delete = function (req, res) {
 	});
 };
 
-exports.updateAnswers = function(req,res){
+exports.updateAnswers = function(req, res){
 	// check if its past the allotted time
 	var attempt = req.attempt;
 	attempt.student_answers = req.body.student_answers;
@@ -69,6 +74,16 @@ exports.updateAnswers = function(req,res){
 					return res.status(400).send({
 						message: errorHandler.getErrorMessage(err)
 					});
+				}
+				for(var i = 0; i < a.questions.length; ++i){
+					for(var j = 0; j < a.questions[i].data.answers.length; ++j){
+						a.questions[i].data.answers[j].value = null;
+						a.questions[i].data.answers[j].tolerance = null;
+						a.questions[i].data.answers[j].correct = null;
+						if(a.questions[i].data.type === 'fill in the blank'){
+							a.questions[i].data.answers[j].content = null;
+						}
+					}					
 				}
 				res.json(a);
 			});
@@ -155,26 +170,57 @@ exports.gradeAttempt = function(req,res,next){
 	attempt.submitted = true;
 	for(var i = 0; i < attempt.questions.length; ++i){
 		attempt.questions[i].points_earned = 0;
-		console.log(attempt.questions[i].data);
+		var points_per_answer = Number(attempt.questions[i].data.points / attempt.questions[i].data.answers.length);
 		if(attempt.questions[i].data.type === 'multiple choice'){
 			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
 				// find the correct answer for the multiple choice question
 				if(attempt.questions[i].data.answers[j].correct){
 					// search for this answer in the student answers
 					for(var k = 0; k < attempt.student_answers.length; ++k){
-					
-						//console.log(attempt.student_answers[k].question_id, attempt.questions[i].data._id);
 						if(attempt.questions[i].data._id.equals(attempt.student_answers[k].question_id)   
-						&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)){
-							console.log("CORRECT ANSWER");
+						&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)
+						&& attempt.student_answers[k].correct){
 							attempt.questions[i].points_earned = attempt.questions[i].data.points;
 						}
 					}
 				}
 			}
 		}
+		else if(attempt.questions[i].data.type === 'multiple select'){
+			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
+				for(var k = 0; k < attempt.student_answers.length; ++k){
+					if(attempt.questions[i].data._id.equals(attempt.student_answers[k].question_id)   
+					&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)
+					&& attempt.student_answers[k].correct === attempt.questions[i].data.answers[j].correct){
+						attempt.questions[i].points_earned += points_per_answer;
+					}
+				}		
+			}
+			attempt.questions[i].points_earned = Math.ceil(attempt.questions[i].points_earned * 100)/100;
+		}
+		else if(attempt.questions[i].data.type === 'fill in the blank'){
+			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
+				for(var k = 0; k < attempt.student_answers.length; ++k){
+					if(attempt.questions[i].data._id.equals(attempt.student_answers[k].question_id)   
+					&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)){
+						if(attempt.questions[i].data.answers[j].is_numeric){
+							if(Math.abs(attempt.questions[i].data.answers[j].value - attempt.student_answers[k].value) 
+							<= attempt.questions[i].data.answers[j].tolerance){
+								attempt.questions[i].points_earned += points_per_answer;
+							}
+						}
+						else{
+							// must be exact. temp solution until mathquill
+							if(attempt.questions[i].data.answers[j].content === attempt.student_answers[k].content){
+								attempt.questions[i].points_earned += points_per_answer;
+							}
+						}
+					}
+				}
+			}		
+		}
 	}
-	
+
 	attempt.save(function (err) {
 		if (err) {
 			return res.status(400).send({
@@ -200,9 +246,9 @@ exports.validateNewAttempt = function(req,res,next){
 	attempt.exam = req.body.exam_id;
 	attempt.user = req.user._id;
 	
-	Attempt.findOne({'user':attempt.user,'exam':attempt.exam,'submitted':false})
+	Attempt.find({'user':attempt.user, 'exam':attempt.exam})
 	.populate('questions.data')
-	.exec(function(err, prevAttempt){
+	.exec(function(err, prevAttempts){
 		
 		if (err) {
 			return res.status(400).send({
@@ -210,59 +256,76 @@ exports.validateNewAttempt = function(req,res,next){
 			});
 		}
 		
-		// if an attempt is already in progress for this exam
-		if(prevAttempt){
-				for(var i = 0; i < prevAttempt.questions.length; ++i){
-					for( var j = 0; j < prevAttempt.questions[i].data.answers.length; ++j){
-						delete prevAttempt.questions[i].data.answers[j].value;
-						delete prevAttempt.questions[i].data.answers[j].tolerance;
-						delete prevAttempt.questions[i].data.answers[j].correct;
+		// go through previous attempts for this exam
+		if(prevAttempts.length > 0){
+			for(var h = 0; h < prevAttempts.length; ++h){
+				// if an attempt is in progress, send it back as response
+				if(!prevAttempts[h].submitted){
+					for(var i = 0; i < prevAttempts[h].questions.length; ++i){
+						for( var j = 0; j < prevAttempts[h].questions[i].data.answers.length; ++j){
+							prevAttempts[h].questions[i].data.answers[j].value = null;
+							prevAttempts[h].questions[i].data.answers[j].tolerance = null;
+							prevAttempts[h].questions[i].data.answers[j].correct = null;
+							if(prevAttempts[h].questions[i].data.type === 'fill in the blank'){
+								prevAttempts[h].questions[i].data.answers[j].content = null;
+							}
+						}							
 					}
-				}			
-				return res.json(prevAttempt);					
+					
+					return res.json(prevAttempts[h]);						
+				}		
+			}	
 		}
-		else{
-			// new attempt
-			Exam.findById(attempt.exam)
-			.populate('questions')
-			.exec(function (error, exam) {
-				if (error) {
+	
+		// new attempt
+		Exam.findById(attempt.exam)
+		.populate('questions')
+		.exec(function (error, exam) {
+			if (error) {
+				return res.status(400).send({
+					message: 'db error finding exam for attempt'
+				});
+			} 
+			else if (!exam) {
+				return res.status(400).send({
+					message: 'no exam with that id found'
+				});
+			}
+			else{
+				// check number of allowed attempts
+				if(prevAttempts.length >= exam.allowed_attempts ){
 					return res.status(400).send({
-						message: 'db error finding exam for attempt'
+						message: 'No more remaining attempts for: ' + exam.title
 					});
-				} 
-				else if (!exam) {
+				}				
+				
+				// no questions on the exam
+				if(!exam.questions || exam.questions.length === 0){
 					return res.status(400).send({
-						message: 'no exam with that id found'
+						message: 'no questions on exam: ' + exam.title
 					});
 				}
-				else{
-					// no questions on the exam
-					if(!exam.questions || exam.questions.length === 0){
-						return res.status(400).send({
-							message: 'no questions on exam'
-						});
-					}
 
-					// exam and questions checked, set all the values of the attempt
-					attempt.questions = [];
-					for(var i=0; i < exam.questions.length; ++i){
-						attempt.questions.push({'data':exam.questions[i]._id});
-					}
-					
-					attempt.start_time = Date.now();
-					attempt.exam_title = exam.title;
-					attempt.exam_class = exam.class;
-					attempt.exam_version = exam.version;
-					// TODO TEMP
-					attempt.exam_allotted_time  = exam.allotted_time || 60;
-					attempt.exam = exam._id;
-					
-					req.attempt = attempt;
-					next();
+				// exam and questions checked, set all the values of the attempt
+				attempt.questions = [];
+				for(var i = 0; i < exam.questions.length; ++i){
+					attempt.questions.push({'data':exam.questions[i]._id});
 				}
-			});				
-		}
+				
+				attempt.start_time = Date.now();
+				attempt.exam_title = exam.title;
+				attempt.exam_class = exam.class;
+				attempt.exam_version = exam.version;
+				attempt.attempt_number = prevAttempts.length;
+				attempt.exam_allotted_time  = exam.allotted_time;
+				attempt.exam = exam._id;
+				attempt.student_answers = [];
+				
+				req.attempt = attempt;
+				next();
+			}
+		});				
+		
 	});
 	
 

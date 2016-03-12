@@ -39,6 +39,10 @@ var AttemptSchema = new Schema({
 		default: false,
 		required:true
 	},
+	attempt_number:{
+		type: Number,
+		required: true
+	},
 	user:{
 		type: Schema.Types.ObjectId, 
 		ref: 'User',
@@ -72,14 +76,24 @@ var AttemptSchema = new Schema({
 			type: Schema.Types.ObjectId,
 			required:true
 		},
+		label:{
+			type: String,
+		},
+		content:{
+			type: String,
+		},
+		is_numeric:{
+			type: Boolean,
+			required: true
+		},
 		value: {
 			type: Number,
-			required:true
+		},
+		tolerance:{
+			type: Number,
 		},
 		correct:{
 			type: Boolean,
-			default:false,
-			required:true
 		}
 	}]
 });
@@ -93,7 +107,7 @@ AttemptSchema.pre("save", function(next){
 		self.start_time = Date.now();
 		self.submitted = false;
 	}
-
+	
 	next();
 });
 

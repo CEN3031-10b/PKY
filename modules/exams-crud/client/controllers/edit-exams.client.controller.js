@@ -7,7 +7,7 @@
 
   EditExamsController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication','$uibModal','$templateCache','exams'];
 
-  function EditExamsController($scope,$rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal,$templateCache,exams) {
+  function EditExamsController($scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModal, $templateCache, exams) {
 
 	$scope.load = false;
   
