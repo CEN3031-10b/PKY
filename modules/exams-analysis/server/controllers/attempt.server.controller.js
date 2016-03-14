@@ -188,13 +188,20 @@ exports.gradeAttempt = function(req,res,next){
 		}
 		else if(attempt.questions[i].data.type === 'multiple select'){
 			for(var j = 0; j < attempt.questions[i].data.answers.length; ++j){
-				for(var k = 0; k < attempt.student_answers.length; ++k){
+				var found = false;
+				for(var k = 0; k < attempt.student_answers.length; ++k){	
 					if(attempt.questions[i].data._id.equals(attempt.student_answers[k].question_id)   
 					&& attempt.questions[i].data.answers[j]._id.equals(attempt.student_answers[k].answer_id)
 					&& attempt.student_answers[k].correct === attempt.questions[i].data.answers[j].correct){
 						attempt.questions[i].points_earned += points_per_answer;
+						found = true;
 					}
-				}		
+				}
+				// add points for correctly omitted answers 
+				// (student answers store correct choices only for multiple select)
+				if(!found && attempt.questions[i].data.answers[j].correct === false){
+					attempt.questions[i].points_earned += points_per_answer;
+				}
 			}
 			attempt.questions[i].points_earned = Math.ceil(attempt.questions[i].points_earned * 100)/100;
 		}

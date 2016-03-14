@@ -18,7 +18,7 @@ var QuestionSchema = new Schema({
 	},
 	standard:{
 		type: String, 
-		required: 'Question type cannot be blank'
+		required: 'Standard field cannot be blank'
 	},
 	type: {
 		type: String, 
