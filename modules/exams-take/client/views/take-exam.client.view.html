@@ -25,7 +25,7 @@
 						<input type="radio" 
 						ng-model="question.selected_answer" 
 						value="{{answer._id}}" 
-						ng-click="save_answer(question.data, answer)">
+						ng-click="answer.correct = true; save_answer(question.data, answer); ">
 							{{answer.content}}
 						</input>
 					</td>
