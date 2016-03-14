@@ -96,6 +96,8 @@
 				$scope.loading = false;
 				if(error.data && error.data.message)
 				$scope.set_alert(error.data.message);
+			console.log($scope.question);
+			console.log(error);
 			});
 			
 			return;

@@ -23,7 +23,8 @@ var QuestionSchema = new Schema({
 	type: {
 		type: String, 
 		enum: QuestionTypes,
-		required: 'Question type cannot be blank'
+		required: 'Question type cannot be blank',
+		trim: true
 	},
 	content: {
 		type: String,
@@ -36,11 +37,9 @@ var QuestionSchema = new Schema({
 	answers: [{
 		label:{
 			type: String,
-			unique: true
 		},
 		content:{
 			type: String,
-			unique: true
 		},
 		is_numeric:{
 			type: Boolean,

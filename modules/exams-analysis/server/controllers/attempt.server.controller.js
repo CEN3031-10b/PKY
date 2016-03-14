@@ -9,13 +9,11 @@ var path = require('path'),
   Attempt = mongoose.model('Attempt'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-
 exports.create = function (req, res) {
   console.log(req.attempt);
   var attempt = new Attempt(req.attempt);
   attempt.save(function (err) {
     if (err) {
-		console.log("hREEEEEEEEEEEEE", err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -328,5 +326,4 @@ exports.validateNewAttempt = function(req,res,next){
 		
 	});
 	
-
 };
