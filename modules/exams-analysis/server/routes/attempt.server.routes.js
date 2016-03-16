@@ -12,6 +12,7 @@ module.exports = function (app) {
     .post([attempt.validateNewAttempt,attempt.create]);
 	
   app.route('/api/attempts/:attemptId').all(attemptPolicy.isAllowed)
+    .get(attempt.getSingleAttemptByReqUser)
     .put(attempt.updateAnswers)
 	.post(attempt.gradeAttempt)
 	.delete(attempt.delete);

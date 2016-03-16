@@ -29,9 +29,8 @@
       .state('exams-take.take', {
 		parent: 'exams-take',
 		url:'/:eID',
-		params: {'eID':null,'exam':null},
         templateUrl: 'modules/exams-take/client/views/take-exam.client.view.html',
-        controller: 'TakeExamController'
+        controller: 'TakeExamController',
       });
   }
 

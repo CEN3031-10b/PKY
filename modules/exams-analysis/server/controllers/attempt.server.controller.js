@@ -10,7 +10,6 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 exports.create = function (req, res) {
-  console.log(req.attempt);
   var attempt = new Attempt(req.attempt);
   attempt.save(function (err) {
     if (err) {
@@ -88,9 +87,18 @@ exports.updateAnswers = function(req, res){
 		}
 	});
 };
+exports.getSingleAttemptByReqUser = function (req, res, next) {
+		if(!req.user._id.equals(req.attempt.user)){
+			return res.status(400).send({
+				message: 'Unauthorized attempt request'
+			});
+		}
+		else{
+			res.json(req.attempt);
+		}
+};
 
 exports.getAllAttemptsByReqUser = function (req, res, next) {
-	// can only get attempts of requesting user
 	Attempt.find({'user':req.user._id})
 	.sort('-created')
 	.populate('exam')
@@ -114,8 +122,6 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 };
 
 exports.getAllAttempts = function (req, res, next) {
-	
-	// can only get attempts of requesting user
 	Attempt.find({})
 	.sort('-created')
 	.populate('exam')

@@ -61,11 +61,9 @@ exports.update = function (req, res) {
 	question.type = req.body.type;
 	question.standard = req.body.standard;
 	question.points = req.body.points;
+	console.log(question);
 	question = new Question(question);
 	console.log(question);
-	
-	console.log(question);
-	
 	question.save(function (err, q) {
 		if (err) {
 			return res.status(400).send({

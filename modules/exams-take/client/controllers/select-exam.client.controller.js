@@ -11,16 +11,20 @@
 
 	$scope.exams = exams.data;
 	$scope.attempts = [];
+	$scope.error = null;
 	
 	ExamsAnalysisService.get_attempts()
 	.then(function(response){
 		$scope.attempts = response.data;
 	}, function(error){
-
+		$scope.error = error;
 	});
 	
 	$scope.start_exam = function(_exam){
-		$state.go('exams-take.take', {'eID':_exam._id,'exam':_exam});
+		$state.go('exams-take.take', {'eID':_exam._id});
+	};
+	$scope.review_attempt = function(_attempt){
+		$state.go('exams-analysis.single', {'aID':_attempt._id});
 	};
 	
 	$scope.delete_attempt = function(_attempt){
@@ -28,6 +32,7 @@
 		.then(function(response){
 			$scope.attempts.splice($scope.attempts.indexOf(_attempt),1);
 		}, function(error){
+			$scope.error = error;
 			console.log(error);
 		});
 	};

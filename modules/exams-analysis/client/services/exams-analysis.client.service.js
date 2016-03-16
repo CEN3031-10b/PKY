@@ -6,11 +6,14 @@
     .factory('ExamsAnalysisService', ['$http', function($http){
 		
       return {
+		    get_attempt : function(attempt_id){
+				return $http.get('/api/attempts/' + attempt_id);
+			},
 			create_attempt :function(exam_id){
 				return $http.post('/api/attempts', {'exam_id':exam_id});
 			},
-			delete_attempt: function(id){
-				return $http.delete('/api/attempts/' + id);
+			delete_attempt: function(attempt_id){
+				return $http.delete('/api/attempts/' + attempt_id);
 			},
 			get_attempts : function(){
 				return $http.get('/api/attempts');

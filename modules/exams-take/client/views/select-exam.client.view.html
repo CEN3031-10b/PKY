@@ -14,14 +14,14 @@
 </table>
 <br>
 <table>
-<th>Attempts:</th>
+	<th>Attempts:</th>
 	<tr ng-repeat="attempt in attempts">
 		<td>
 			<button class="btn btn-warning x" type="button" ng-click="delete_attempt(attempt)">
 				<i class="glyphicon glyphicon-remove"></i>
 			</button>	
 		</td>
-		<td style="padding-bottom:20px"><pre> {{attempt | json}}</pre> </td>
+		<td style="padding-bottom:20px"><pre> {{attempt.exam_title}}</pre> </td>
 	</tr>
 </table>
 </div>
@@ -32,14 +32,10 @@
 	
 		<td>{{attempt.exam_title}}</td>
 		<td>
-			<table>
-				<tr ng-repeat="question in attempt.questions">
-					<td>{{question.data.content}}</td>
-					<td> &nbsp </td>
-					<td style="width:150px">{{question.points_earned}} / {{question.data.points}}</td>
-				</tr>
-			</table>
-		</td>
+			<button class="btn btn-primary" type="button" ng-click="review_attempt(attempt)">
+					View
+			</button>	
+		<td>
 	</tr>
 </table>
 </div>

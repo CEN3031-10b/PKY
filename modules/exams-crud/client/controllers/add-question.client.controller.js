@@ -89,15 +89,17 @@
 			ExamsService.update_question($scope.question)
 			.then(function(response){
 				$scope.loading = false;
-				old_question = response.data;
+				old_question.content = response.data.content;
+				old_question.points = response.data.points;
+				old_question.standard = response.data.standard;
+				old_question.answers = response.data.answers;
 				selected_exam.version++;
 				$scope.ok();
 			}, function(error){
 				$scope.loading = false;
 				if(error.data && error.data.message)
 				$scope.set_alert(error.data.message);
-			console.log($scope.question);
-			console.log(error);
+				console.log(error);
 			});
 			
 			return;

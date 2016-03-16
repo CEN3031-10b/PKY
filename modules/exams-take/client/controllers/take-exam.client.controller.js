@@ -9,12 +9,7 @@
 
   function TakeExamController($scope, $rootScope, $state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
 	
-	if(!$stateParams.exam){
-		$state.go('exams-take.select');
-	}
-	
 	// init 
-	$scope.exam = $stateParams.exam;
 	$scope.attempt = {};	
 	$scope.multiple_choice = 'multiple choice';
 	$scope.multiple_select = 'multiple select';
@@ -23,7 +18,7 @@
 	$scope.error = null;
 
 	// create a new attempt or return one in progress for the specified exam
-	ExamsAnalysisService.create_attempt($scope.exam._id)
+	ExamsAnalysisService.create_attempt($stateParams.eID)
 	.then(function(response){
 		$scope.loading = false;
 		$scope.attempt = response.data;
