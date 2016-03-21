@@ -65,16 +65,26 @@ module.exports = {
     callbackURL: '/api/auth/paypal/callback',
     sandbox: true
   },
-  mailer: {
-    from: process.env.MAILER_FROM || 'MAILER_FROM',
-    options: {
-      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
-      auth: {
-        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
-        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
-      }
-    }
-  },
+   mailer: {
+   from:'PK-Yonge EOC Web Portal',
+   options: {
+     service:'gmail',
+     auth: {
+       user:'pkyeoc@gmail.com',
+       pass:'6ttdd4O3habD'
+     }
+   }
+ },
+  // mailer: {
+  //   from: process.env.MAILER_FROM || 'MAILER_FROM',
+  //   options: {
+  //     service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+  //     auth: {
+  //       user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
+  //       pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
+  //     }
+  //   }
+  // },
   livereload: true,
   seedDB: {
     seed: process.env.MONGO_SEED === 'true' ? true : false,
