@@ -38,3 +38,7 @@
 .pswd {
   color: white;
 }
+
+.popover-content{
+  color: black !important;
+}
