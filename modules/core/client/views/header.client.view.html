@@ -8,7 +8,12 @@
     </button>
     <a ui-sref="home" class="navbar-brand">
       <img class="header-profile-image" src="modules/core/client/img/pkylogothumb.jpg" align = "center"></a>
-  </div>
+  </div>	
+  <ul class="nav navbar-nav navbar-left" ng-show="authentication.user">
+    <li ui-sref-active="active">
+	  <a ui-sref="exams-take.select">Practice Exams</a>
+    </li>
+  </ul>
   <nav class="collapse navbar-collapse" uib-collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
       <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">

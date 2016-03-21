@@ -1,0 +1,43 @@
+<div class="modal-header">
+	<h3 ng-if="old_exam" class="modal-title"> Edit exam {{old_exam.title}} for {{old_exam.class}} </h3>
+	<h3 ng-if="!old_exam" class="modal-title"> Create a new exam </h3>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	<button class="btn btn-primary" type="button" ng-click="submit()">Submit</button>
+</div>
+
+<div class="loading ng-hide" ng-show="loading">
+	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
+</div>
+
+
+<div class="modal-body" ng-hide = "loading">
+	<table>
+		<tr>
+			<td>Title: </td>
+			<td> &nbsp </td>
+			<td><input ng-model="exam.title"></input></td>
+		</tr>
+		<tr>
+			<td>Class: </td>
+			<td> &nbsp </td>
+			<td><select ng-model="exam.class" ng-options="c as c for c in classes"></select></td>
+		</tr>
+		<tr>
+			<td>Allotted time (minutes): </td>
+			<td> &nbsp </td>
+			<td><input class="form-control" type="number" ng-model="exam.allotted_time" step="1" min="0"></td>
+		</tr>
+		<tr>
+			<td>Number of allowed attempts: </td>
+			<td> &nbsp </td>
+			<td><input class="form-control" type="number" ng-model="exam.allowed_attempts" step="1" min="0"></td>
+		</tr>
+		<tr>
+			<td>Available to students: </td>
+			<td> &nbsp </td>
+			<td><input type="checkbox" ng-model="exam.published"> </td>
+		</tr>
+	</table>
+</div>
+
+<pre>{{exam |json}}</pre>
