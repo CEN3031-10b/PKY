@@ -110,7 +110,7 @@
 					<td>
 						<input type="checkbox" ng-model="answer.is_numeric"> 
 					</td>
-					<td>{{'mqid'+answer.id2}}
+					<td>
 						<span id="{{'mqid'+answer.id2}}" class="mqi"></span>
 					</td>					
 					<!-- numeric answer -->
@@ -121,7 +121,7 @@
 						<input class="form-control" type="number" ng-model="answer.tolerance" min="0">
 					</td>
 					<!-- non numeric -->
-					<td ng-show="!answer.is_numeric">{{'mqid'+answer.id}}
+					<td ng-show="!answer.is_numeric">
 						<span id="{{'mqid'+answer.id}}" class="mqi"></span>
 					</td>
 					<td ng-show="!answer.is_numeric">&nbsp </td>

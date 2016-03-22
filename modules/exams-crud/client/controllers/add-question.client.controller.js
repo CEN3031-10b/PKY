@@ -15,9 +15,7 @@
 	var MQ = MathQuill.getInterface(2);
 	$scope.$watch('$viewContentLoaded', function(){
 		
-		if(!$scope.question)
-			return;
-		
+			
 		var mqt = MQ.StaticMath($document.find('#mq-test')[0]);
 		var mq_content = MQ.MathField($document.find('#mq-content')[0], {
 			handlers: {
@@ -28,7 +26,7 @@
 			}
 		});
 		
-		if(mq_content){
+		if($scope.question && mq_content){
 			mq_content.select();
 			mq_content.clearSelection();
 			mq_content.write($scope.question.content);
