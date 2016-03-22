@@ -9,6 +9,21 @@
 
   function AddQuestionController($scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, selected_exam, old_question) {
     
+	setTimeout(function(){ 
+		var MQ = MathQuill.getInterface(2);
+		console.log($('#mqtest')[0]);
+		console.log(document.getElementById('mqtest'));
+		MQ.StaticMath($('#mqtest')[0]);
+	}, 3000);
+
+	
+	
+	//var mathFieldSpan = $('<span>\\sqrt{2}</span>');
+	//var mathField = MQ.MathField(mathFieldSpan[0]);
+	//mathFieldSpan.appendTo(document.body);
+	//mathField.reflow();
+	
+	
 	// init
 	$scope.selected_exam = selected_exam;
 	$scope.selected_type = null;
