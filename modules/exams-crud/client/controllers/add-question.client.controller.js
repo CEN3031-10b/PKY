@@ -15,9 +15,7 @@
 	var MQ = MathQuill.getInterface(2);
 	$scope.$watch('$viewContentLoaded', function(){
 		
-			
-		var mqt = MQ.StaticMath($document.find('#mq-test')[0]);
-		var mq_content = MQ.MathField($document.find('#mq-content')[0], {
+		var mq_content = MQ.MathField($document.find('#mq-content')[0],{
 			handlers: {
 				edit: function(mq) {
 					$scope.question.content = mq.latex();
@@ -66,13 +64,13 @@
 		$scope.selected_type = old_question.type;
 		$scope.old_question = old_question;
 		$scope.question = JSON.parse(JSON.stringify(old_question));
+		
 		for(var i = 0; i <$scope.question.answers.length; ++i){
 			$scope.question.answers[i].id = $scope.ans_id;
 			$scope.question.answers[i].id2 = $scope.ans_id + 1;
 			$scope.ans_id +=2;
 			console.log($scope.question.answers[i])
 		}
-		//$scope.$apply();
 		
 		$timeout(function(){ 
 			$scope.set_mathquill_fields();			
