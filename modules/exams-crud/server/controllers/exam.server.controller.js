@@ -9,7 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
- * Create an article
+ * Create an exam
  */
 exports.create = function (req, res) {
   var exam = new Exam(req.body);
@@ -103,18 +103,6 @@ exports.listAll = function (req, res) {
       });
     } 
 	else {
-		// TODO: admin only after testing
-		// remove correct answer fields of answers
-		if(!req.query.answers){
-			for(var i = 0; i < exams.length; ++i){
-				for(var j = 0; j < exams[i].questions.length; ++j){
-					for(var k = 0; k < exams[i].questions[j].answers.length; ++j){
-						delete exams[i].questions[j].answers[k].correct;
-					}
-				}
-			}
-		}
-		
 		res.json(exams);
     }
   });
@@ -153,7 +141,10 @@ exports.examByID = function (req, res, next, id) {
 };
 
 exports.examsByClassID = function (req, res, next, classID) {
-  Exam.find({ 'class': classID }).sort('-created').populate('questions').exec(function (err, exams) {
+  Exam.find({ 'class': classID })
+  .sort('-created')
+  .populate('questions')
+  .exec(function (err, exams) {
     if (err) {
       return next(err);
     } else if (!exams) {

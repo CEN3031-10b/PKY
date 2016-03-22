@@ -36,7 +36,7 @@ exports.invokeRolesPolicies = function () {
 
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
-
+  req.admin = roles.indexOf('admin') >= 0;
   // If an article is being processed and the current user created it then allow any manipulation
   if (req.article && req.user && req.article.user && req.article.user.id === req.user.id) {
     return next();

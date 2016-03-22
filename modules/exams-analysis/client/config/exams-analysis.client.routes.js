@@ -26,8 +26,9 @@
 		},
       })
 	  .state('exams-analysis.admin', {
-		parent: 'exams-analysis',
-        templateUrl: 'modules/exams-analysis/client/views/review-admin-attempts.client.view.html',
+		parent: 'admin',
+        templateUrl: 'modules/exams-analysis/client/views/admin-review-attempts.client.view.html',
+		url: '/review/attempts',
 		controller: 'AdminAttemptController',
 		resolve:{
 			AllAttempts: function(ExamsAnalysisService){

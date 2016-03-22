@@ -8,9 +8,6 @@ var acl = require('acl');
 // Using the memory backend
 acl = new acl(new acl.memoryBackend());
 
-/**
- * Invoke Articles Permissions
- */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
@@ -21,30 +18,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/questions/:questionId',
       permissions: '*'
     }]
-  }, {
-    roles: ['user'],
-    allows: [{
-      resources: '/api/questions',
-      permissions: ['get']
-    }, {
-      resources: '/api/questions/:questionId',
-      permissions: ['get']
-    }]
-  }, {
-    roles: ['guest'],
-    allows: [{
-      resources: '/api/questions',
-      permissions: ['get']
-    }, {
-      resources: '/api/questions/:questionId',
-      permissions: ['get']
-    }]
   }]);
 };
 
-/**
- * Check If Articles Policy Allows
- */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
