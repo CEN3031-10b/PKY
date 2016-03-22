@@ -5,24 +5,36 @@
     .module('exams')
     .controller('AddQuestionController', AddQuestionController);
 
-  AddQuestionController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', 'selected_exam','old_question'];
+  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question'];
 
-  function AddQuestionController($scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, selected_exam, old_question) {
+  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question) {
     
-	setTimeout(function(){ 
-		var MQ = MathQuill.getInterface(2);
-		console.log($('#mqtest')[0]);
-		console.log(document.getElementById('mqtest'));
-		MQ.StaticMath($('#mqtest')[0]);
-	}, 3000);
-
 	
-	
-	//var mathFieldSpan = $('<span>\\sqrt{2}</span>');
-	//var mathField = MQ.MathField(mathFieldSpan[0]);
-	//mathFieldSpan.appendTo(document.body);
-	//mathField.reflow();
-	
+	// load mathquill after page loads
+	$scope.ans_id = 0;
+	var MQ = MathQuill.getInterface(2);
+	$scope.$watch('$viewContentLoaded', function(){
+		
+		if(!$scope.question)
+			return;
+		
+		var mqt = MQ.StaticMath($document.find('#mq-test')[0]);
+		var mq_content = MQ.MathField($document.find('#mq-content')[0], {
+			handlers: {
+				edit: function(mq) {
+					$scope.question.content = mq.latex();
+					$scope.$apply();
+				}
+			}
+		});
+		
+		if(mq_content){
+			mq_content.select();
+			mq_content.clearSelection();
+			mq_content.write($scope.question.content);
+		}
+		
+	});
 	
 	// init
 	$scope.selected_exam = selected_exam;
@@ -56,10 +68,22 @@
 		$scope.selected_type = old_question.type;
 		$scope.old_question = old_question;
 		$scope.question = JSON.parse(JSON.stringify(old_question));
+		for(var i = 0; i <$scope.question.answers.length; ++i){
+			$scope.question.answers[i].id = $scope.ans_id;
+			$scope.question.answers[i].id2 = $scope.ans_id + 1;
+			$scope.ans_id +=2;
+			console.log($scope.question.answers[i])
+		}
+		//$scope.$apply();
+		
+		$timeout(function(){ 
+			$scope.set_mathquill_fields();			
+		},0);
 	}
 	
 	$scope.set_type = function(_type){
 		$scope.selected_type = _type;
+		
 		if(_type === $scope.multiple_choice){
 			$scope.question = $scope.mc_question;
 		}
@@ -69,24 +93,111 @@
 		else if(_type === $scope.fill_in_the_blank){
 			$scope.question = $scope.fitb_question;
 		}
+		
+		$scope.init = true;
+		
+		$timeout(function(){ 
+			$scope.set_mathquill_fields();			
+		},0);
 	};
   
+	
     $scope.add_new_answer = function(_question){
-		if(_question.answers != null)
-		_question.answers.push({
+		
+		var answer = {
 			content: '',
 			correct: false,
 			is_numeric: false,
 			tolerance: 0,
-			value: 0
-		});
+			value: 0,
+			id: $scope.ans_id,
+			id2:($scope.ans_id+1)
+		};
+		
+		$scope.ans_id += 2;
+		
+		if(_question.answers != null)
+		_question.answers.push(answer);
+		
+		$timeout(function(){ 
+			$scope.set_mathquill_fields();			
+		},0);
+
     };
 	
+	$scope.init = true;
+	$scope.set_mathquill_fields = function(){
+		
+		for(var i = 0; i < $scope.question.answers.length; ++i){
+			//if($scope.question.type !== $scope.fill_in_the_blank)
+			{
+				var f1 = function(mq, i){
+					for(var j = 0; j < $scope.question.answers.length; ++j){
+						if($scope.question.answers[j].id === mq){
+							$scope.question.answers[j].content = i.latex();
+							$scope.$apply();
+							break;
+						}
+					}
+				};
+				
+				f1 = f1.bind(null, $scope.question.answers[i].id);
+
+				var mqa = MQ.MathField($('#mqid'+$scope.question.answers[i].id)[0], {
+					handlers: {
+						edit: f1
+					}
+				});
+				
+				if($scope.init && mqa){
+					mqa.select();
+					mqa.clearSelection();
+					mqa.write($scope.question.answers[i].content);
+				}
+				
+			
+			}
+			if($scope.question.type === $scope.fill_in_the_blank)
+			{
+				// separate bind for fill in the blank (uses label instead of content)
+				var f2 = function(mq, i){
+					for(var j = 0; j < $scope.question.answers.length; ++j){
+						if($scope.question.answers[j].id2 === mq){
+							$scope.question.answers[j].label = i.latex();
+							$scope.$apply();
+							break;
+						}
+					}
+				};
+				
+				f2 = f2.bind(null, $scope.question.answers[i].id2);
+				
+				var mqa2 = MQ.MathField($('#mqid'+$scope.question.answers[i].id2)[0], {
+					handlers: {
+						edit: f2
+					}
+				});
+				
+				if($scope.init && mqa2){
+					mqa2.select();
+					mqa2.clearSelection();
+					mqa2.write($scope.question.answers[i].label);	
+				}
+							
+			}
+		}
+		$scope.init = false;
+
+	};
+	
 	$scope.select_mc_answer = function(index){
+		if($scope.question.type !== $scope.multiple_choice)
+			return;
+		
 		// sets selected index to correct, all others false
-		if($scope.mc_question && $scope.mc_question.answers){
-			for(var i = 0; i < $scope.mc_question.answers.length; ++i){
-				$scope.mc_question.answers[i].correct = (i==index);
+		if($scope.question && $scope.question.answers){
+			for(var i = 0; i < $scope.question.answers.length; ++i){
+				$scope.question.answers[i].correct = (i==index);
 			}
 		}
 	};
