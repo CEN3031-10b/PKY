@@ -10,14 +10,23 @@
 <h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
-
-	<button class="btn btn-default"  ng-click="previousQuestion()">
-		<span class="glyphicon glyphicon-arrow-left"></span>
-	</button>
-	<button class="btn btn-default"  ng-click="nextQuestion()">
-		<span class="glyphicon glyphicon-arrow-right"></span>
-	</button>
-	
+	<table>
+		<tr>
+			<td class = "buttonTable">
+				<button class="btn btn-default"  ng-click="previousQuestion()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</td>
+			<td class = "buttonTable">
+				<div> {{indx + 1}} / {{attempt.questions.length}}<div>
+			</td>
+			<td class = "buttonTable">
+				<button class="btn btn-default"  ng-click="nextQuestion()">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+			</td>
+		</tr>
+	</table>	
 
 <div ng-repeat="question in attempt.questions" ng-if="indx === $index">
 
