@@ -42,16 +42,16 @@ exports.create = function (req, res) {
   });
 };
 
-// temp delete any attempt
+// only admins can delete
 exports.delete = function (req, res) {
 	Attempt.findByIdAndRemove(req.params.attemptId, function(err, attempt){
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.json(attempt);
-		}
+	if (err) {
+		return res.status(400).send({
+			message: errorHandler.getErrorMessage(err)
+		});
+	} else {
+		res.json(attempt);
+	}
 	});
 };
 
@@ -124,6 +124,7 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 exports.getAllAttempts = function (req, res, next) {
 	Attempt.find({})
 	.sort('-created')
+	.populate('user')
 	.populate('exam')
 	.populate('questions.data')
 	.exec(function (err, attempts) {
@@ -221,7 +222,7 @@ exports.gradeAttempt = function(req,res,next){
 							}
 						}
 						else{
-							// must be exact. temp solution until mathquill
+							// must be exact (temp)
 							if(attempt.questions[i].data.answers[j].content === attempt.student_answers[k].content){
 								attempt.questions[i].points_earned += points_per_answer;
 							}

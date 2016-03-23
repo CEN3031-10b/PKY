@@ -9,10 +9,12 @@ module.exports = {
         'public/lib/CalculatorCSS/add2home.css',
         'public/lib/CalculatorCSS/calc.css',
         'public/lib/CalculatorCSS/standalone.css',
-        'public/lib/CalculatorCSS/project.css'
-
+        'public/lib/CalculatorCSS/project.css',
+		    'public/lib/mathquill-0.10.1/mathquill.css',
+		    'public/lib/tr-ng-grid/trNgGrid.css'
       ],
       js: [
+	    'public/lib/jquery/dist/jquery.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -37,7 +39,9 @@ module.exports = {
         'public/lib/CalculatorJS/textCanvas.js',
         'public/lib/CalculatorJS/yahoo-dom-event.js',
         'public/lib/CalculatorJS/tds_calc_env.js',
-        'public/lib/CalculatorJS/css_browser_selector.js'
+        'public/lib/CalculatorJS/css_browser_selector.js',
+		    'public/lib/mathquill-0.10.1/mathquill.js',
+		    'public/lib/tr-ng-grid/trNgGrid.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
