@@ -16,6 +16,12 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
+	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	$scope.indx = 0;
+
+	$scope.numberOfPages = function() {
+			return $scope.attempt.questions.length;
+		};
 
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($stateParams.eID)
@@ -98,32 +104,23 @@
 		});
 	};
 
-// Get the modal
-var modal = document.getElementById('myModal');
+	//navigate to previous question
+		$scope.previousQuestion = function() {
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+				if($scope.indx <= 0){
+					return;
+				}	
+				$scope.indx -= 1;
+		};
+		
+		//navigate to previous question
+		$scope.nextQuestion = function() {
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-	
+				if($scope.indx >= $scope.attempt.questions.length - 1){
+					return;
+				}	
+				$scope.indx += 1;
+		};	
   }
   
 })();
