@@ -286,7 +286,7 @@ function TDS_Calc()
     this.keyboardNav = {curRegion:'', RegionIndex:0, curElement:''};
 
     //get url query parameters.
-    var urlQueryParams = getQueryStringParams(location.href);
+    var urlQueryParams = {mode:"ScientificInv"};//getQueryStringParams(location.href);
     
     //Validate the input
     var errorCode = validateCalcList(getCalcList(urlQueryParams));
@@ -339,12 +339,12 @@ function TDS_Calc()
     function getCalcList(urlQueryParams) 
     {     
         var calcs = [];
-        //if (urlQueryParams.mode) {
-            //var modes = urlQueryParams.mode.split(',');
-            //for (var i = 0; i < modes.length; i++) {
-                calcs.push("ScientificInv");
-            //}
-        //}
+        if (urlQueryParams.mode) {
+            var modes = urlQueryParams.mode.split(',');
+            for (var i = 0; i < modes.length; i++) {
+                calcs.push(modes[i]);
+            }
+        }
         return calcs;
     }
 

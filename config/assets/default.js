@@ -10,8 +10,8 @@ module.exports = {
         'public/lib/CalculatorCSS/calc.css',
         'public/lib/CalculatorCSS/standalone.css',
         'public/lib/CalculatorCSS/project.css',
-		    'public/lib/mathquill-0.10.1/mathquill.css',
-		    'public/lib/tr-ng-grid/trNgGrid.css'
+		'public/lib/mathquill-0.10.1/mathquill.css',
+		'public/lib/tr-ng-grid/trNgGrid.css'
       ],
       js: [
 	    'public/lib/jquery/dist/jquery.js',
