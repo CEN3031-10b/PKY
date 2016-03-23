@@ -88,7 +88,7 @@ exports.updateAnswers = function(req, res){
 	});
 };
 exports.getSingleAttemptByReqUser = function (req, res, next) {
-		if(!req.user._id.equals(req.attempt.user)){
+		if(!req.admin && !req.user._id.equals(req.attempt.user)){
 			return res.status(400).send({
 				message: 'Unauthorized attempt request'
 			});

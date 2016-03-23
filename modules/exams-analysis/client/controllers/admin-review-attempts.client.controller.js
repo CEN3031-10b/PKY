@@ -19,6 +19,10 @@
 				console.log(error);
 			});
 		};
+		
+		$scope.review_attempt = function(_attempt){
+			$state.go('exams-analysis.single', {'aID':_attempt._id});
+		};
   }
   
 })();
