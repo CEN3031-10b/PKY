@@ -5,9 +5,9 @@
     .module('exams-take')
     .controller('TakeExamController', TakeExamController);
 
-  TakeExamController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal'];
+  TakeExamController.$inject = ['$scope', '$rootScope', '$window','$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal'];
 
-  function TakeExamController($scope, $rootScope, $state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
+  function TakeExamController($scope, $rootScope, $window,$state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
 	
 	// init 
 	$scope.attempt = {};	
@@ -125,6 +125,19 @@
 
 
 
+	$scope.open_calculator = function(){
+		//$window.open('/modules/calculator/client/views/calculator.view.html#');
+		//$window.location.href = ('/modules/calculator/client/views/calculator.view.html');
+		
+		  var modalInstance = $uibModal.open({
+			animation: true,
+			template: '<iframe src="/modules/calculator/client/views/calculator.view.html" width="350" height="400"></iframe>',
+			size: 'md'
+		  });	
+	};
+	
+
+  
 	
   }
   
