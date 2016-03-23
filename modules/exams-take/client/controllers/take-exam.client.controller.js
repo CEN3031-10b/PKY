@@ -16,6 +16,12 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
+	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	$scope.indx = 0;
+
+	$scope.numberOfPages = function() {
+			return $scope.attempt.questions.length;
+		};
 
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($stateParams.eID)
@@ -97,6 +103,27 @@
 			$scope.error = error;
 		});
 	};
+
+	//navigate to previous question
+		$scope.previousQuestion = function() {
+
+				if($scope.indx <= 0){
+					return;
+				}	
+				$scope.indx -= 1;
+		};
+		
+		//navigate to previous question
+		$scope.nextQuestion = function() {
+
+				if($scope.indx >= $scope.attempt.questions.length - 1){
+					return;
+				}	
+				$scope.indx += 1;
+		};
+
+
+
 	
   }
   
