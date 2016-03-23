@@ -216,13 +216,16 @@
 	 background: #AAAABB;
 	 border:1px solid white;
 }
+.black-text {
+	color:black;
+}
 
 .edit-single-exam{
 	width:100%;
 }
 
 .edit-exams{
-	border: 2px solid grey;
+	border: 2px solid #053f79;
 	border-top: 0;
 	border-bottom:0;
 	min-height: 100vh;
@@ -251,6 +254,21 @@
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
+}
+/* MATHQUILL: seperate file*/
+
+.mqi {
+	width:500px;
+  color: black;
+  border-color: black;
+  background: white;
+  font-size: 24pt;
+}
+.mqi .mq-matrixed {
+  background: white;
+}
+.mqi .mq-matrixed-container {
+  filter: progid:DXImageTransform.Microsoft.Chroma(color='white');
 }
 
 /* MODAL CSS TODO: seperate file*/
