@@ -1,20 +1,21 @@
 <h1>{{attempt.exam_title}}</h1>
 <h4>{{attempt.exam_class}}</h4>
-<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-	<i class="glyphicon glyphicon-plus">Submit</i>
-</button>	
-<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
-	<i class="glyphicon glyphicon-modal-window">Calculator</i>
-</button>
-
-<br>
-<br>
 
 <h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
-	<table>
-		<tr>
+	<table class = "tablePadding">
+		<tr class = "tablePadding">
+			<td class = "buttonTable">
+				<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
+					<i class="glyphicon glyphicon-plus">Submit</i>
+				</button>	
+			</td>
+			<td class - "buttonTable">
+				<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
+					<i class="glyphicon glyphicon-modal-window">Calculator</i>
+				</button>
+			</td>
 			<td class = "buttonTable">
 				<button class="btn btn-default"  ng-click="previousQuestion()">
 					<span class="glyphicon glyphicon-arrow-left"></span>
