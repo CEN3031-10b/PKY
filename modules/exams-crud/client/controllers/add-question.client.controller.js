@@ -13,9 +13,10 @@
 	// load mathquill after page loads
 	$scope.ans_id = 0;
 	var MQ = MathQuill.getInterface(2);
+	var mq_content = null;
 	$scope.$watch('$viewContentLoaded', function(){
 		
-		var mq_content = MQ.MathField($document.find('#mq-content')[0],{
+		mq_content = MQ.MathField($document.find('#mq-content')[0],{
 			handlers: {
 				edit: function(mq) {
 					$scope.question.content = mq.latex();
@@ -90,6 +91,8 @@
 			$scope.question = $scope.fitb_question;
 		}
 		
+		$scope.question.content = mq_content.latex();
+		
 		$scope.init = true;
 		
 		$timeout(function(){ 
@@ -123,6 +126,10 @@
 	
 	$scope.init = true;
 	$scope.set_mathquill_fields = function(){
+		
+		
+		
+		
 		
 		for(var i = 0; i < $scope.question.answers.length; ++i){
 			//if($scope.question.type !== $scope.fill_in_the_blank)

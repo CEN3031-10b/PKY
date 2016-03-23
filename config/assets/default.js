@@ -6,7 +6,8 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-		'public/lib/mathquill-0.10.1/mathquill.css'
+		'public/lib/mathquill-0.10.1/mathquill.css',
+		'public/lib/tr-ng-grid/trNgGrid.css'
       ],
       js: [
 	    'public/lib/jquery/dist/jquery.js',
@@ -21,6 +22,7 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/angular-filter/dist/angular-filter.js',
 		'public/lib/mathquill-0.10.1/mathquill.js',
+		'public/lib/tr-ng-grid/trNgGrid.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

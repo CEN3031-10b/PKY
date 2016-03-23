@@ -1,0 +1,15 @@
+.admin-analysis {
+	border: 2px solid #053f79;
+	border-top: 0;
+	border-bottom:0;
+	min-height: 100vh;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:50px;
+	padding-top:30px;
+	background:#FFFFFF;
+	-webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+}
