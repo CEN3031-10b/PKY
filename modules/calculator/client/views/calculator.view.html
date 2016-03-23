@@ -1,34 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html class=" gecko win js gecko win js" manifest="mobilecal.appcache" xmlns="http://www.w3.org/1999/xhtml"><head>
+<html class=" gecko win js gecko win js"  xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="apple-touch-icon" href="https://demo.tds.airast.org/TDSCalculator/Images/icon.png">
-    <title>Calculator</title>
+   <title>Calculator</title>
     
     
-    <link rel="stylesheet" type="text/css" href="Calculator_files/add2home.css">
-    <link rel="stylesheet" type="text/css" href="Calculator_files/calc.css">
-    <link rel="stylesheet" type="text/css" href="Calculator_files/standalone.css">
-    <link rel="stylesheet" type="text/css" href="Calculator_files/project.css">
+    <link rel="stylesheet" type="text/css" href="/../../../../lib/CalculatorCSS/add2home.css">
+    <link rel="stylesheet" type="text/css" href="/../../../../lib/CalculatorCSS/calc.css">
+    <link rel="stylesheet" type="text/css" href="/../../../../lib/CalculatorCSS/standalone.css">
+    <link rel="stylesheet" type="text/css" href="/../../../../lib/CalculatorCSS/project.css">
     
-    <script src="Calculator_files/add2home.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Calculator_files/excanvas.js" type="text/javascript"></script>
-    <script src="Calculator_files/shortcut.js" type="text/javascript"></script>
-    <script src="Calculator_files/sylvester.js" type="text/javascript"></script>
-    <script src="Calculator_files/sylvester_002.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_arithmetic.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_config.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_graphing.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_main.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_matrices.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_regression.js" type="text/javascript"></script>
-    <script src="Calculator_files/textCanvas.js" type="text/javascript"></script>
-    <script src="Calculator_files/yahoo-dom-event.js" type="text/javascript"></script>
-    <script src="Calculator_files/tds_calc_env.js" type="text/javascript"></script>
-    <script src="Calculator_files/css_browser_selector.js" type="text/javascript"></script>
+	
+    <script src="/../../../../lib/CalculatorJS/add2home.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/../../../../lib/CalculatorJS/excanvas.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/shortcut.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/sylvester.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/sylvester_002.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_arithmetic.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_config.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_graphing.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_main.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_matrices.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_regression.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/textCanvas.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/yahoo-dom-event.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/tds_calc_env.js" type="text/javascript"></script>
+    <script src="/../../../../lib/CalculatorJS/css_browser_selector.js" type="text/javascript"></script>
+	
 
     <script type="text/javascript">
         var tdscalc;
@@ -141,7 +143,7 @@
                 <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^" href="#" id="xpowery">x^y</a>
                 <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^2" href="#" id="xsquare">x^2</a>
                 <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^3" href="#" id="xcube">x^3</a>
-                <a clearexistinginput="false" onepos="1" numoprands="0" op="false" href="#" id="pi" val="π">π</a>
+                <a clearexistinginput="false" onepos="1" numoprands="0" op="false" href="#" id="pi" val="p">p</a>
                 <a onepos="" numoprands="" op="false" val="Inv(" href="#" id="inv">Inv</a>
                 <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="abs(" href="#" id="abs">Abs</a>
                 <a onepos="" numoprands="" op="false" val="Det(" href="#" id="det">Det</a>
@@ -173,12 +175,12 @@
             </span>
             
     	    <div id="basicFunctions" class="basicFunctions">
-                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="/" href="#" id="divide">÷</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="/" href="#" id="divide">�</a>
                     <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="%" href="#" id="remainder">%</a>    
                     <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="*" href="#" id="multiply">x</a>          
 					<!--<a href="#" onclick = "squareRootPressed(event)" id="sqrt" val="&#8730;(" op="true" numOprands="1" onePos="0">&radic;</a>-->
-                    <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="√(" href="#" id="sqrt">√</a>
-                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="-" href="#" id="minus">−</a>      
+                    <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="v(" href="#" id="sqrt">v</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="-" href="#" id="minus">-</a>      
                     <a clearexistinginput="false" onepos="" numoprands="" op="false" val="" href="#" id="sign">+/-</a>                          
                     <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="+" href="#" id="plus">+</a>             
                     <a onepos="" numoprands="" op="false" val="=" href="#" id="equals">=</a>
@@ -206,10 +208,10 @@
             </div>
             <div id="equations">
                 <!-- SB07072011: I am not sure why there is a display:none option in the following selections. IE does not honor the display:none attribute on a option and hence the "=" would show up twice. I am going to comment those out. -->
-                Y₁<select id="equations-select-1"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa1" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
-                Y₂<select id="equations-select-2"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa2" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
-                Y₃<select id="equations-select-3"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa3" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
-                Y₄<select id="equations-select-4"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa4" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text">
+                Y1<select id="equations-select-1"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa1" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y2<select id="equations-select-2"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa2" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y3<select id="equations-select-3"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa3" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y4<select id="equations-select-4"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa4" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text">
             </div>
 
             <div id="graphwindow" style="display:none">
