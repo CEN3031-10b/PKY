@@ -1,104 +1,7 @@
-<h1>{{attempt.exam_title}}</h1>
-<h4>{{attempt.exam_class}}</h4>
-<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-	<i class="glyphicon glyphicon-plus">Submit</i>
-</button>	
-<button id="myBtn" class="btn btn-primary" type="button">
-	<i class="glyphicon glyphicon-modal-window"><a href="./Calculator.html">Calculator</a>Calculator</i>
-</button>
-
-<script language="javascript">
-    var iframe = document.getElementById('myiframe');
-        iframe.src = iframe.src + window.location.search;
-</script>
-
-<html>
-<head>
-<style>
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    height: 80%;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-</style>
-</head>
-<body>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2></h2>
-    </div>
-    <div class="modal-body">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0080)# -->
-<html manifest="mobilecal.appcache" xmlns="http://www.w3.org/1999/xhtml" class=" webkit chrome win js webkit chrome win js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class=" gecko win js gecko win js" manifest="mobilecal.appcache" xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no" name="viewport">
 
@@ -106,26 +9,26 @@
     <title>Calculator</title>
     
     
-    <link rel="stylesheet" type="text/css" href="./Calculator_files/add2home.css">
-    <link rel="stylesheet" type="text/css" href="./Calculator_files/calc.css">
-    <link rel="stylesheet" type="text/css" href="./Calculator_files/standalone.css">
-    <link rel="stylesheet" type="text/css" href="./Calculator_files/project.css">
+    <link rel="stylesheet" type="text/css" href="Calculator_files/add2home.css">
+    <link rel="stylesheet" type="text/css" href="Calculator_files/calc.css">
+    <link rel="stylesheet" type="text/css" href="Calculator_files/standalone.css">
+    <link rel="stylesheet" type="text/css" href="Calculator_files/project.css">
     
-    <script src="./Calculator_files/add2home.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./Calculator_files/excanvas.js" type="text/javascript"></script>
-    <script src="./Calculator_files/shortcut.js" type="text/javascript"></script>
-    <script src="./Calculator_files/sylvester.js" type="text/javascript"></script>
-    <script src="./Calculator_files/sylvester.src.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_arithmetic.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_config.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_graphing.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_main.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_matrices.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_regression.js" type="text/javascript"></script>
-    <script src="./Calculator_files/textCanvas.js" type="text/javascript"></script>
-    <script src="./Calculator_files/yahoo-dom-event.js" type="text/javascript"></script>
-    <script src="./Calculator_files/tds_calc_env.js" type="text/javascript"></script>
-    <script src="./Calculator_files/css_browser_selector.js" type="text/javascript"></script>
+    <script src="Calculator_files/add2home.js" type="text/javascript" charset="utf-8"></script>
+    <script src="Calculator_files/excanvas.js" type="text/javascript"></script>
+    <script src="Calculator_files/shortcut.js" type="text/javascript"></script>
+    <script src="Calculator_files/sylvester.js" type="text/javascript"></script>
+    <script src="Calculator_files/sylvester_002.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_arithmetic.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_config.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_graphing.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_main.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_matrices.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_regression.js" type="text/javascript"></script>
+    <script src="Calculator_files/textCanvas.js" type="text/javascript"></script>
+    <script src="Calculator_files/yahoo-dom-event.js" type="text/javascript"></script>
+    <script src="Calculator_files/tds_calc_env.js" type="text/javascript"></script>
+    <script src="Calculator_files/css_browser_selector.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var tdscalc;
@@ -158,7 +61,7 @@
    
 </head>
 
-<body ondragstart="return false" draggable="false" ondragenter="event.dataTransfer.dropEffect=&#39;none&#39;; event.stopPropagation(); event.preventDefault();" ondragover="event.dataTransfer.dropEffect=&#39;none&#39;;event.stopPropagation(); event.preventDefault();" ondrop="event.dataTransfer.dropEffect=&#39;none&#39;;event.stopPropagation(); event.preventDefault();" class=" webkit chrome win js">
+<body class=" gecko win js" ondragstart="return false" draggable="false" ondragenter="event.dataTransfer.dropEffect='none'; event.stopPropagation(); event.preventDefault();" ondragover="event.dataTransfer.dropEffect='none';event.stopPropagation(); event.preventDefault();" ondrop="event.dataTransfer.dropEffect='none';event.stopPropagation(); event.preventDefault();">
 
 
 
@@ -170,115 +73,115 @@
 
 <div id="calculatorwidget" class="calculatorWidget scientific inv" style="display:block"><!--new classes: regressions & matrices-->
 
-	    <div class="numericDisplay">
-	        <!-- spellcheck attribute fixed:https://bugz.airws.org/default.asp?69032 -->
-            <textarea id="textinput" class="line" type="text" name="line" spellcheck="false" readonly="readonly" style="display:block"></textarea>
-	    </div>
+        <div class="numericDisplay">
+            <!-- spellcheck attribute fixed:https://bugz.airws.org/default.asp?69032 -->
+            <textarea style="display:block" id="textinput" class="line" type="text" name="line" spellcheck="false"></textarea>
+        </div>
     
         <div class="calcButtons">
-    	    <div id="calcControls" class="calcControls">
-        	    <div id="calcClear" class="calcClear">
-	        	    <a href="#" id="backspace">Backspace</a>
-    	            <a href="#" id="CE">CE</a>
-        	        <a href="#" id="C">C</a>
-            	    <!--<a href="#" id="ANS" class="disabled">ANS</a>-->
-                	<input type="button" id="ANS" disabled="disabled" class="disabled" value="ANS">
+            <div id="calcControls" class="calcControls">
+                <div id="calcClear" class="calcClear">
+                    <a href="#" id="backspace">Backspace</a>
+                    <a href="#" id="CE">CE</a>
+                    <a href="#" id="C">C</a>
+                    <!--<a href="#" id="ANS" class="disabled">ANS</a>-->
+                    <input id="ANS" disabled="disabled" class="disabled" value="ANS" type="button">
                  </div>
                 <div id="calcSwitch"></div>
 
-			</div>
+            </div>
             <div id="memLogic" class="memLogic">
                 <div class="memory">
-                    <input id="memorystatus" readonly="readonly" type="text" value="" size="1/">
-                    <a href="#" id="STO" val="" op="false" numoprands="0" onepos="0">STO</a>
-                    <input type="button" id="RCL" disabled="disabled" class="disabled" value="RCL" val="" op="false" numoprands="0" onepos="0">
+                    <input id="memorystatus" readonly="readonly" size="1/" type="text">
+                    <a onepos="0" numoprands="0" op="false" val="" href="#" id="STO">STO</a>
+                    <input onepos="0" numoprands="0" op="false" val="" id="RCL" disabled="disabled" class="disabled" value="RCL" type="button">
                     <span class="clear"></span>                        
                 </div>
                 <div class="misc">
-                	<a href="#" id="variable" val="x" op="false" numoprands="2" onepos="" clearexistinginput="false">x-var</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="x" href="#" id="variable">x-var</a>
                 </div>
                 <div class="logicFunctions">
 
-                	<span class="clear"></span>
-            	</div>
+                    <span class="clear"></span>
+                </div>
             </div>
             
             <div id="memLogicStandard" class="memLogic">
                 <div class="memory">
-                    <input id="memorystatusStandard" readonly="readonly" type="text" value="" size="1/">
-                    <a href="#" id="memoryC" val="" op="false" numoprands="0" onepos="0">MC</a>
-                    <a href="#" id="memoryR" val="" op="false" numoprands="0" onepos="0">MR</a>          
-                    <a href="#" id="memoryS" val="" op="false" numoprands="0" onepos="0">MS</a>
-                    <a href="#" id="memory+" val="" op="false" numoprands="0" onepos="0">M+</a>                   
+                    <input id="memorystatusStandard" readonly="readonly" size="1/" type="text">
+                    <a onepos="0" numoprands="0" op="false" val="" href="#" id="memoryC">MC</a>
+                    <a onepos="0" numoprands="0" op="false" val="" href="#" id="memoryR">MR</a>          
+                    <a onepos="0" numoprands="0" op="false" val="" href="#" id="memoryS">MS</a>
+                    <a onepos="0" numoprands="0" op="false" val="" href="#" id="memory+">M+</a>                   
                    <span class="clear"></span>                        
                 </div>
                 <!---<div class="misc">
-                	<a href="#" id="variable" >x-var</a>
+                    <a href="#" id="variable" >x-var</a>
                 </div>-->
                 <div class="logicFunctions">
-                	<span class="clear"></span>
-            	</div>
+                    <span class="clear"></span>
+                </div>
             </div>
             
             <span class="advnacedPad">
             <div id="advancedFunctions" class="advancedFunctions">
-                <a href="#" id="leftbracket" val="(" op="false" numoprands="2" onepos="" clearexistinginput="false">(</a>
-                <a href="#" id="rightbracket" val=")" op="false" numoprands="2" onepos="" clearexistinginput="false">)</a>
-        	    <a href="#" id="sin" val="sin(" op="true" numoprands="1" onepos="0" clearexistinginput="false">Sin</a>
-                <a href="#" id="asin" val="sin^-1(" op="true" numoprands="1" onepos="0" clearexistinginput="false">sin<sup>-1</sup></a>
-                <a href="#" id="cos" val="cos(" op="true" numoprands="1" onepos="0" clearexistinginput="false">Cos</a>
-                <a href="#" id="acos" val="cos^-1(" op="true" numoprands="1" onepos="0" clearexistinginput="false">cos<sup>-1</sup></a>
-                <a href="#" id="tan" val="tan(" op="true" numoprands="1" onepos="0" clearexistinginput="false">Tan</a>
-                <a href="#" id="atan" val="tan^-1(" op="true" numoprands="1" onepos="0" clearexistinginput="false">tan<sup>-1</sup></a>
-                <a href="#" id="exp" val="exp(" op="true" numoprands="1" onepos="0" clearexistinginput="false">e^x</a>
-                <a href="#" id="ln" val="ln(" op="true" numoprands="1" onepos="0" clearexistinginput="false">ln</a>
-                <a href="#" id="log" val="log(" op="true" numoprands="1" onepos="0" clearexistinginput="false">log</a>
-                <a href="#" id="factorial" val="!" op="true" numoprands="1" onepos="1" clearexistinginput="false">n!</a>
-                <a href="#" id="reciprocal" val="^-1" op="true" numoprands="1" onepos="1" clearexistinginput="false">1/x</a>
-                <a href="#" id="xpowery" val="^" op="true" numoprands="1" onepos="1" clearexistinginput="false">x^y</a>
-                <a href="#" id="xsquare" val="^2" op="true" numoprands="1" onepos="1" clearexistinginput="false">x^2</a>
-                <a href="#" id="xcube" val="^3" op="true" numoprands="1" onepos="1" clearexistinginput="false">x^3</a>
-                <a href="#" id="pi" val="π" op="false" numoprands="0" onepos="1" clearexistinginput="false">π</a>
-                <a href="#" id="inv" val="Inv(" op="false" numoprands="" onepos="">Inv</a>
-                <a href="#" id="abs" val="abs(" op="true" numoprands="1" onepos="0" clearexistinginput="false">Abs</a>
-                <a href="#" id="det" val="Det(" op="false" numoprands="" onepos="">Det</a>
-                <a href="#" id="t" val="T(" op="false" numoprands="" onepos="">T</a>
+                <a clearexistinginput="false" onepos="" numoprands="2" op="false" href="#" id="leftbracket" val="(">(</a>
+                <a clearexistinginput="false" onepos="" numoprands="2" op="false" href="#" id="rightbracket" val=")">)</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="sin(" href="#" id="sin">Sin</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="sin^-1(" href="#" id="asin">sin<sup>-1</sup></a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="cos(" href="#" id="cos">Cos</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="cos^-1(" href="#" id="acos">cos<sup>-1</sup></a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="tan(" href="#" id="tan">Tan</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="tan^-1(" href="#" id="atan">tan<sup>-1</sup></a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="exp(" href="#" id="exp">e^x</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="ln(" href="#" id="ln">ln</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="log(" href="#" id="log">log</a>
+                <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="!" href="#" id="factorial">n!</a>
+                <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^-1" href="#" id="reciprocal">1/x</a>
+                <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^" href="#" id="xpowery">x^y</a>
+                <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^2" href="#" id="xsquare">x^2</a>
+                <a clearexistinginput="false" onepos="1" numoprands="1" op="true" val="^3" href="#" id="xcube">x^3</a>
+                <a clearexistinginput="false" onepos="1" numoprands="0" op="false" href="#" id="pi" val="π">π</a>
+                <a onepos="" numoprands="" op="false" val="Inv(" href="#" id="inv">Inv</a>
+                <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="abs(" href="#" id="abs">Abs</a>
+                <a onepos="" numoprands="" op="false" val="Det(" href="#" id="det">Det</a>
+                <a onepos="" numoprands="" op="false" val="T(" href="#" id="t">T</a>
                 <span class="clear"></span>
             </div>
             <div class="numbersWrap">
                 <div id="numberPad" class="numberPad">
-                    <a href="#" id="num7" val="7" op="false" numoprands="2" onepos="" clearexistinginput="false">7</a>
-                    <a href="#" id="num8" val="8" op="false" numoprands="2" onepos="" clearexistinginput="false">8</a>
-                    <a href="#" id="num9" val="9" op="false" numoprands="2" onepos="" clearexistinginput="false">9</a>
-                    <a href="#" id="num4" val="4" op="false" numoprands="2" onepos="" clearexistinginput="false">4</a>
-                    <a href="#" id="num5" val="5" op="false" numoprands="2" onepos="" clearexistinginput="false">5</a>
-                    <a href="#" id="num6" val="6" op="false" numoprands="2" onepos="" clearexistinginput="false">6</a>
-                    <a href="#" id="num1" val="1" op="false" numoprands="2" onepos="" clearexistinginput="false">1</a>
-                    <a href="#" id="num2" val="2" op="false" numoprands="2" onepos="" clearexistinginput="false">2</a>
-                    <a href="#" id="num3" val="3" op="false" numoprands="2" onepos="" clearexistinginput="false">3</a>
-                    <a href="#" id="num0" val="0" op="false" numoprands="2" onepos="" clearexistinginput="false">0</a>
-                    <a href="#" id="dot" val="." op="false" numoprands="2" onepos="" clearexistinginput="false">.</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="7" href="#" id="num7">7</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="8" href="#" id="num8">8</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="9" href="#" id="num9">9</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="4" href="#" id="num4">4</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="5" href="#" id="num5">5</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="6" href="#" id="num6">6</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="1" href="#" id="num1">1</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="2" href="#" id="num2">2</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="3" href="#" id="num3">3</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="0" href="#" id="num0">0</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="false" val="." href="#" id="dot">.</a>
                     <span class="clear"></span>
                 </div>
                 
                 <span id="modes" class="modes">
-                    <input type="radio" id="degrees" name="degrees" onclick="angle_mode(&#39;degrees&#39;)" checked=""> Degrees <br>
-                    <input type="radio" id="radians" name="radians" onclick="angle_mode(&#39;radians&#39;)"> Radians <br>
+                    <input id="degrees" name="degrees" onclick="angle_mode('degrees')" checked="checked" type="radio"> Degrees <br>
+                    <input id="radians" name="radians" onclick="angle_mode('radians')" type="radio"> Radians <br>
 
                 </span>
             </div>
             </span>
             
-    	    <div id="basicFunctions" class="basicFunctions">
-                    <a href="#" id="divide" val="/" op="true" numoprands="2" onepos="" clearexistinginput="false">÷</a>
-                    <a href="#" id="remainder" val="%" op="true" numoprands="1" onepos="0" clearexistinginput="false">%</a>    
-                    <a href="#" id="multiply" val="*" op="true" numoprands="2" onepos="" clearexistinginput="false">x</a>          
-					<!--<a href="#" onclick = "squareRootPressed(event)" id="sqrt" val="&#8730;(" op="true" numOprands="1" onePos="0">&radic;</a>-->
-                    <a href="#" id="sqrt" val="√(" op="true" numoprands="1" onepos="0" clearexistinginput="false">√</a>
-                    <a href="#" id="minus" val="-" op="true" numoprands="2" onepos="" clearexistinginput="false">−</a>      
-                    <a href="#" id="sign" val="" op="false" numoprands="" onepos="" clearexistinginput="false">+/-</a>                          
-                    <a href="#" id="plus" val="+" op="true" numoprands="2" onepos="" clearexistinginput="false">+</a>             
-                    <a href="#" id="equals" val="=" op="false" numoprands="" onepos="">=</a>
+            <div id="basicFunctions" class="basicFunctions">
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="/" href="#" id="divide">÷</a>
+                    <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="%" href="#" id="remainder">%</a>    
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="*" href="#" id="multiply">x</a>          
+                    <!--<a href="#" onclick = "squareRootPressed(event)" id="sqrt" val="&#8730;(" op="true" numOprands="1" onePos="0">&radic;</a>-->
+                    <a clearexistinginput="false" onepos="0" numoprands="1" op="true" val="√(" href="#" id="sqrt">√</a>
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="-" href="#" id="minus">−</a>      
+                    <a clearexistinginput="false" onepos="" numoprands="" op="false" val="" href="#" id="sign">+/-</a>                          
+                    <a clearexistinginput="false" onepos="" numoprands="2" op="true" val="+" href="#" id="plus">+</a>             
+                    <a onepos="" numoprands="" op="false" val="=" href="#" id="equals">=</a>
                     <a href="#" id="comma">,</a>
                 
 
@@ -297,34 +200,34 @@
             </span>
             
             <div id="canvasHolder">
-    		    <canvas id="canvas" height="280" width="280"></canvas><div id="canvas-container"><canvas id="ctncanvas"></canvas></div> 
+                <canvas id="canvas" height="280" width="280"></canvas><div id="canvas-container"><canvas id="ctncanvas"></canvas></div> 
                 <a href="#" id="calczoomin">Zoom In</a>
                 <a href="#" id="calczoomout">Zoom Out</a>
             </div>
             <div id="equations">
                 <!-- SB07072011: I am not sure why there is a display:none option in the following selections. IE does not honor the display:none attribute on a option and hence the "=" would show up twice. I am going to comment those out. -->
-                Y₁<select id="equations-select-1"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa1" value="" class="line" type="text" name="line" onfocus="return CalcFocusGained(this, event)"><span class="clear"></span>
-                Y₂<select id="equations-select-2"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa2" value="" class="line" type="text" name="line" onfocus="return CalcFocusGained(this, event)"><span class="clear"></span>
-                Y₃<select id="equations-select-3"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa3" value="" class="line" type="text" name="line" onfocus="return CalcFocusGained(this, event)"><span class="clear"></span>
-                Y₄<select id="equations-select-4"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa4" value="" class="line" type="text" name="line" onfocus="return CalcFocusGained(this, event)">
+                Y₁<select id="equations-select-1"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa1" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y₂<select id="equations-select-2"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa2" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y₃<select id="equations-select-3"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa3" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text"><span class="clear"></span>
+                Y₄<select id="equations-select-4"><option selected="selected">=</option><option>&gt;</option><option>&lt;</option><!-- <option style="display:none">=</option> --> </select><input id="equa4" class="line" name="line" onfocus="return CalcFocusGained(this, event)" type="text">
             </div>
 
             <div id="graphwindow" style="display:none">
-                <label>Xmin</label> <input type="TEXT" value="-5" id="xmin" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"><br>
-                <label>Xmax</label> <input type="TEXT" value="5" id="xmax" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"><br>
-                <label>Xscale</label> <input type="TEXT" value="1" id="xscale" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"> <br>
-                <label>Ymin</label> <input type="TEXT" value="-5" id="ymin" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"><br>
-                <label>Ymax</label> <input type="TEXT" value="5" id="ymax" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"> <br>
-                <label>Yscale</label> <input type="TEXT" value="1" id="yscale" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"> 
-                <label>Trace Step Size</label> <input type="TEXT" value="4" id="tracestepsize" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"> <br>
+                <label>Xmin</label> <input value="-5" id="xmin" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"><br>
+                <label>Xmax</label> <input value="5" id="xmax" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"><br>
+                <label>Xscale</label> <input value="1" id="xscale" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"> <br>
+                <label>Ymin</label> <input value="-5" id="ymin" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"><br>
+                <label>Ymax</label> <input value="5" id="ymax" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"> <br>
+                <label>Yscale</label> <input value="1" id="yscale" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"> 
+                <label>Trace Step Size</label> <input value="4" id="tracestepsize" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"> <br>
                 <!--<label>Zoom</label> <INPUT type=TEXT value="1" class="disabled" id = "zoomlevel" readonly="value"/> <br />-->
             </div>
             <div id="datatableHolder" style="display:none">
-                <label>Init X</label> <input type="TEXT" value="-5" id="initX" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)"> 
+                <label>Init X</label> <input value="-5" id="initX" onfocus="return CalcFocusGained(this, event)" onblur="return CalcFocusLost(this, event)" type="TEXT"> 
                 <a href="#" id="applytb">Apply</a>
                 
                 <span class="tableholder">
-                	<table id="datatable" border="1"></table>
+                    <table id="datatable" border="1"></table>
                 </span>
                 
                 <a href="#" id="previous5">Previous</a>
@@ -336,7 +239,7 @@
                 <br>
             </div>
             <div id="graphControls" class="graphControls">
-            	<a href="#" id="left">&lt;</a>
+                <a href="#" id="left">&lt;</a>
                 <span>
                 <a href="#" id="up">up</a>
                 <a href="#" id="down">down</a>
@@ -344,24 +247,24 @@
                 <a href="#" id="right"></a>
             </div>
             <div id="traceToggle">
-                <div id="scrollHolder"> <input type="radio" id="toggleScroll" class="toggleTrace" name="toggleTrace" value="toggleScroll" checked=""><span>Scroll</span></div>
-                <div id="traceHolder"><input type="radio" id="toggleTrace" class="toggleTrace" name="toggleTrace" value="toggleTrace"><span>Trace</span></div>
+                <div id="scrollHolder"> <input id="toggleScroll" class="toggleTrace" name="toggleTrace" value="toggleScroll" checked="checked" type="radio"><span>Scroll</span></div>
+                <div id="traceHolder"><input id="toggleTrace" class="toggleTrace" name="toggleTrace" value="toggleTrace" type="radio"><span>Trace</span></div>
                 
             </div>
             <a href="#" id="resetgraph">Reset</a>
     </div>
         
         <div class="regressionContainer" id="Regression">
-        	<div id="regresionModes" class="regresionModes">
-            	<a href="#" id="Linear">Linear</a>
-            	<a href="#" id="Quadratic">Quadratic</a>
-            	<a href="#" id="Exponential">Exponential</a><!--add class active to indicate which model-->          
+            <div id="regresionModes" class="regresionModes">
+                <a href="#" id="Linear">Linear</a>
+                <a href="#" id="Quadratic">Quadratic</a>
+                <a href="#" id="Exponential">Exponential</a><!--add class active to indicate which model-->          
                 <a href="#" id="Power">Power</a>
                 <a href="#" id="regclearall">Clear</a>
             </div>
             
             <div id="yNumb" class="yNumb">
-            	<table border="0">
+                <table border="0">
                       <tbody><tr>
                         <th scope="col">X</th>
                         <th scope="col">Y1</th>
@@ -719,14 +622,14 @@
                         <td><input id="reg-Y3-50" name="" type="text"></td>
                         <td><input id="reg-Y4-50" name="" type="text"></td>
                       </tr>
-            	</tbody></table>
+                </tbody></table>
             </div>
             
         
         </div>
         
-		<div class="matricesContainer" id="matricesContainer">
-        	<span class="mGroup" id="mGroup">
+        <div class="matricesContainer" id="matricesContainer">
+            <span class="mGroup" id="mGroup">
                 <a href="#" id="inputM1" class="singleMatrix">M1</a>
                 <a href="#" id="inputM2" class="singleMatrix">M2</a>
                 <a href="#" id="inputM3" class="singleMatrix">M3</a>
@@ -734,44 +637,44 @@
                 <a href="#" id="inputM5" class="singleMatrix">M5</a>
             </span>
         
-        	<div id="matricestabs" class="tabs">
-            	<span id="M1span" class="tab active"><a href="#" id="M1" class="switchTab">M1</a></span>
+            <div id="matricestabs" class="tabs">
+                <span id="M1span" class="tab active"><a href="#" id="M1" class="switchTab">M1</a></span>
                 <span id="M2span" class="tab"><a href="#" id="M2" class="switchTab">M2</a></span>
                 <span id="M3span" class="tab"><a href="#" id="M3" class="switchTab">M3</a></span>
                 <span id="M4span" class="tab"><a href="#" id="M4" class="switchTab">M4</a></span>
                 <span id="M5span" class="tab"><a href="#" id="M5" class="switchTab">M5</a></span>
                 <!-- move to 'numberCells' div <a href="#" id="Result" class="matrixResult">Result</a>-->
-			</div>
+            </div>
 
   </div>
         
         <div style="visibility:hidden" class="hidden">
-            <p><select id="history" name="history" class="history" onchange="if(this.selectedIndex&gt;0)set_calc(this.options[this.selectedIndex].text);" title="View previous entries (Alt-h)">
-                    <option>History:
+            <p><select id="history" name="history" class="history" onchange="if(this.selectedIndex>0)set_calc(this.options[this.selectedIndex].text);" title="View previous entries (Alt-h)">
+                    <option selected="selected">History:
                     </option><option></option><option></option><option></option><option></option><option></option><option></option><option></option><option></option><option>
                     </option><option></option><option></option><option></option><option></option><option></option><option></option><option></option><option></option><option></option><option>
             </option></select></p>
             <div id="calc_setting">
-                <input id="calc_mode" type="text" name="calc_mode" value="scientific">
+                <input id="calc_mode" name="calc_mode" value="scientific" type="text">
             </div>
         </div>
         <div class="options" style="visibility:hidden">
-            <input type="radio" id="hex" name="hex" onclick="pns_mode(&#39;hex&#39;)"> Hex 
-            <input type="radio" id="dec" name="dec" onclick="pns_mode(&#39;dec&#39;)" checked=""> Dec 
-    	    <input type="radio" id="oct" name="oct" onclick="pns_mode(&#39;oct&#39;)"> Oct 
-    	    <input type="radio" id="bin" name="bin" onclick="pns_mode(&#39;bin&#39;)"> Bin
+            <input id="hex" name="hex" onclick="pns_mode('hex')" type="radio"> Hex 
+            <input id="dec" name="dec" onclick="pns_mode('dec')" checked="checked" type="radio"> Dec 
+            <input id="oct" name="oct" onclick="pns_mode('oct')" type="radio"> Oct 
+            <input id="bin" name="bin" onclick="pns_mode('bin')" type="radio"> Bin
         </div>
         <span class="clear"></span>
         <div style="display:none">
-    	    <input id="textinputCursorPos" value="0">
-    	    <input id="equa1CursorPos" value="0">
-    	    <input id="equa2CursorPos" value="0">
-    	    <input id="equa3CursorPos" value="0">
-    	    <input id="equa4CursorPos" value="0">
-    	    <input id="initXCursorPos" value="2">
-    	    <input id="xminCursorPos" value="2">
-    	    <input id="xmaxCursorPos" value="1">
-    	    <input id="yminCursorPos" value="2">
+            <input id="textinputCursorPos" value="0">
+            <input id="equa1CursorPos" value="0">
+            <input id="equa2CursorPos" value="0">
+            <input id="equa3CursorPos" value="0">
+            <input id="equa4CursorPos" value="0">
+            <input id="initXCursorPos" value="2">
+            <input id="xminCursorPos" value="2">
+            <input id="xmaxCursorPos" value="1">
+            <input id="yminCursorPos" value="2">
             <input id="ymaxCursorPos" value="1">
         </div>
 </div>
@@ -786,108 +689,3 @@
 
 
 </body></html>
-
-<!--end calculatorpart of code><!-->
-    </div>
-  </div>
-</div>
-
-<script>
-// Get the modal
-var modal = document.getElementById('myModal');
-​​​​​​​​​​​​​​​​
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
-</body>
-</html>
-
-<br>
-<br>
-
-<h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
-<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
-<pre ng-show="error"> {{error | json}}</pre>
-<table ng-show="!loading">
-	<tr ng-repeat="question in attempt.questions">
-		<td style="padding-bottom: 30px;">
-			<!-- replace with ng-include -->
-			<table ng-if="question.data.type === 'multiple choice'">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="radio" 
-						ng-model="question.selected_answer" 
-						value="{{answer._id}}" 
-						ng-click="answer.correct = true; save_answer(question.data, answer); ">
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === 'multiple select'">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="checkbox" 
-						ng-model="answer.correct" 
-						value="{{answer._id}}" 
-						ng-click="save_answer(question.data, answer)">
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === fill_in_the_blank">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						{{answer.label}}
-					</td>
-					<!-- numeric answer -->
-					<td ng-show="answer.is_numeric">
-						<input class="form-control" type="number" ng-model="answer.value"  ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}">
-					</td>
-					<!-- non numeric -->
-					<td ng-show="!answer.is_numeric">
-						<textarea class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}"></textarea>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>

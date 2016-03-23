@@ -5,7 +5,12 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        'public/lib/CalculatorCSS/add2home.css',
+        'public/lib/CalculatorCSS/calc.css',
+        'public/lib/CalculatorCSS/standalone.css',
+        'public/lib/CalculatorCSS/project.css'
+
       ],
       js: [
         'public/lib/angular/angular.js',
@@ -17,7 +22,22 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/angular-filter/dist/angular-filter.js'
+        'public/lib/angular-filter/dist/angular-filter.js',
+        'public/lib/CalculatorJS/add2home.js',
+        'public/lib/CalculatorJS/excanvas.js',
+        'public/lib/CalculatorJS/shortcut.js',
+        'public/lib/CalculatorJS/sylvester.js',
+        'public/lib/CalculatorJS/sylvester.src.js',
+        'public/lib/CalculatorJS/tds_calc_arithmetic.js',
+        'public/lib/CalculatorJS/tds_calc_config.js',
+        'public/lib/CalculatorJS/tds_calc_graphing.js',
+        'public/lib/CalculatorJS/tds_calc_main.js',
+        'public/lib/CalculatorJS/tds_calc_matrices.js',
+        'public/lib/CalculatorJS/tds_calc_regression.js',
+        'public/lib/CalculatorJS/textCanvas.js',
+        'public/lib/CalculatorJS/yahoo-dom-event.js',
+        'public/lib/CalculatorJS/tds_calc_env.js',
+        'public/lib/CalculatorJS/css_browser_selector.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
