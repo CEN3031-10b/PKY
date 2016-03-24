@@ -17,15 +17,25 @@
 	$scope.loading = true;
 	$scope.error = null;
 	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
-	$scope.indx = 0;
+	$scope.arrayIndx = 0;
 
-    $scope.random = function() {
-        return 0.5 - Math.random();
+	//makes the order for the exam questions
+	$scope.examOrder = [];
+	for(var h = 0; h <= 6 - 1; h++){
+		$scope.examOrder.push(h);
+	}
+    for (var i = $scope.examOrder.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = $scope.examOrder[i];
+        $scope.examOrder[i] = $scope.examOrder[j];
+        $scope.examOrder[j] = temp;
     }
+
+    $scope.indx = $scope.examOrder[$scope.arrayIndx];
 
 	$scope.numberOfPages = function() {
 			return $scope.attempt.questions.length;
-		};
+	};
 
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($stateParams.eID)
@@ -111,19 +121,22 @@
 	//navigate to previous question
 		$scope.previousQuestion = function() {
 
-				if($scope.indx <= 0){
+				if($scope.arrayIndx <= 0){
 					return;
 				}	
-				$scope.indx -= 1;
+				$scope.arrayIndx -= 1;
+				$scope.indx = $scope.examOrder[$scope.arrayIndx];
 		};
 		
 		//navigate to previous question
 		$scope.nextQuestion = function() {
 
-				if($scope.indx >= $scope.attempt.questions.length - 1){
+				if($scope.arrayIndx >= $scope.attempt.questions.length - 1){
 					return;
 				}	
-				$scope.indx += 1;
+				$scope.arrayIndx += 1;
+				$scope.indx = $scope.examOrder[$scope.arrayIndx];
+				console.log($scope.attempt.questions.length);
 		};
 
 
