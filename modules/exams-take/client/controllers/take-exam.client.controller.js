@@ -129,10 +129,16 @@
 		//$window.location.href = ('/modules/calculator/client/views/calculator.view.html');
 		
 		  var modalInstance = $uibModal.open({
-			animation: true,
-			template: '<iframe src="/modules/calculator/client/views/calculator.view.html" width="350" height="400"></iframe>',
-			size: 'md'
+			windowClass: 'calc-modal',
+			animation: false,
+			templateUrl: '/modules/exams-take/client/views/calc-modal.client.view.html',
+			    backdrop: 'static',
+    keyboard: false
 		  });	
+		  
+		    //$(".modal-content").draggable({
+			//	handle: ".modal-content"
+			//});
 	};
 }
   

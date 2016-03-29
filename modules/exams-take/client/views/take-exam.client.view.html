@@ -1,6 +1,5 @@
 <h1>{{attempt.exam_title}}</h1>
 <h4>{{attempt.exam_class}}</h4>
-
 <h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
@@ -11,7 +10,7 @@
 					<i class="glyphicon glyphicon-plus">Submit</i>
 				</button>	
 			</td>
-			<td class - "buttonTable">
+			<td class = "buttonTable">
 				<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
 					<i class="glyphicon glyphicon-modal-window">Calculator</i>
 				</button>
@@ -31,11 +30,8 @@
 			</td>
 		</tr>
 	</table>	
-
 <div ng-repeat="question in attempt.questions" ng-if="indx === $index">
-
-	<!-- replace with ng-include -->
-	<table ng-if="question.data.type === 'multiple choice'">
+	<table ng-if="question.data.type === multiple_choice">
 		<tr>
 			<td>
 				<h3>{{question.data.content}}</h3>
@@ -52,7 +48,7 @@
 			</td>
 		</tr>
 	</table>
-	<table ng-if="question.data.type === 'multiple select'">
+	<table ng-if="question.data.type === multiple_select">
 		<tr>
 			<td>
 				<h3>{{question.data.content}}</h3>
@@ -90,64 +86,3 @@
 		</tr>
 	</table>
 </div>
-<!-- <table ng-show="!loading">
-	<tr ng-repeat="question in attempt.questions">
-		<td style="padding-bottom: 30px;">
-			<!-- replace with ng-include ->
-			<table ng-if="question.data.type === 'multiple choice'">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="radio" 
-						ng-model="question.selected_answer" 
-						value="{{answer._id}}" 
-						ng-click="answer.correct = true; save_answer(question.data, answer); ">
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === 'multiple select'">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="checkbox" 
-						ng-model="answer.correct" 
-						value="{{answer._id}}" 
-						ng-click="save_answer(question.data, answer)">
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === fill_in_the_blank">
-				<tr>
-					<td>
-						<h3>{{question.data.content}}</h3>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						{{answer.label}}
-					</td>
-					<!-- numeric answer ->
-					<td ng-show="answer.is_numeric">
-						<input class="form-control" type="number" ng-model="answer.value"  ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}">
-					</td>
-					<!-- non numeric ->
-					<td ng-show="!answer.is_numeric">
-						<textarea class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}"></textarea>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table> -->

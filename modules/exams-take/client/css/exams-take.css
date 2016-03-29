@@ -7,3 +7,35 @@
 	margin-top: 40px;
 	margin-bottom: 10px;
 }
+
+.calc-modal .modal-dialog{
+	width: 400px;
+}
+.calc-modal .modal-content{
+	width:100%;
+	padding: 20px;
+}
+
+.calc-modal .modal-body{
+	padding:0;
+	margin:0;
+}
+
+.calc-modal .modal-header{
+		padding:0;
+	margin:0;
+}
+.modal-backdrop{
+	z-index: -10 !important;
+	background: transparent !important;
+}
+
+.modal-open{
+	z-index: -11 !important;
+}
+
+.calc-modal{
+	right: auto;
+	bottom: auto;
+	overflow: visible;
+}
