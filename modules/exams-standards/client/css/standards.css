@@ -1,0 +1,15 @@
+
+/*.standards td {
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap; 
+}
+.standards table { 
+  table-layout: fixed;
+  width: 100%
+}*/
+.standards td {
+word-break: break-all
+}

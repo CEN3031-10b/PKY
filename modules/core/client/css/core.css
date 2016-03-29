@@ -9,6 +9,7 @@ html {
 }
 
 body {
+	word-wrap: break-word !important;
   overflow-y: scroll;
   background:transparent;
   min-height:100%;  

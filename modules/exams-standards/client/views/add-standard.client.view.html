@@ -1,0 +1,42 @@
+<div class="modal-header ng-cloak">
+	<table>
+	<tr>
+		<td>
+			<h2 class="modal-title">
+				<span ng-if="!old_standard"> Add standard</span>
+				<span ng-if="old_standard"> Edit standard</span>
+			</h2>
+			<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+			<button class="btn btn-primary" type="button" ng-click="submit()">Submit</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="modal-alert alert alert-danger ng-hide" ng-show="alert.show">
+				<span class="glyphicon glyphicon-exclamation-sign"></span> 
+				{{alert.message}}
+				<i ng-click="clear_alert()" class="glyphicon glyphicon-remove"></i>
+			</div>
+		</td>
+	</tr>
+	</table>			
+</div>
+
+<div class="loading ng-hide" ng-show="loading">
+	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
+</div>
+
+<div class="modal-body" ng-hide="loading">
+	<div class="question-content" >
+		<h4>Code</h4>
+		<textarea class="form-control" ng-model="standard.code"></textarea>
+	</div>
+	<div class="question-content" >
+		<h4>Content</h4>
+		<textarea class="form-control" ng-model="standard.content"></textarea>
+	</div>
+	<div class="question-content" >
+		<h4>Notes</h4>
+		<textarea class="form-control" ng-model="standard.notes"></textarea>
+	</div>
+</div>

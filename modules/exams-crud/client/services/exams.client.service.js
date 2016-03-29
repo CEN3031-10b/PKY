@@ -7,6 +7,7 @@
 		
       var exam_url_base = '/api/exams';
       var question_url_base = '/api/questions';
+	  var standard_url_base = '/api/standards';
 		
 		// exams
       return {
@@ -32,7 +33,7 @@
 		  return $http.delete(exam_url_base +'/'+exam._id+'/questions/' + question_id);
 		},
 			
-			// questions
+		// questions
         get_questions : function(){
           return $http.get(question_url_base);
         },
@@ -51,6 +52,27 @@
 			
         delete_question : function(id){
           return $http.delete(question_url_base + '/' + id);
+        },
+		
+		// standards
+		get_standards : function(){
+          return $http.get(standard_url_base);
+        },
+			
+        get_standard : function(id){
+          return $http.get(standard_url_base + '/' + id);
+        },	
+			
+        update_standard : function(standard){
+          return $http.put(standard_url_base + '/' + standard._id, standard);
+        },
+			
+        create_standard : function(standard){
+          return $http.post(standard_url_base, standard);
+        },
+			
+        delete_standard : function(id){
+          return $http.delete(standard_url_base + '/' + id);
         }
       };
 
