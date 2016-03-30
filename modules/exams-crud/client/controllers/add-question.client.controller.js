@@ -223,7 +223,7 @@
 	
     $scope.submit = function(){
 		$scope.loading = true;
-		
+		console.log($scope.question.standards);
 		// if edit mode, update question
 		if(old_question){
 			ExamsService.update_question($scope.question)
@@ -231,7 +231,7 @@
 				$scope.loading = false;
 				old_question.content = response.data.content;
 				old_question.points = response.data.points;
-				old_question.standard = response.data.standard;
+				old_question.standards = response.data.standards;
 				old_question.answers = response.data.answers;
 				selected_exam.version++;
 				$scope.ok();

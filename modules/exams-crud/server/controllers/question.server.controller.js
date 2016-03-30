@@ -59,7 +59,7 @@ exports.update = function (req, res) {
 	question.content = req.body.content;
 	question.answers = req.body.answers;
 	question.type = req.body.type;
-	question.standard = req.body.standard;
+	question.standards = req.body.standards;
 	question.points = req.body.points;
 	question = new Question(question);
 	
