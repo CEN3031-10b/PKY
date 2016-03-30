@@ -5,12 +5,13 @@
     .module('standards')
     .controller('AddStandardController', AddStandardController);
 
-  AddStandardController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'old_standard'];
+  AddStandardController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'old_standard', 'view'];
 
-  function AddStandardController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, old_standard) {
+  function AddStandardController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, old_standard, view) {
     
 	$scope.standard = {};
 	$scope.alert = {};
+	$scope.view = view;
 	if(old_standard){
 		$scope.old_standard = old_standard;
 		$scope.standard = JSON.parse(JSON.stringify(old_standard));

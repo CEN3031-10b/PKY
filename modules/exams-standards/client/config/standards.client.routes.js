@@ -19,6 +19,17 @@
 				return ExamsService.get_standards();
 			}
 		}
+      })
+	  .state('view-standards', {
+		parent: 'info',
+		url: '/standards/view',
+        templateUrl: 'modules/exams-standards/client/views/view-standards.client.view.html',
+		controller: 'ViewStandardsController',
+		resolve:{
+			standards: function(ExamsService){
+				return ExamsService.get_standards();
+			}
+		}
       });
   }
 

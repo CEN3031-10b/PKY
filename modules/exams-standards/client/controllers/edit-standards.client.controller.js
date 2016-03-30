@@ -21,7 +21,8 @@
         resolve: {
 		  old_standard: function(){
 			return _standard;
-		  }
+		  },
+		  view: false
         }
         });
 	  

@@ -11,7 +11,8 @@
     // Add the dropdown list item to admin
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'View Student Attempts',
-      state: 'exams-analysis.admin'
+      state: 'exams-analysis.admin',
+	  roles: ['admin']
     });
   }
 })();

@@ -12,8 +12,10 @@
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Edit Standards',
-      state: 'edit-standards'
+      state: 'edit-standards',
+	  roles: ['admin']
     });
+	
 
   }
 })();

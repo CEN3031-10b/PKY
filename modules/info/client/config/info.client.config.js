@@ -44,6 +44,14 @@
       title: 'Question Types',
       state: 'info.5'
     });
+	
+		
+	Menus.addSubMenuItem('topbar', 'info', {
+      title: 'EOC standards',
+      state: 'view-standards'
+    });
+	
+	
 
   }
 })();
