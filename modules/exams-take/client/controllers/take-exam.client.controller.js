@@ -136,8 +136,9 @@
 			windowClass: 'calc-modal',
 			animation: false,
 			templateUrl: '/modules/exams-take/client/views/calc-modal.client.view.html',
-			    backdrop: 'static',
-    keyboard: false
+			backdrop: 'static',
+    		keyboard: false,
+    		controller: 'calculatorModal'
 		  });	
 		  
 		    //$(".modal-content").draggable({
