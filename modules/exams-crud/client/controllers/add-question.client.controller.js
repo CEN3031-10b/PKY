@@ -5,9 +5,9 @@
     .module('exams')
     .controller('AddQuestionController', AddQuestionController);
 
-  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question'];
+  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards'];
 
-  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question) {
+  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
     
 	
 	// load mathquill after page loads
@@ -34,6 +34,8 @@
 	});
 	
 	// init
+	$scope.standards = standards.data;
+	console.log(standards.data);
 	$scope.selected_exam = selected_exam;
 	$scope.selected_type = null;
 	$scope.old_question = null;
@@ -45,16 +47,19 @@
 
 	// separate variables to save info if a question type is switched
 	$scope.mc_question = {};
+	$scope.mc_question.standards = [];
 	$scope.mc_question.answers = [];
 	$scope.mc_question.exam = selected_exam._id;
 	$scope.mc_question.type = $scope.multiple_choice;
 	
 	$scope.ms_question = {};
+	$scope.ms_question.standards = [];
 	$scope.ms_question.answers = [];
 	$scope.ms_question.exam = selected_exam._id;
 	$scope.ms_question.type = $scope.multiple_select;
 	
 	$scope.fitb_question = {};
+	$scope.fitb_question.standards = [];
 	$scope.fitb_question.answers = [];
 	$scope.fitb_question.exam = selected_exam._id;
 	$scope.fitb_question.type = $scope.fill_in_the_blank;
@@ -122,6 +127,12 @@
 			$scope.set_mathquill_fields();			
 		},0);
 
+    };
+	
+	$scope.add_new_standard = function(_question){
+		var standard = "";
+		if(_question.standards != null)
+		_question.standards.push(standard);
     };
 	
 	$scope.init = true;

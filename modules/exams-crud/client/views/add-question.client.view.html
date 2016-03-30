@@ -52,7 +52,20 @@
 		</div>
 		<div class="question-content" >
 			<h4>Standard</h4>
-			<textarea class="form-control" ng-model="question.standard"></textarea>
+			<div class="btn btn-primary" ng-click="add_new_standard(question)">
+				<span>Add a new standard</span>
+				<i class="glyphicon glyphicon-plus"></i>
+			
+			</div>				
+			<table class="mc-answer">
+					<tr ng-repeat="standard in question.standards track by $index">
+						<td>
+							<select ng-model="standard">
+								<option ng-repeat="s in standards" value="{{s.code}}">{{s.code}}</option>
+							</select>
+						</td>
+					</tr>
+			</table>	
 		</div>
 		<div class="question-content" >
 			<h4>Question</h4>

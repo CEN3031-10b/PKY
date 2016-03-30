@@ -151,7 +151,10 @@
 				},
 			old_question: function(){
 					return null;
-				}
+				},
+			standards: function(ExamsService){
+				return ExamsService.get_standards();
+			}
 		}
 		});
 	
@@ -175,6 +178,9 @@
 			},
 			old_question: function(){
 				return _question;
+			},
+			standards: function(ExamsService){
+				return ExamsService.get_standards();
 			}
 		}
 		});
