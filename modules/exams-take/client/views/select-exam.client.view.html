@@ -1,29 +1,42 @@
 <!-- The choose-test view -->
-<section id="choose-test" class="container">
+<section id="choose-test" class="container admin-analysis">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Choose Your Test</h1>
+				<h1 class="black-text">Choose Your Exam</h1>
 			</div>
 		</div>
 	</div>
 	<!-- choosing which test you want -->
 	<div class="row">
 		<div class="col-md-6 test-con">
-			<h2 class="test-title">Exams</h2>
-			<table>
-				<tr ng-repeat="exam in exams">
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 1</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 1'">
 					<td class="exam-name">{{exam.title}}</td>
-					<td style="margin:5px" class="btn btn-primary" ng-click="start_exam(exam)">begin</td>
+					<td nowrap>
+						<i ng-click="start_exam(exam)" class="btn btn-primary glyphicon glyphicon-share"></i>
+						<i class="btn btn-primary glyphicon glyphicon-search"></i>
+					</td>
+				</tr>
+			</table>
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 2</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 2'">
+					<td class="exam-name">{{exam.title}}</td>
+					<td nowrap>
+						<i ng-click="start_exam(exam)"class="btn btn-primary glyphicon glyphicon-share"></i>
+						<i class="btn btn-primary glyphicon glyphicon-search"></i>
+					</td>
 				</tr>
 			</table>
 		</div>
 		<div class="col-md-6 test-con">
-			<h2 class="test-title">Past Exams</h2>
-			<table>
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Previous Attempts</h3>
+			<table class="table table-hover table-striped table-bordered">
 				<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted">
 					<td class="exam-name">{{attempt.exam_title}}</td>
-					<td style="margin:5px" class="btn btn-primary" ng-click="review_attempt(attempt)">Review</td>
+					<td><i ng-click="review_attempt(attempt)"class="btn btn-primary glyphicon glyphicon-share"></i></td>
 				</tr>
 			</table>
 		</div>

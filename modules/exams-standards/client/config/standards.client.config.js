@@ -15,7 +15,6 @@
       state: 'edit-standards',
 	  roles: ['admin']
     });
-	
 
   }
 })();
