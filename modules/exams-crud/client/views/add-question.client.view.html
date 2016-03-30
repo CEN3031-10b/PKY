@@ -55,13 +55,12 @@
 			<div class="btn btn-primary" ng-click="add_new_standard(question)">
 				<span>Add a new standard</span>
 				<i class="glyphicon glyphicon-plus"></i>
-			
-			</div>				
+			</div>
 			<table class="mc-answer">
 					<tr ng-repeat="standard in question.standards track by $index">
 						<td>
-							<select ng-model="standard">
-								<option ng-repeat="s in standards" value="{{s.code}}">{{s.code}}</option>
+							<select ng-model="question.standards[$index]">
+								<option ng-repeat="s in standards" value="{{s._id}}">{{s.code}}</option>
 							</select>
 						</td>
 					</tr>
