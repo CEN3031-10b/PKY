@@ -225,7 +225,7 @@
 }
 
 .edit-exams{
-	border: 2px solid #053f79;
+	/*border: 2px solid #053f79;*/
 	border-top: 0;
 	border-bottom:0;
 	min-height: 100vh;
@@ -234,7 +234,8 @@
 	margin:0;
 	padding:50px;
 	padding-top:30px;
-	background:#156fa9;
+	/*background:#156fa9;*/
+	background: #fff;
 	-webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
@@ -358,4 +359,26 @@
 
 .x{
 	color:#EE3131;
+}
+
+.main-table-review{
+	word-wrap: break-word;
+	border:3px solid white;
+	color: black;
+	background:#cdebf9;
+	padding: 65px;
+	width: 100%; 
+	margin:0 auto;
+	margin-left: 29px;
+	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+}
+
+.main-table-review td{
+	padding:10px;
+}
+
+.main-table-review tr{
+	padding-left: 10px;
 }

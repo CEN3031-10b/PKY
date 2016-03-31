@@ -4,9 +4,10 @@
 <br>
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
-<table>
+<div class = "col-md-12 main-table-container">
+		<table class="main-table-review">
 	<tr ng-repeat="question in attempt.questions">
-		<td style="padding-bottom: 30px; border: 1px solid red;">
+		<td style="padding-bottom: 30px; border: 10px solid white;">
 			<!-- replace with ng-include -->
 			<table ng-if="question.data.type === multiple_choice">
 				<tr>
@@ -65,3 +66,4 @@
 		</td>
 	</tr>
 </table>
+</div>
