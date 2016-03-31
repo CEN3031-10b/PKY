@@ -103,6 +103,7 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 	.sort('-created')
 	.populate('exam')
 	.populate('questions.data')
+	.populate('question.data.standards')
 	.exec(function (err, attempts) {
 		if (err) {
 			return res.status(400).send({
@@ -154,7 +155,14 @@ exports.attemptByID = function (req, res, next, id) {
 
 	Attempt.findById(id)
 	.populate('exam')
-	.populate('questions.data')
+	.populate({
+		path: 'questions.data',
+		model: 'Question',
+		populate: {
+		path: 'standards',
+		model: 'Standard'
+		}
+	})
 	.exec(function (err, attempt) {
 		if (err) {
 			return next(err);

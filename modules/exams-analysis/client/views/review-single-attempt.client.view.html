@@ -61,7 +61,13 @@
 					</td>
 				</tr>
 			</table>
-			standard: {{question.data.standard}}<br>
+			<table ng-repeat="standard in question.data.standards">
+				<tr>
+					<td>
+						{{standard.code}} {{standard.content}}
+					</td>
+				</tr>
+			</table>
 			points earned: {{question.points_earned + "/" + question.data.points}}
 		</td>
 	</tr>
