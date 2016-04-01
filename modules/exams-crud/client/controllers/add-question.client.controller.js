@@ -9,30 +9,16 @@
 
   function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
     
+	$scope.expression = "fdssdfsfd";
 	
-	// load mathquill after page loads
-	$scope.ans_id = 0;
-	var MQ = MathQuill.getInterface(2);
-	var mq_content = null;
+	//console.log(katex,document.getElementById('#katex'),angular.element('#katex'));
+	//
+
+
 	$scope.$watch('$viewContentLoaded', function(){
-		
-		mq_content = MQ.MathField($document.find('#mq-content')[0],{
-			handlers: {
-				edit: function(mq) {
-					$scope.question.content = mq.latex();
-					$scope.$apply();
-				}
-			}
-		});
-		
-		if($scope.question && mq_content){
-			mq_content.select();
-			mq_content.clearSelection();
-			mq_content.write($scope.question.content);
-		}
-		
+		console.log("hsdfsdfhj");
+		katex.render("c = \\pm\\sqrt{a^2 + b^2}", document.getElementById('katex'));
 	});
-	
 	// init
 	$scope.standards = standards.data;
 	console.log(standards.data);
@@ -77,10 +63,6 @@
 			$scope.ans_id +=2;
 			console.log($scope.question.answers[i])
 		}
-		
-		$timeout(function(){ 
-			$scope.set_mathquill_fields();			
-		},0);
 	}
 	
 	$scope.set_type = function(_type){
@@ -96,13 +78,7 @@
 			$scope.question = $scope.fitb_question;
 		}
 		
-		$scope.question.content = mq_content.latex();
-		
 		$scope.init = true;
-		
-		$timeout(function(){ 
-			$scope.set_mathquill_fields();			
-		},0);
 	};
   
 	
@@ -123,10 +99,6 @@
 		if(_question.answers != null)
 		_question.answers.push(answer);
 		
-		$timeout(function(){ 
-			$scope.set_mathquill_fields();			
-		},0);
-
     };
 	
 	$scope.add_new_standard = function(_question){
@@ -134,76 +106,7 @@
 		if(_question.standards != null)
 		_question.standards.push(standard);
     };
-	
-	$scope.init = true;
-	$scope.set_mathquill_fields = function(){
 		
-		
-		
-		
-		
-		for(var i = 0; i < $scope.question.answers.length; ++i){
-			//if($scope.question.type !== $scope.fill_in_the_blank)
-			{
-				var f1 = function(mq, i){
-					for(var j = 0; j < $scope.question.answers.length; ++j){
-						if($scope.question.answers[j].id === mq){
-							$scope.question.answers[j].content = i.latex();
-							$scope.$apply();
-							break;
-						}
-					}
-				};
-				
-				f1 = f1.bind(null, $scope.question.answers[i].id);
-
-				var mqa = MQ.MathField($('#mqid'+$scope.question.answers[i].id)[0], {
-					handlers: {
-						edit: f1
-					}
-				});
-				
-				if($scope.init && mqa){
-					mqa.select();
-					mqa.clearSelection();
-					mqa.write($scope.question.answers[i].content);
-				}
-				
-			
-			}
-			if($scope.question.type === $scope.fill_in_the_blank)
-			{
-				// separate bind for fill in the blank (uses label instead of content)
-				var f2 = function(mq, i){
-					for(var j = 0; j < $scope.question.answers.length; ++j){
-						if($scope.question.answers[j].id2 === mq){
-							$scope.question.answers[j].label = i.latex();
-							$scope.$apply();
-							break;
-						}
-					}
-				};
-				
-				f2 = f2.bind(null, $scope.question.answers[i].id2);
-				
-				var mqa2 = MQ.MathField($('#mqid'+$scope.question.answers[i].id2)[0], {
-					handlers: {
-						edit: f2
-					}
-				});
-				
-				if($scope.init && mqa2){
-					mqa2.select();
-					mqa2.clearSelection();
-					mqa2.write($scope.question.answers[i].label);	
-				}
-							
-			}
-		}
-		$scope.init = false;
-
-	};
-	
 	$scope.select_mc_answer = function(index){
 		if($scope.question.type !== $scope.multiple_choice)
 			return;

@@ -11,7 +11,8 @@ module.exports = {
         // 'public/lib/CalculatorCSS/standalone.css',
         // 'public/lib/CalculatorCSS/project.css',
 		'public/lib/mathquill-0.10.1/mathquill.css',
-		'public/lib/tr-ng-grid/trNgGrid.css'
+		'public/lib/tr-ng-grid/trNgGrid.css',
+		'public/lib/KaTeX/dist/katex.min.css'
       ],
       js: [
 	    'public/lib/jquery/dist/jquery.js',
@@ -25,23 +26,9 @@ module.exports = {
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/angular-filter/dist/angular-filter.js',
-        // 'public/lib/CalculatorJS/add2home.js',
-        // 'public/lib/CalculatorJS/excanvas.js',
-        // 'public/lib/CalculatorJS/shortcut.js',
-        // 'public/lib/CalculatorJS/sylvester.js',
-        // 'public/lib/CalculatorJS/sylvester.src.js',
-        // 'public/lib/CalculatorJS/tds_calc_arithmetic.js',
-        // 'public/lib/CalculatorJS/tds_calc_config.js',
-        // 'public/lib/CalculatorJS/tds_calc_graphing.js',
-        // 'public/lib/CalculatorJS/tds_calc_main.js',
-        // 'public/lib/CalculatorJS/tds_calc_matrices.js',
-        // 'public/lib/CalculatorJS/tds_calc_regression.js',
-        // 'public/lib/CalculatorJS/textCanvas.js',
-        // 'public/lib/CalculatorJS/yahoo-dom-event.js',
-        // 'public/lib/CalculatorJS/tds_calc_env.js',
-        // 'public/lib/CalculatorJS/css_browser_selector.js',
-		    'public/lib/mathquill-0.10.1/mathquill.js',
-		    'public/lib/tr-ng-grid/trNgGrid.js'
+		'public/lib/mathquill-0.10.1/mathquill.js',
+		'public/lib/tr-ng-grid/trNgGrid.js',
+		'public/lib/KaTeX/dist/katex.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

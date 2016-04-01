@@ -42,7 +42,9 @@
 		<span class="label label-info">{{old_question.type}}</span>
 	</h3>
 	<br>
-	
+	<div id="katex">
+	FSDSDF
+	</div>
 	<!-- TODO: rename css classes -->
 	<div class="multiple-choice" ng-show="selected_type">
 		<!-- attributes common to all question types -->
@@ -66,9 +68,11 @@
 					</tr>
 			</table>	
 		</div>
-		<div class="question-content" >
+		<div class="question-content">
 			<h4>Question</h4>
+			{{expression}}
 			<span id='mq-content' class="mqi"></span>
+			<textarea type="text" ng-model="expression"></textarea><br>
 		</div>
 		<div class="answer-content">	
 			<h4>Answers</h4>
