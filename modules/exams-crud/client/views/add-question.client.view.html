@@ -1,3 +1,4 @@
+
 <div class="modal-header ng-cloak">
 	<table>
 	<tr>
@@ -42,9 +43,12 @@
 		<span class="label label-info">{{old_question.type}}</span>
 	</h3>
 	<br>
-	<div id="katex">
-	FSDSDF
-	</div>
+	<!--<textarea ng-init="tester ='sdfsfd'" ng-model="tester"></textarea>
+	{{tester}}-->
+	    <input type="text" ng-model="expression"><br>
+    <span mathjax-bind="expression"></span>
+	<!--<div class="katex" my-directive="{{tester}}"></div>-->
+	<!--<span style="border:1px solid red" mathjax-bind="x^2"></span>-->
 	<!-- TODO: rename css classes -->
 	<div class="multiple-choice" ng-show="selected_type">
 		<!-- attributes common to all question types -->

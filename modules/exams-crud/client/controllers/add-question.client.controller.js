@@ -9,15 +9,15 @@
 
   function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
     
-	$scope.expression = "fdssdfsfd";
+	$scope.expression = "\\frac{5}{4} \\div \\frac{1}{6}";
 	
 	//console.log(katex,document.getElementById('#katex'),angular.element('#katex'));
 	//
 
 
 	$scope.$watch('$viewContentLoaded', function(){
-		console.log("hsdfsdfhj");
-		katex.render("c = \\pm\\sqrt{a^2 + b^2}", document.getElementById('katex'));
+		//console.log("hsdfsdfhj");
+		//katex.render("c = \\pm\\sqrt{a^2 + b^2}", document.getElementById('katex'));
 	});
 	// init
 	$scope.standards = standards.data;

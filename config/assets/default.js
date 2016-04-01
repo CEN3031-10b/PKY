@@ -28,7 +28,10 @@ module.exports = {
         'public/lib/angular-filter/dist/angular-filter.js',
 		'public/lib/mathquill-0.10.1/mathquill.js',
 		'public/lib/tr-ng-grid/trNgGrid.js',
-		'public/lib/KaTeX/dist/katex.min.js'
+		'public/lib/KaTeX/dist/katex.min.js',
+		//'public/lib/MathJax/MathJax.js'
+		//
+		//'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured&dummy=.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
