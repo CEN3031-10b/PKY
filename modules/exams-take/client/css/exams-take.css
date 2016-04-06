@@ -1,8 +1,13 @@
 pre {
 	font-family: "Times New Roman", Times, serif;
-	font-size:16px;
+	font-size:18px;
 	background: transparent;
 	border:none;
+}
+
+.titleHeader{
+	height:60px;
+	border-bottom: 2px solid #bebebe;
 }
 
 .exam-header{
