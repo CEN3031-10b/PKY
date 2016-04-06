@@ -6,10 +6,6 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-        // 'public/lib/CalculatorCSS/add2home.css',
-        // 'public/lib/CalculatorCSS/calc.css',
-        // 'public/lib/CalculatorCSS/standalone.css',
-        // 'public/lib/CalculatorCSS/project.css',
 		'public/lib/mathquill-0.10.1/mathquill.css',
 		'public/lib/tr-ng-grid/trNgGrid.css',
 		'public/lib/KaTeX/dist/katex.min.css'
@@ -29,9 +25,6 @@ module.exports = {
 		'public/lib/mathquill-0.10.1/mathquill.js',
 		'public/lib/tr-ng-grid/trNgGrid.js',
 		'public/lib/KaTeX/dist/katex.min.js',
-		//'public/lib/MathJax/MathJax.js'
-		//
-		//'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured&dummy=.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

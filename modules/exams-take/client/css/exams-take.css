@@ -1,4 +1,16 @@
-/* CSS for pretty tests */
+pre {
+	font-family: "Times New Roman", Times, serif;
+	font-size:16px;
+	background: transparent;
+	border:none;
+}
+
+.exam-header{
+	float:left;
+}
+.exam-buttons{
+	float:right;
+}
 
 section#choose-test h1, section#confirm-test h1 {
 	color: black;
@@ -59,6 +71,12 @@ section#choose-test .test-con a.start-test {
 section#choose-test .test-con a.start-test:hover, section#choose-test .test-con a.start-test:active {
 	background-color: #3498db;
 	border-color: #bbb;
+}
+
+.choice{
+	float:left; 
+	vertical-align:middle; 
+	margin-top:12px;
 }
 
 .tablePadding{

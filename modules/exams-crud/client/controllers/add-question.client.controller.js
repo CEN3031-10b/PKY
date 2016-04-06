@@ -9,16 +9,6 @@
 
   function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
     
-	$scope.expression = "\\frac{5}{4} \\div \\frac{1}{6}";
-	
-	//console.log(katex,document.getElementById('#katex'),angular.element('#katex'));
-	//
-
-
-	$scope.$watch('$viewContentLoaded', function(){
-		//console.log("hsdfsdfhj");
-		//katex.render("c = \\pm\\sqrt{a^2 + b^2}", document.getElementById('katex'));
-	});
 	// init
 	$scope.standards = standards.data;
 	console.log(standards.data);
@@ -56,13 +46,6 @@
 		$scope.selected_type = old_question.type;
 		$scope.old_question = old_question;
 		$scope.question = JSON.parse(JSON.stringify(old_question));
-		
-		for(var i = 0; i <$scope.question.answers.length; ++i){
-			$scope.question.answers[i].id = $scope.ans_id;
-			$scope.question.answers[i].id2 = $scope.ans_id + 1;
-			$scope.ans_id +=2;
-			console.log($scope.question.answers[i])
-		}
 	}
 	
 	$scope.set_type = function(_type){
@@ -90,11 +73,7 @@
 			is_numeric: false,
 			tolerance: 0,
 			value: 0,
-			id: $scope.ans_id,
-			id2:($scope.ans_id+1)
 		};
-		
-		$scope.ans_id += 2;
 		
 		if(_question.answers != null)
 		_question.answers.push(answer);

@@ -43,13 +43,6 @@
 		<span class="label label-info">{{old_question.type}}</span>
 	</h3>
 	<br>
-	<!--<textarea ng-init="tester ='sdfsfd'" ng-model="tester"></textarea>
-	{{tester}}-->
-	    <input type="text" ng-model="expression"><br>
-    <span mathjax-bind="expression"></span>
-	<!--<div class="katex" my-directive="{{tester}}"></div>-->
-	<!--<span style="border:1px solid red" mathjax-bind="x^2"></span>-->
-	<!-- TODO: rename css classes -->
 	<div class="multiple-choice" ng-show="selected_type">
 		<!-- attributes common to all question types -->
 		<div class="question-content" >
@@ -74,9 +67,8 @@
 		</div>
 		<div class="question-content">
 			<h4>Question</h4>
-			{{expression}}
-			<span id='mq-content' class="mqi"></span>
-			<textarea type="text" ng-model="expression"></textarea><br>
+			<textarea type="text" ng-model="question.content"></textarea>
+			<pre mathjax="question.content"></pre>
 		</div>
 		<div class="answer-content">	
 			<h4>Answers</h4>
@@ -88,9 +80,10 @@
 			<table class="mc-answer" ng-if="selected_type === multiple_choice">
 				<tr ng-repeat="answer in question.answers">
 					<td style = "width:100%;">
-						<span id="{{'mqid'+answer.id}}" class="mqi"></span>
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
-					<td>	
+					<td nowrap>	
 						<button class="btn btn-primary mc_incorrect" type="button" 
 						ng-click="select_mc_answer($index)" 
 						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
@@ -107,10 +100,11 @@
 			<!-- multiple select -->
 			<table class="mc-answer" ng-if="selected_type === multiple_select">
 				<tr ng-repeat="answer in question.answers">
-					<td>
-						<span id="{{'mqid'+answer.id}}" class="mqi"></span>
+					<td style="width:100%">
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
-					<td>	
+					<td nowrap>	
 						<button class="btn btn-primary mc_incorrect" type="button" 
 						ng-click="answer.correct = !answer.correct" 
 						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
@@ -131,7 +125,8 @@
 						<input type="checkbox" ng-model="answer.is_numeric"> 
 					</td>
 					<td>
-						<span id="{{'mqid'+answer.id2}}" class="mqi2"></span>
+						<textarea type="text" ng-model="answer.label"></textarea>
+						<pre mathjax="answer.label"></pre>
 					</td>					
 					<!-- numeric answer -->
 					<td ng-show="answer.is_numeric">
@@ -142,7 +137,8 @@
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
-						<span id="{{'mqid'+answer.id}}" class="mqi2"></span>
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
 					<td ng-show="!answer.is_numeric">&nbsp </td>
 					<!---->

@@ -1,28 +1,26 @@
-
-<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured&dummy=.js'> </script>
-<div class="container edit-exams">
+<div style="width:100%" class="container edit-exams">
 	<div class="row">
 		<div class="col-md-12">
 			&nbsp
 		</div>
 	</div>
-	<div class="row">
+	
 		<!-- show all tests without any class grouping -->
-		<div class="col-md-2 exam-selector">
-			<div class="new-exam-btn btn btn-primary" ng-click="add_exam()">
-				Add a new exam
-				<i class="glyphicon glyphicon-plus"></i>		
-			</div>	
-			<uib-tabset vertical="true" type="pills">
+		<div class="row col-md-12 exam-selector">
+			<uib-tabset horizontal="true">
+				<uib-tab class="add-exam-tab" ng-click="add_exam()" style="background:red">
+					<uib-tab-heading>Add a new exam <i class="glyphicon glyphicon-plus"></i></uib-tab-heading>
+				</uib-tab>
 				<uib-tab ng-repeat= "exam in exams" active="exam.active" heading="{{exam.title}}" ng-click="activate_tab(exam)"></uib-tab>
 			</uib-tabset>	
-		</div>		
-		<div class="col-md-10">
+		</div>
+		<div class="row">		
+		<div class="col-md-12">
 			<div class="loading ng-hide" ng-show="load">
-				<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+				<img src="modules/core/client/img/loaders/loader.gif" align="center">
 			</div>
 			<div ng-hide="load">
-				<ui-view></ui-view>
+					<ui-view></ui-view>
 			</div>
 		</div>
 	</div>

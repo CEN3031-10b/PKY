@@ -43,8 +43,9 @@
 		ExamsAnalysisService.save_answers($scope.attempt)
 		.then(function(response){
 			$scope.loading = false;
-			$scope.attempt = response.data;
-			$scope.set_answers($scope.attempt);
+			// TODO, check for differences
+			//$scope.attempt = response.data;
+			//$scope.set_answers($scope.attempt);
 		}, function(error){
 			$scope.loading = false;
 			$scope.error = error;
@@ -109,29 +110,22 @@
 	};
 
 	//navigate to previous question
-		$scope.previousQuestion = function() {
-
-				if($scope.indx <= 0){
-					return;
-				}	
-				$scope.indx -= 1;
-		};
+	$scope.previousQuestion = function() {
+		if($scope.indx <= 0){
+			return;
+		}	
+		$scope.indx -= 1;
+	};
 		
-		//navigate to previous question
-		$scope.nextQuestion = function() {
-
-				if($scope.indx >= $scope.attempt.questions.length - 1){
-					return;
-				}	
-				$scope.indx += 1;
-		};
-
-
+	//navigate to previous question
+	$scope.nextQuestion = function() {
+		if($scope.indx >= $scope.attempt.questions.length - 1){
+			return;
+		}	
+		$scope.indx += 1;
+	};
 
 	$scope.open_calculator = function(){
-		//$window.open('/modules/calculator/client/views/calculator.view.html#');
-		//$window.location.href = ('/modules/calculator/client/views/calculator.view.html');
-		
 		  var modalInstance = $uibModal.open({
 			windowClass: 'calc-modal',
 			animation: false,
@@ -140,10 +134,6 @@
     		keyboard: false,
     		controller: 'calculatorModal'
 		  });	
-		  
-		    //$(".modal-content").draggable({
-			//	handle: ".modal-content"
-			//});
 	};
 }
   
