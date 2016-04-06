@@ -18,6 +18,11 @@
 	$scope.error = null;
 	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
 	$scope.indx = 0;
+	$scope.time_remaining = 50;
+
+	setInterval(function(){ 
+		$scope.time_remaining++; 
+	}, 1000);
 
     $scope.random = function() {
         return 0.5 - Math.random();

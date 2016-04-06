@@ -10,6 +10,12 @@
 			<div class="exam-header">
 				<h1 class="Title">{{attempt.exam_title}}</h1>
 				<h4 class="ClassTitle">{{attempt.exam_class}}</h4>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+				   aria-valuemin="0" aria-valuemax="100" style="width:{{time_remaining}}%">
+				    {{time_remaining}} minutes remaining
+				  </div>
+				</div>
 			</div>
 			<div class="exam-buttons">
 				<button class="btn btn-primary"  ng-click="previousQuestion()">
