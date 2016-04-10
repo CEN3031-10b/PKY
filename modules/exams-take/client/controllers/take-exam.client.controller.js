@@ -145,6 +145,9 @@
 		}	
 		$scope.indx += 1;
 	};
+	$scope.change_question = function(newIndex) {
+		$scope.indx = newIndex;
+	};
 
 	$scope.open_calculator = function(){
 		  var modalInstance = $uibModal.open({

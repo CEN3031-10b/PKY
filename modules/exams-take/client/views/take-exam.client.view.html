@@ -110,11 +110,13 @@
 	</div>
 	
 	<div class="col-lg-2">
-		<div></div>
 		<div class=exam-timer>
-			{{attempt.start_time}}
+			<br></br>
+			QUESTIONS
+			<br></br>
+	<!--	{{attempt.start_time}} -->
 		</div>
-		<div ng-repeat="question in attempt.questions">
+		<div ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
 			{{'Question ' + ($index + 1)}}
 		</div>
 	</div>
