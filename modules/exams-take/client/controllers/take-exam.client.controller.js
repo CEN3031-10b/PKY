@@ -24,7 +24,6 @@
 	$scope.percent_remaining = 0;
 	$scope.time_remaining = $scope.attempt.exam_allotted_time;
 
-
 	var timer = setInterval(function(){ 
 		var currentDate = new Date().getTime();
 		var startTime = Date.parse($scope.attempt.start_time);
@@ -34,14 +33,10 @@
 			$scope.time_remaining = endTime-Math.floor(timeElasped);
 			$scope.percent_remaining = Math.abs($scope.time_remaining)/endTime*100;
 		});
-
-		if ($scope.percent_remaining>100) {
+		if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
 			$scope.submit_attempt();
 			clearInterval(timer);
 		}
-		// else if(isNaN($scope.percent_remaining)){
-		// 	clearInterval(timer);
-		// }
 	}, 1000);
 
     $scope.random = function() {
