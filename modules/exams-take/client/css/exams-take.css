@@ -128,3 +128,8 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	}
 }
 
+.prev-attempt{
+	border-bottom:2px solid #bebebe; 
+	padding-bottom: 15px;
+}
+
