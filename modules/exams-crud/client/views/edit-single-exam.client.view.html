@@ -34,7 +34,8 @@
 						<tr><td style="padding:5px"><strong>Total Points:         </strong>  {{exam.point_total }}</td></tr>
 						<tr><td style="padding:5px"><strong>Allotted time:        </strong>  {{exam.allotted_time }} minutes</td></tr>
 						<tr><td style="padding:5px"><strong>Available attempts:   </strong>  {{exam.allowed_attempts }}</td></tr>
-						<tr><td style="padding:5px"><strong>Available to students:</strong>  {{exam.published }}</td></tr>
+						<tr><td ng-if="exam.published" style="padding:5px"><strong>Available to students:</strong> yes</td></tr>
+						<tr><td ng-if="!exam.published" style="padding:5px"><strong>Available to students:</strong>  no{{exam.published }}</td></tr>
 					</table>
 				</td>
 			</tr>
