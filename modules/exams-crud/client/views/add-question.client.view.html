@@ -46,11 +46,11 @@
 	<div class="multiple-choice" ng-show="selected_type">
 		<!-- attributes common to all question types -->
 		<div class="question-content" >
-			<h4>Point Value</h4>
+			<h3>Point Value:</h3>
 			<input class="form-control" type="number" ng-model="question.points" min="0">
 		</div>
 		<div class="question-content" >
-			<h4>Standard</h4>
+			<h3>Standards:</h3>
 			<div class="btn btn-primary" ng-click="add_new_standard(question)">
 				<span>Add a new standard</span>
 				<i class="glyphicon glyphicon-plus"></i>
@@ -66,12 +66,16 @@
 			</table>	
 		</div>
 		<div class="question-content">
-			<h4>Question</h4>
+			<h3>Question:</h3>
+				<div class="btn btn-primary" style="margin-bottom:15px" ng-click="add_new_standard(question)">
+					<span>Upload a Picture Question</span>
+					<i class="glyphicon glyphicon-plus"></i>
+				</div>
 			<textarea type="text" ng-model="question.content"></textarea>
 			<pre mathjax="question.content"></pre>
 		</div>
 		<div class="answer-content">	
-			<h4>Answers</h4>
+			<h3>Answers:</h3>
 			<div class="btn btn-primary" ng-click="add_new_answer(question)">
 				<span>Add a new answer</span>
 				<i class="glyphicon glyphicon-plus"></i>		
