@@ -52,7 +52,7 @@
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">
 					<td style="padding-left:20px">
-						{{answer.label}}
+						<pre mathjax="answer.label"></pre>
 					</td>
 					<!-- numeric answer -->
 					<td ng-show="answer.is_numeric">
