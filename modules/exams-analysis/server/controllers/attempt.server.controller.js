@@ -234,8 +234,16 @@ exports.gradeAttempt = function(req,res,next){
 							}
 						}
 						else{
-							// must be exact (temp)
-							if(attempt.questions[i].data.answers[j].content === attempt.student_answers[k].content){
+							// not case sensitive
+							var correctAnswer = attempt.questions[i].data.answers[j].content;
+								correctAnswer = correctAnswer.replace(/\s+/g, '').toLowerCase();
+								console.log("correctAnswer");						
+								console.log(correctAnswer);						
+							var studentAnswer = attempt.student_answers[k].content;
+								studentAnswer = studentAnswer.replace(/\s+/g, '').toLowerCase();
+								console.log("studentAnswer");								
+								console.log(studentAnswer);
+							if(studentAnswer === correctAnswer){
 								attempt.questions[i].points_earned += points_per_answer;
 							}
 						}
