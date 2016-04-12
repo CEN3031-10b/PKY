@@ -19,7 +19,6 @@
 	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
 	$scope.indx = 0;
 	
-
 	//timer stuff
 	$scope.percent_remaining = 0;
 	$scope.time_remaining = $scope.attempt.exam_allotted_time;
