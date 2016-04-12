@@ -12,7 +12,8 @@
 			<table ng-if="question.data.type === multiple_choice">
 				<tr>
 					<td>
-						<h3>{{question.data.content}}</h3>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
 					</td>
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">
@@ -28,7 +29,8 @@
 			<table ng-if="question.data.type === multiple_select">
 				<tr>
 					<td>
-						<h3>{{question.data.content}}</h3>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
 					</td>
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">
@@ -44,7 +46,8 @@
 			<table ng-if="question.data.type === fill_in_the_blank">
 				<tr>
 					<td>
-						<h3>{{question.data.content}}</h3>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
 					</td>
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">

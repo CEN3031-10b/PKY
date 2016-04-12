@@ -25,6 +25,22 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId/questions/:questionId',
       permissions: '*'
     }]
+  }, 
+  {
+    roles: ['user'],
+    allows: [{
+      resources: '/api/exams',
+      permissions: '*'
+    }, {
+      resources: '/api/exams/:examId',
+      permissions: '*'
+    }, {
+      resources: '/api/exams/class/:classId',
+      permissions: '*'
+    }, {
+      resources: '/api/exams/:examId/questions/:questionId',
+      permissions: '*'
+    }]
   }]);
 };
 
