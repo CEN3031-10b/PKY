@@ -128,6 +128,13 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	}
 }
 
+.link-hover{
+	color: black;
+}
+.link-hover:hover{
+	background-color: white;
+	font-size: 150%;
+}
 .prev-attempt{
 	border-bottom:2px solid #bebebe; 
 	padding-bottom: 15px;
