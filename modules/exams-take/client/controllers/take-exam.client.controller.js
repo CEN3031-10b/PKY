@@ -171,7 +171,7 @@
 			animation: false,
 			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
 			backdrop: 'static',
-    		keyboard: false,
+    		keyboard: true,
     		controller: 'notepadModal'
 		  });	
 	};
