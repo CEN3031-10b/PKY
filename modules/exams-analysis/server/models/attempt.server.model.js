@@ -71,7 +71,9 @@ var AttemptSchema = new Schema({
 		}
 	
 	}],
-	
+	notes: {
+		type: String
+	}, 
 	// student answers separate from questions for updating convenience
 	student_answers: [{
 		question_id:{
