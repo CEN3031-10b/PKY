@@ -164,6 +164,17 @@
     		controller: 'calculatorModal'
 		  });	
 	};
+
+	$scope.open_notepad = function(){
+		  var modalInstance = $uibModal.open({
+			windowClass: 'notepad-modal',
+			animation: false,
+			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
+			backdrop: 'static',
+    		keyboard: false,
+    		controller: 'notepadModal'
+		  });	
+	};
 }
   
 })();
