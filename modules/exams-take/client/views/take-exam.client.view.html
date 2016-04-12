@@ -17,26 +17,33 @@
 				</div>
 			</div>
 			<div class="exam-buttons">
-				<button class="btn btn-primary"  ng-click="previousQuestion()">
-				<span class="glyphicon glyphicon-arrow-left"></span>
-				</button>
-				<div class="btn-group" uib-dropdown is-open="status.isopen">
-					<button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-					{{indx+1 + " / " +attempt.questions.length}} <span class="caret"></span>
+				<div>
+					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+						 Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
 					</button>
-					<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-					<li ng-repeat="i in attempt.questions" role="menuitem" ng-click="selectQuestion(i)"><a href="#">{{$index+1}}</a></li>
-					</ul>
+					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+						 Notes  <i class="glyphicon glyphicon-pencil"></i>
+					</button>
+					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+						 Calculator  <i class="glyphicon glyphicon-modal-window"></i>
+					</button>	
 				</div>
-				<button class="btn btn-primary"  ng-click="nextQuestion()">
-				<span class="glyphicon glyphicon-arrow-right"></span>
-				</button>
-				<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
-					<i class="glyphicon glyphicon-modal-window"></i> Calculator
-				</button>
-				<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-					<i class="glyphicon glyphicon-plus"></i> Submit
-				</button>	
+				<div>
+					&nbsp
+				</div>
+				<div class="exam-buttons">
+					<!--button type="button" class="btn btn-default btn-circle" ng-click="previousQuestion()"><i class="glyphicon glyphicon-arrow-left"></i></button>
+					<button type="button" class="btn btn-default btn-circle" ng-click="nextQuestion()"><i class="glyphicon glyphicon-arrow-right"></i></button-->
+					<button class="btn btn-primary"  ng-click="previousQuestion()">
+					<span class="glyphicon glyphicon-arrow-left"></span> Previous  
+					</button>
+					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+						 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
+					</button>
+					<button class="btn btn-primary"  ng-click="nextQuestion()">
+					 Next <span class="glyphicon glyphicon-arrow-right"></span>
+					</button>
+				</div>
 			</div>
 		</div>
 		<br>
@@ -115,6 +122,10 @@
 	</div>
 	
 	<div class="col-lg-2">
+		<br></br>
+		<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
+						 Submit  <i class="glyphicon glyphicon-plus"></i>
+		</button>
 		<div class=exam-timer>
 			<br></br>
 			QUESTIONS
