@@ -42,6 +42,11 @@
 		<br>
 		<br><div class="titleHeader" style="height:60px;">&nbsp</div>
 		<br>
+
+		<div class="loading ng-hide" ng-show="loading">
+	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+		</div>
+		
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
 			<div class="QuestionNumber">{{$index+1}})</div>
 			<table ng-show="question.data.type === multiple_choice">
