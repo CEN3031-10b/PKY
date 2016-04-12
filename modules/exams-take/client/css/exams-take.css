@@ -113,7 +113,7 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 }
 
 .calc-modal .modal-header{
-		padding:0;
+	padding:0;
 	margin:0;
 }
 .modal-backdrop{
@@ -130,6 +130,11 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	bottom: auto;
 	overflow: visible;
 }
+/*.formula-modal{
+	right: auto;
+	bottom: auto;
+	overflow:auto
+}*/
 
 @media screen and (min-width: 992px) {
 	section#choose-test .test-con {
@@ -149,3 +154,9 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	padding-bottom: 15px;
 }
 
+.pdfSize{
+	width: 610px;
+	height: 600px;
+	display: table;
+    margin: 0 auto;
+}
