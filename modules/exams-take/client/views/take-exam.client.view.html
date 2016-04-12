@@ -3,7 +3,7 @@
 
 	<div class="col-lg-10 black-text">
 	<div class="admin-analysis">
-		<h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
+		<!--h1 ng-show="loading" style="font-weight:150%"> LOADING </h1-->
 		<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 		<pre ng-show="error">{{error | json}}</pre>
 		<div ng-if="!error">
@@ -17,7 +17,18 @@
 				</div>
 			</div>
 			<div class="exam-buttons">
+				<div class="exam-buttons">
+					<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
+						 Submit  <i class="glyphicon glyphicon-plus"></i>
+					</button>	
+				</div>
 				<div>
+					&nbsp
+				</div>
+				<div>
+					&nbsp
+				</div>
+				<div class="exam-buttons">
 					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
 						 Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
 					</button>
@@ -26,33 +37,15 @@
 					</button>
 					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
 						 Calculator  <i class="glyphicon glyphicon-modal-window"></i>
-					</button>	
-				</div>
-				<div>
-					&nbsp
-				</div>
-				<div class="exam-buttons">
+					</button>
 					<!--button type="button" class="btn btn-default btn-circle" ng-click="previousQuestion()"><i class="glyphicon glyphicon-arrow-left"></i></button>
 					<button type="button" class="btn btn-default btn-circle" ng-click="nextQuestion()"><i class="glyphicon glyphicon-arrow-right"></i></button-->
-					<button class="btn btn-primary"  ng-click="previousQuestion()">
-					<span class="glyphicon glyphicon-arrow-left"></span> Previous  
-					</button>
-					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
-						 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
-					</button>
-					<button class="btn btn-primary"  ng-click="nextQuestion()">
-					 Next <span class="glyphicon glyphicon-arrow-right"></span>
-					</button>
 				</div>
 			</div>
 		</div>
 		<br>
 		<br><div class="titleHeader" style="height:60px;">&nbsp</div>
 		<br>
-
-		<div class="loading ng-hide" ng-show="loading">
-	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
-		</div>
 		
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
 			<div class="QuestionNumber">{{$index+1}})</div>
@@ -117,21 +110,39 @@
 					</td>
 				</tr>
 			</table>
+
+		<div class="loading ng-hide" ng-show="loading">
+	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+		</div>
+		<br><br><br><br><br>
+		<div align = "center">
+			<button class="btn btn-primary"  ng-click="previousQuestion()">
+				<span class="glyphicon glyphicon-arrow-left"></span> Previous  
+				</button>
+				<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+					 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
+				</button>
+				<button class="btn btn-primary"  ng-click="nextQuestion()">
+				 Next <span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+			</div>
 		</div>
 	</div>
 	</div>
 	
 	<div class="col-lg-2">
-		<br></br>
-		<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-						 Submit  <i class="glyphicon glyphicon-plus"></i>
-		</button>
+		<br>
+		<br>
+		</br>
+		<br>
 		<div class=exam-timer>
-			<br>
+			<h2>
+				Questions:
+			</h2>
 	<!--	{{attempt.start_time}} -->
 		</div>
 		<text class="link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
-			{{'Question ' + ($index + 1)}} <br>
+			{{'Number ' + ($index + 1)}} <br>
 		</text>
 	</div>
 </div>
