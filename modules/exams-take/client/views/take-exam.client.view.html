@@ -29,7 +29,7 @@
 					&nbsp
 				</div>
 				<div class="exam-buttons">
-					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+					<button class="btn btn-primary" type="button" ng-click="open_formula_sheet()">
 						 Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
 					</button>
 					<button class="btn btn-primary" type="button" ng-click="open_notepad()">
@@ -119,7 +119,8 @@
 			<button class="btn btn-primary"  ng-click="previousQuestion()">
 				<span class="glyphicon glyphicon-arrow-left"></span> Previous  
 				</button>
-				<button class="btn btn-primary" type="button">
+				<!-- If you click this button, the mark_for_review variable will be flipped to "true"-->
+				<button class="btn btn-primary" type="button" ng-click="mark_for_review = !mark_for_review">
 					 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
 				</button>
 				<button class="btn btn-primary"  ng-click="nextQuestion()">
@@ -142,7 +143,8 @@
 	<!--	{{attempt.start_time}} -->
 		</div>
 		<text class="link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
-			{{'Number ' + ($index + 1)}} <br>
+			<!--If mark_for_review is true, display a glyphicon flag next to the question name on the sidebar. If it is not, just display the question name-->
+			<i ng-if="mark_for_review===true" class="glyphicon glyphicon-flag"></i>{{'Number ' + ($index + 1)}} <br>
 		</text>
 	</div>
 </div>
