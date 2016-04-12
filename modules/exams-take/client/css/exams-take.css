@@ -128,3 +128,11 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	}
 }
 
+.link-hover{
+	color: black;
+}
+.link-hover:hover{
+	background-color: white;
+	font-size: 150%;
+}
+

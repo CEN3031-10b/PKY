@@ -116,9 +116,9 @@
 			<br></br>
 	<!--	{{attempt.start_time}} -->
 		</div>
-		<div ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
-			{{'Question ' + ($index + 1)}}
-		</div>
+		<text class="link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
+			{{'Question ' + ($index + 1)}} <br>
+		</text>
 	</div>
 </div>
 </div>

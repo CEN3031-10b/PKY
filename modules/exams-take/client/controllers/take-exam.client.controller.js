@@ -32,11 +32,13 @@
 		$scope.$apply(function(){
 			$scope.time_remaining = endTime-Math.floor(timeElasped);
 			$scope.percent_remaining = Math.abs($scope.time_remaining)/endTime*100;
+			if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
+				$scope.percent_remaining = 100;
+				$scope.time_remaining = 0;
+				clearInterval(timer);
+				$scope.time_out();
+			}
 		});
-		if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
-			$scope.submit_attempt();
-			clearInterval(timer);
-		}
 	}, 1000);
 
     $scope.random = function() {
@@ -71,6 +73,10 @@
 			$scope.error = error;
 		});
 	};
+
+	$scope.time_out = function(){
+		confirm("Time is up! On the actual test you would have to stop now.");
+	}
 	
 	$scope.save_answer = function(_question,_answer){
 
