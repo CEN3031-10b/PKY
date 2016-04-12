@@ -63,9 +63,17 @@ var AttemptSchema = new Schema({
 			type: Number,
 			default: 0,
 			required:true
+		},
+		mark_for_review:{
+			type: Boolean,
+			default: false,
+			required: true
 		}
-	}],
 	
+	}],
+	notes: {
+		type: String
+	}, 
 	// student answers separate from questions for updating convenience
 	student_answers: [{
 		question_id:{
