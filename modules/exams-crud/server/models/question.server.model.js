@@ -16,10 +16,10 @@ var QuestionSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	standard:{
-		type: String, 
-		required: 'Standard field cannot be blank'
-	},
+    standards: [{ 
+	   type: Schema.Types.ObjectId, 
+	   ref: 'Standard' 
+    }],
 	type: {
 		type: String, 
 		enum: QuestionTypes,
@@ -68,6 +68,14 @@ QuestionSchema.pre("save", function(next){
 		var err = new Error();
 		err.errors = [];
 		err.errors[0] = { message: "Invalid number of answers."};
+		next(err);
+	}
+	
+	// test number of standards
+	if(!self.standards.length){
+		var err = new Error();
+		err.errors = [];
+		err.errors[0] = { message: "Invalid number of standards."};
 		next(err);
 	}
 	

@@ -1,1 +1,78 @@
-<pre>{{attempt | json}}</pre>
+<h1>{{attempt.exam_title}}</h1>
+<h4>{{attempt.exam_class}}</h4>
+<br>
+<br>
+<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
+<pre ng-show="error"> {{error | json}}</pre>
+<div class = "col-md-12 main-table-container">
+		<table class="main-table-review">
+	<tr ng-repeat="question in attempt.questions">
+		<td style="padding-bottom: 30px; border: 10px solid white;">
+			<!-- replace with ng-include -->
+			<table ng-if="question.data.type === multiple_choice">
+				<tr>
+					<td>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
+					</td>
+				</tr>
+				<tr ng-repeat="answer in question.data.answers">
+					<td style="padding-left:20px">
+						<input type="radio" 
+						ng-model="question.selected_answer" 
+						value="{{answer._id}}" disabled>
+							{{answer.content}}
+						</input>
+					</td>
+				</tr>
+			</table>
+			<table ng-if="question.data.type === multiple_select">
+				<tr>
+					<td>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
+					</td>
+				</tr>
+				<tr ng-repeat="answer in question.data.answers">
+					<td style="padding-left:20px">
+						<input type="checkbox" 
+						ng-model="answer.correct" 
+						value="{{answer._id}}" disabled>
+							{{answer.content}}
+						</input>
+					</td>
+				</tr>
+			</table>
+			<table ng-if="question.data.type === fill_in_the_blank">
+				<tr>
+					<td>
+						<!--implememting mathjax font for the question text-->
+						<pre mathjax="question.data.content"></pre>
+					</td>
+				</tr>
+				<tr ng-repeat="answer in question.data.answers">
+					<td style="padding-left:20px">
+						{{answer.label}}
+					</td>
+					<!-- numeric answer -->
+					<td ng-show="answer.is_numeric">
+						<input class="form-control" type="number" ng-model="answer.value" disabled>
+					</td>
+					<!-- non numeric -->
+					<td ng-show="!answer.is_numeric">
+						<textarea class="form-control" ng-model="answer.content" disabled></textarea>
+					</td>
+				</tr>
+			</table>
+			<table ng-repeat="standard in question.data.standards">
+				<tr>
+					<td>
+						{{standard.code}} {{standard.content}}
+					</td>
+				</tr>
+			</table>
+			points earned: {{question.points_earned + "/" + question.data.points}}
+		</td>
+	</tr>
+</table>
+</div>

@@ -1,0 +1,25 @@
+<div class="container admin-analysis">
+	<div class="row">
+		<div class="col-md-12 standards">
+			<table tr-ng-grid="" items="standards" class="black-text">
+				<thead>
+					<tr>
+						
+						<th field-name="code" display-name="Code" cell-width="12em">
+						<th field-name="content" display-name="Content" >
+						<th display-name="Instructor's Notes" display-align="center" enable-filtering="false" enable-sorting="false"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<button ng-if="gridItem.notes" ng-disabled="!gridItem.notes" class="btn btn-primary" ng-click="view_standard(gridItem)">
+								<i class="glyphicon glyphicon-search"></i>	
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

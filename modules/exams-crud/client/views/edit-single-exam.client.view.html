@@ -1,8 +1,8 @@
 <div class="loading ng-hide" ng-show="loading">
 	 <img src="modules/core/client/img/loaders/loader.gif" align = "center">
 </div>
-<div class="row" ng-hide="loading">
-	<div class = "col-md-12 main-table-container" ng-show="exam">
+<div class="rofsdfsdw" ng-hide="loading">
+	<div class = "col-md-1sfdsd2 main-table-container" ng-show="exam">
 		<table class="main-table">
 			<tr class = "main-table-header-row">
 				<td class="header-container">
@@ -30,11 +30,12 @@
 								</div>
 							</td>
 						</tr>
-						<tr><td>{{"Revision: "+ exam.version}}</td></tr>
-						<tr><td>{{"Total Points: "+ exam.point_total }}</td></tr>
-						<tr><td>{{"Allotted time: "+ exam.allotted_time }}</td></tr>
-						<tr><td>{{"Available attempts: "+ exam.allowed_attempts }}</td></tr>
-						<tr><td>{{"Available to students: "+ exam.published }}</td></tr>
+						<tr><td style="padding:5px"><strong>Revision#:             </strong>  {{exam.version}}</td></tr>
+						<tr><td style="padding:5px"><strong>Total Points:         </strong>  {{exam.point_total }}</td></tr>
+						<tr><td style="padding:5px"><strong>Allotted time:        </strong>  {{exam.allotted_time }} minutes</td></tr>
+						<tr><td style="padding:5px"><strong>Available attempts:   </strong>  {{exam.allowed_attempts }}</td></tr>
+						<tr><td ng-if="exam.published" style="padding:5px"><strong>Available to students:</strong> yes</td></tr>
+						<tr><td ng-if="!exam.published" style="padding:5px"><strong>Available to students:</strong>  no{{exam.published }}</td></tr>
 					</table>
 				</td>
 			</tr>
@@ -49,30 +50,31 @@
 							</td>
 						
 							<td class="question-container" ng-hide="question.loading">
+							<div class='question-num'>
+							
+							<div style="float:left">
+								<strong>question #:</strong> {{$index+1}} </strong><br>
+								<strong>points:</strong> {{question.points || "no point data"}}<br>
+								<strong>type:</strong> {{question.type}}
+														
+							</div>
+							<div class="question-buttons" style="float:right">	
+								<div class="btn btn-primary" ng-click="edit_question(exam, question)">
+								<i class="glyphicon glyphicon-edit"></i>		
+								</div>
+								<div class="btn btn-danger" ng-click="delete_question(exam, question)">
+								<i class="glyphicon glyphicon-remove"></i>		
+								</div>
+							</div>
+							</div>
 								<table class="inside-tbl">
 									<tr class="question-content-row" >
 										<td>
 											<table>
 												<tr>
 													<td class="question-text">
-														<p>{{question.content}}</p>
+														<pre mathjax="question.content"></pre>
 													</td>
-													<td class="small-btn-container">
-														<div ng-show="question_hover"class="btn btn-primary" ng-click="edit_question(exam, question)">
-															<i class="glyphicon glyphicon-edit"></i>		
-														</div>
-													</td>
-													<td class="small-btn-container">
-														<div ng-show="question_hover"class="btn btn-danger" ng-click="delete_question(exam, question)">
-															<i class="glyphicon glyphicon-remove"></i>		
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>points: {{question.points || "no point data"}}</td>
-												</tr>
-												<tr>
-													<td>type: {{question.type}}</td>
 												</tr>
 											</table>
 										</td>
@@ -85,10 +87,10 @@
 														numeric: {{answer.is_numeric}}
 													</td>
 													<td>
-														label: {{answer.label}}
+														label: <pre mathjax="answer.label"></pre>
 													</td>
 													<td ng-if="!answer.is_numeric">
-														answer: {{answer.content}}
+														answer: <pre mathjax="answer.content"></pre>
 													</td>
 													<td ng-if="!answer.is_numeric">
 														
@@ -105,7 +107,7 @@
 												<tr class="answer-row" ng-if="question.type === 'multiple choice' || question.type === 'multiple select'"
 												ng-repeat="answer in question.answers">								
 													<td class="answer-text">
-														{{answer.content}}
+														<pre mathjax="answer.content"></pre>
 													</td>
 													<td class="small-glyph-container" ng-show="answer.correct">
 														<i class="glyphicon glyphicon-ok green"></i>

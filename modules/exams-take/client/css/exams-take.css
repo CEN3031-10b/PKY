@@ -1,0 +1,151 @@
+pre {
+	font-family: "Times New Roman", Times, serif;
+	font-size:18px;
+	background: transparent;
+	border:none;
+}
+
+.titleHeader{
+	height:60px;
+	border-bottom: 2px solid #bebebe;
+}
+
+.exam-header{
+	float:left;
+}
+.exam-buttons{
+	float:right;
+}
+
+.btn-circle.btn {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);
+}
+
+section#choose-test h1, section#confirm-test h1 {
+	color: black;
+}
+
+section#choose-test .page-header, section#confirm-test .page-header {
+	color:black;
+	border-bottom: 2px solid #bebebe;
+}
+
+section#choose-test .test-con {
+	background-color: #fff;
+	padding: 20px;
+	/*
+	border: 2px solid #ecf0f1;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	margin: 10px auto;
+	*/
+}
+
+section#choose-test .test-con .test-title {
+	color: #222;
+	/*font-weight: bold;*/
+	margin: 10px auto;
+	text-align: center;
+}
+
+section#choose-test .test-con .exam-name {
+	color: #222;
+	font-size: 120%;
+	/*font-weight: bold;*/
+	margin: 5px auto;
+	text-align: center;
+	width:100%;
+}
+
+section#choose-test .test-con a.start-test {
+	background-image: none;
+	background-color: #2980b9;
+	display: block;
+	width: 200px;
+	color: #fff;
+	font-size: 18px;
+	/*font-weight: bold;*/
+	margin: 0 auto;
+	text-align: center;
+	/*
+	border: 1px solid #999;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;*/
+}
+
+section#choose-test .test-con a.start-test:hover, section#choose-test .test-con a.start-test:active {
+	background-color: #3498db;
+	border-color: #bbb;
+}
+
+.choice{
+	float:left; 
+	vertical-align:middle; 
+	margin-top:12px;
+}
+
+.tablePadding{
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+
+.calc-modal .modal-dialog{
+	width: 400px;
+}
+.calc-modal .modal-content{
+	width:100%;
+	padding: 20px;
+}
+
+.calc-modal .modal-body{
+	padding:0;
+	margin:0;
+}
+
+.calc-modal .modal-header{
+		padding:0;
+	margin:0;
+}
+.modal-backdrop{
+	z-index: -10 !important;
+	background: transparent !important;
+}
+
+.modal-open{
+	z-index: -11 !important;
+}
+
+.calc-modal{
+	right: auto;
+	bottom: auto;
+	overflow: visible;
+}
+
+@media screen and (min-width: 992px) {
+	section#choose-test .test-con {
+		width: 47%;
+		margin: 10px;
+	}
+}
+
+.link-hover{
+	color: white;
+}
+.link-hover:hover{
+	font-size: 150%;
+}
+.prev-attempt{
+	border-bottom:2px solid #bebebe; 
+	padding-bottom: 15px;
+}
+

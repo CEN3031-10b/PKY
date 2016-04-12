@@ -1,3 +1,4 @@
+
 <div class="modal-header ng-cloak">
 	<table>
 	<tr>
@@ -42,35 +43,51 @@
 		<span class="label label-info">{{old_question.type}}</span>
 	</h3>
 	<br>
-	
-	<!-- TODO: rename css classes -->
 	<div class="multiple-choice" ng-show="selected_type">
 		<!-- attributes common to all question types -->
 		<div class="question-content" >
-			<h4>Point Value</h4>
+			<h3>Point Value:</h3>
 			<input class="form-control" type="number" ng-model="question.points" min="0">
 		</div>
 		<div class="question-content" >
-			<h4>Standard</h4>
-			<textarea class="form-control" ng-model="question.standard"></textarea>
+			<h3>Standards:</h3>
+			<div class="btn btn-primary" ng-click="add_new_standard(question)">
+				<span>Add a new standard</span>
+				<i class="glyphicon glyphicon-plus"></i>
+			</div>
+			<table class="mc-answer">
+					<tr ng-repeat="standard in question.standards track by $index">
+						<td>
+							<select ng-model="question.standards[$index]">
+								<option ng-repeat="s in standards" value="{{s._id}}">{{s.code}}</option>
+							</select>
+						</td>
+					</tr>
+			</table>	
 		</div>
-		<div class="question-content" >
-			<h4>Question</h4>
-			<textarea class="form-control" ng-model="question.content"></textarea>
+		<div class="question-content">
+			<h3>Question:</h3>
+				<div class="btn btn-primary" style="margin-bottom:15px" ng-click="add_new_standard(question)">
+					<span>Upload a Picture Question</span>
+					<i class="glyphicon glyphicon-plus"></i>
+				</div>
+			<textarea type="text" ng-model="question.content"></textarea>
+			<pre mathjax="question.content"></pre>
 		</div>
 		<div class="answer-content">	
-			<h4>Answers</h4>
+			<h3>Answers:</h3>
 			<div class="btn btn-primary" ng-click="add_new_answer(question)">
 				<span>Add a new answer</span>
 				<i class="glyphicon glyphicon-plus"></i>		
 			</div>
 			<!-- multiple choice -->
-			<table class="mc-answer" ng-show="selected_type === multiple_choice">
+			<table class="mc-answer" ng-if="selected_type === multiple_choice">
 				<tr ng-repeat="answer in question.answers">
 					<td style = "width:100%;">
-						<textarea class="form-control" ng-model="answer.content"></textarea>
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
-					<td>	
+					<td nowrap>	
 						<button class="btn btn-primary mc_incorrect" type="button" 
 						ng-click="select_mc_answer($index)" 
 						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
@@ -85,14 +102,15 @@
 				</tr>
 			</table>
 			<!-- multiple select -->
-			<table class="mc-answer" ng-show="selected_type === multiple_select">
+			<table class="mc-answer" ng-if="selected_type === multiple_select">
 				<tr ng-repeat="answer in question.answers">
-					<td>
-						<textarea class="form-control" ng-model="answer.content"></textarea>
+					<td style="width:100%">
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
-					<td>	
+					<td nowrap>	
 						<button class="btn btn-primary mc_incorrect" type="button" 
-						ng-click="answer.correct = true" 
+						ng-click="answer.correct = !answer.correct" 
 						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
 						Correct Answer 
 							<i class="glyphicon glyphicon-ok"></i>
@@ -105,13 +123,14 @@
 				</tr>
 			</table>
 			<!-- fill in the blank -->
-			<table class="mc-answer" ng-show="selected_type === fill_in_the_blank">
+			<table class="mc-answer" ng-if="selected_type === fill_in_the_blank">
 				<tr ng-repeat="answer in question.answers">
 					<td>
 						<input type="checkbox" ng-model="answer.is_numeric"> 
 					</td>
 					<td>
-						<textarea class="form-control" ng-model="answer.label"></textarea>
+						<textarea type="text" ng-model="answer.label"></textarea>
+						<pre mathjax="answer.label"></pre>
 					</td>					
 					<!-- numeric answer -->
 					<td ng-show="answer.is_numeric">
@@ -122,7 +141,8 @@
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
-						<textarea class="form-control" ng-model="answer.content"></textarea>
+						<textarea type="text" ng-model="answer.content"></textarea>
+						<pre mathjax="answer.content"></pre>
 					</td>
 					<td ng-show="!answer.is_numeric">&nbsp </td>
 					<!---->

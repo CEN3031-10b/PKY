@@ -1,0 +1,40 @@
+<div class="container admin-analysis">
+	<div class="row">
+		<div class="black-text col-md-12">
+			<div style="float:left; margin-bottom:5px">
+				<h1 >
+					Admin Standards
+				</h1>
+			</div>
+			<div class="newStandard col-md-2 btn btn-primary" style="float:right; margin-top:20px;" ng-click="edit_standard()">
+					Add a new standard
+					<i class="glyphicon glyphicon-plus"></i>		
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 standards">
+			<table tr-ng-grid="" items="standards" class="black-text">
+				<thead>
+					<tr>
+						<th field-name="code" display-name="Code" cell-width="12em">
+						<th field-name="content" display-name="Content" >
+						<!--<th display-name="Options" enable-filtering="false" enable-sorting="false"></th>-->
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td nowrap>
+							<button class="btn btn-default black-text" ng-click="edit_standard(gridItem)">
+								<i class="glyphicon glyphicon-edit"></i>	
+							</button>
+							<button class="btn btn-default black-text" ng-click="delete_standard(gridItem)">
+								<i class="glyphicon glyphicon-remove red"></i>	
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

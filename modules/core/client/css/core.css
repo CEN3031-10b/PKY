@@ -9,6 +9,7 @@ html {
 }
 
 body {
+	word-wrap: break-word !important;
   overflow-y: scroll;
   background:transparent;
   min-height:100%;  
@@ -168,4 +169,10 @@ a:hover .header-profile-image {
   margin-top:0;
   margin-bottom:40px; 
   color: #fff !important; 
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-image: none!important;
+    background-color: #2c8ab8!important;
+    box-shadow: none!important;
 }

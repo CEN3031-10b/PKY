@@ -28,7 +28,7 @@
 			ExamsService.update_exam($scope.exam)
 			.then(function(response){
 				old_exam.title = response.data.title;
-				old_exam.allotted_time =response.data.allotted_time;
+				old_exam.allotted_time = response.data.allotted_time;
 				old_exam.allowed_attempts = response.data.allowed_attempts;
 				old_exam.class =  response.data.class;
 				$uibModalInstance.close(response.data);

@@ -5,9 +5,9 @@
     .module('exams-take')
     .controller('TakeExamController', TakeExamController);
 
-  TakeExamController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal'];
+  TakeExamController.$inject = ['$scope', '$rootScope', '$window','$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal'];
 
-  function TakeExamController($scope, $rootScope, $state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
+  function TakeExamController($scope, $rootScope, $window,$state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal) {
 	
 	// init 
 	$scope.attempt = {};	
@@ -16,6 +16,37 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
+	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	$scope.indx = 0;
+	
+	//timer stuff
+	$scope.percent_remaining = 0;
+	$scope.time_remaining = $scope.attempt.exam_allotted_time;
+
+	var timer = setInterval(function(){ 
+		var currentDate = new Date().getTime();
+		var startTime = Date.parse($scope.attempt.start_time);
+		var endTime = $scope.attempt.exam_allotted_time;
+		var timeElasped = Math.abs((currentDate - startTime))/60000;
+		$scope.$apply(function(){
+			$scope.time_remaining = endTime-Math.floor(timeElasped);
+			$scope.percent_remaining = Math.abs($scope.time_remaining)/endTime*100;
+			if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
+				$scope.percent_remaining = 100;
+				$scope.time_remaining = 0;
+				clearInterval(timer);
+				$scope.time_out();
+			}
+		});
+	}, 1000);
+
+    $scope.random = function() {
+        return 0.5 - Math.random();
+    }
+
+	$scope.numberOfPages = function() {
+			return $scope.attempt.questions.length;
+		};
 
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($stateParams.eID)
@@ -33,13 +64,18 @@
 		ExamsAnalysisService.save_answers($scope.attempt)
 		.then(function(response){
 			$scope.loading = false;
-			$scope.attempt = response.data;
-			$scope.set_answers($scope.attempt);
+			// TODO, check for differences
+			//$scope.attempt = response.data;
+			//$scope.set_answers($scope.attempt);
 		}, function(error){
 			$scope.loading = false;
 			$scope.error = error;
 		});
 	};
+
+	$scope.time_out = function(){
+		confirm("Time is up! On the actual test you would have to stop now.");
+	}
 	
 	$scope.save_answer = function(_question,_answer){
 
@@ -88,6 +124,7 @@
 	};
 	
 	$scope.submit_attempt = function(){
+		clearInterval(timer);
 		$scope.loading = true;
 		ExamsAnalysisService.submit_attempt($scope.attempt)
 		.then(function(response){
@@ -97,7 +134,36 @@
 			$scope.error = error;
 		});
 	};
-	
-  }
+
+	//navigate to previous question
+	$scope.previousQuestion = function() {
+		if($scope.indx <= 0){
+			return;
+		}	
+		$scope.indx -= 1;
+	};
+		
+	//navigate to previous question
+	$scope.nextQuestion = function() {
+		if($scope.indx >= $scope.attempt.questions.length - 1){
+			return;
+		}	
+		$scope.indx += 1;
+	};
+	$scope.change_question = function(newIndex) {
+		$scope.indx = newIndex;
+	};
+
+	$scope.open_calculator = function(){
+		  var modalInstance = $uibModal.open({
+			windowClass: 'calc-modal',
+			animation: false,
+			templateUrl: '/modules/exams-take/client/views/calc-modal.client.view.html',
+			backdrop: 'static',
+    		keyboard: false,
+    		controller: 'calculatorModal'
+		  });	
+	};
+}
   
 })();

@@ -1,45 +1,101 @@
-<div class="container">
+<!-- The choose-test view -->
+<section id="choose-test" class="container admin-analysis">
+	<div class="alert alert-warning" ng-repeat="attempt in attempts" ng-if="!attempt.submitted">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  		<strong>Warning!</strong> You have a test in session right now. Click <a ng-click="start_exam(attempt.exam)">here</a> to return to {{attempt.exam.title}}
+</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1 class="black-text">Choose Your Exam</h1>
+			</div>
+		</div>
+	</div>
+	<!-- choosing which test you want -->
+	<div class="row">
+		<div class="col-md-6 test-con">
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 1</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 1'">
+					<td class="exam-name">{{exam.title}}</td>
+					<td nowrap>
+						<i ng-click="start_exam(exam)" class="btn btn-primary glyphicon glyphicon-share"></i>
+						<i class="btn btn-primary glyphicon glyphicon-search"></i>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class ="col-md-6 test-con">
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 2</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 2'">
+					<td class="exam-name">{{exam.title}}</td>
+					<td nowrap>
+						<i ng-click="start_exam(exam)" class="btn btn-primary glyphicon glyphicon-share"></i>
+						<i class="btn btn-primary glyphicon glyphicon-search"></i>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+		<br>
+		<br>
+		<span><h2 class = "black-text prev-attempt"> View Your Previous Attempts</h2></span>
+		<br><br>
+		<div class = "row">
+		<div class="test-con col-md-6 ">
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 1</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted && attempt.exam.class==='Algebra 1'">
+					<td class="exam-name">{{attempt.exam_title}}</td>
+					<td><i ng-click="review_attempt(attempt)"class="btn btn-primary glyphicon glyphicon-share"></i></td>
+				</tr>
+			</table>
+		</div>
+		<div class="test-con col-md-6 ">
+			<h3 class="black-text" style="border-bottom:1px solid #e2e2e2;">Algebra 2</h3>
+			<table class="table table-hover table-striped table-bordered">
+				<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted && attempt.exam.class==='Algebra 2'">
+					<td class="exam-name">{{attempt.exam_title}}</td>
+					<td><i ng-click="review_attempt(attempt)"class="btn btn-primary glyphicon glyphicon-share"></i></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</section>
+
+
+<!-- <div class="container">
 <div class="row">
+
 <div class="col-md-8">
-<table>
-	<th> title </th>
-	<th> class </th>
-	<tr ng-repeat="exam in exams">
-		<td>{{exam.title}}</td>
-		<td>{{exam.class}}</td>
-		<td style="padding-bottom:20px" class="btn btn-primary" ng-click="start_exam(exam)">
-			begin
-		</td>
-	</tr>
-</table>
-<br>
-<table>
-	<th>Attempts:</th>
-	<tr ng-repeat="attempt in attempts">
-		<td>
-			<button class="btn btn-warning x" type="button" ng-click="delete_attempt(attempt)">
-				<i class="glyphicon glyphicon-remove"></i>
-			</button>	
-		</td>
-		<td style="padding-bottom:20px"><pre> {{attempt.exam_title}}</pre> </td>
-	</tr>
-</table>
+	<table>
+		<th> title </th>
+		<th> class </th>
+		<tr ng-repeat="exam in exams">
+			<td>{{exam.title}}</td>
+			<td>{{exam.class}}</td>
+			<td style="padding-bottom:20px" class="btn btn-primary" ng-click="start_exam(exam)">
+				begin
+			</td>
+		</tr>
+	</table>
 </div>
+
 <div class="col-md-4">
-<table>
-<th>Submitted Attempts:</th>
-	<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted">
-	
-		<td>{{attempt.exam_title}}</td>
-		<td>
-			<button class="btn btn-primary" type="button" ng-click="review_attempt(attempt)">
-					View
-			</button>	
-		<td>
-	</tr>
-</table>
+	<table>
+		<th>Submitted Attempts:</th>
+		<tr ng-repeat="attempt in attempts" ng-if="attempt.submitted">
+			<td>{{attempt.exam_title}}</td>
+			<td>
+				<button class="btn btn-primary" type="button" ng-click="review_attempt(attempt)">
+						View
+				</button>	
+			<td>
+		</tr>
+	</table>
 </div>
 
 </div>
 </div>
-
+ -->

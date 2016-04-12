@@ -5,11 +5,13 @@
     .module('exams')
     .controller('AddQuestionController', AddQuestionController);
 
-  AddQuestionController.$inject = ['$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', 'selected_exam','old_question'];
+  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards'];
 
-  function AddQuestionController($scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, selected_exam, old_question) {
+  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
     
 	// init
+	$scope.standards = standards.data;
+	console.log(standards.data);
 	$scope.selected_exam = selected_exam;
 	$scope.selected_type = null;
 	$scope.old_question = null;
@@ -21,16 +23,19 @@
 
 	// separate variables to save info if a question type is switched
 	$scope.mc_question = {};
+	$scope.mc_question.standards = [];
 	$scope.mc_question.answers = [];
 	$scope.mc_question.exam = selected_exam._id;
 	$scope.mc_question.type = $scope.multiple_choice;
 	
 	$scope.ms_question = {};
+	$scope.ms_question.standards = [];
 	$scope.ms_question.answers = [];
 	$scope.ms_question.exam = selected_exam._id;
 	$scope.ms_question.type = $scope.multiple_select;
 	
 	$scope.fitb_question = {};
+	$scope.fitb_question.standards = [];
 	$scope.fitb_question.answers = [];
 	$scope.fitb_question.exam = selected_exam._id;
 	$scope.fitb_question.type = $scope.fill_in_the_blank;
@@ -45,6 +50,7 @@
 	
 	$scope.set_type = function(_type){
 		$scope.selected_type = _type;
+		
 		if(_type === $scope.multiple_choice){
 			$scope.question = $scope.mc_question;
 		}
@@ -54,24 +60,40 @@
 		else if(_type === $scope.fill_in_the_blank){
 			$scope.question = $scope.fitb_question;
 		}
+		
+		$scope.init = true;
 	};
   
+	
     $scope.add_new_answer = function(_question){
-		if(_question.answers != null)
-		_question.answers.push({
+		
+		var answer = {
 			content: '',
 			correct: false,
 			is_numeric: false,
 			tolerance: 0,
-			value: 0
-		});
+			value: 0,
+		};
+		
+		if(_question.answers != null)
+		_question.answers.push(answer);
+		
     };
 	
+	$scope.add_new_standard = function(_question){
+		var standard = "";
+		if(_question.standards != null)
+		_question.standards.push(standard);
+    };
+		
 	$scope.select_mc_answer = function(index){
+		if($scope.question.type !== $scope.multiple_choice)
+			return;
+		
 		// sets selected index to correct, all others false
-		if($scope.mc_question && $scope.mc_question.answers){
-			for(var i = 0; i < $scope.mc_question.answers.length; ++i){
-				$scope.mc_question.answers[i].correct = (i==index);
+		if($scope.question && $scope.question.answers){
+			for(var i = 0; i < $scope.question.answers.length; ++i){
+				$scope.question.answers[i].correct = (i==index);
 			}
 		}
 	};
@@ -83,7 +105,7 @@
 	
     $scope.submit = function(){
 		$scope.loading = true;
-		
+		console.log($scope.question.standards);
 		// if edit mode, update question
 		if(old_question){
 			ExamsService.update_question($scope.question)
@@ -91,7 +113,7 @@
 				$scope.loading = false;
 				old_question.content = response.data.content;
 				old_question.points = response.data.points;
-				old_question.standard = response.data.standard;
+				old_question.standards = response.data.standards;
 				old_question.answers = response.data.answers;
 				selected_exam.version++;
 				$scope.ok();

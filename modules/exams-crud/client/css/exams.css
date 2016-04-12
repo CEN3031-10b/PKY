@@ -1,10 +1,31 @@
 /* exams.css */
 
+.QuestionNumber{
+	font-size:20px;
+}
+
+.Title{
+	margin-top: -2px;
+	margin-bottom: -6px;
+}
+
+.question-row pre {
+  font-family: "Times New Roman", Times, serif;
+   font-size:18px;
+   background: transparent;
+   border:none;
+   white-space: pre-wrap;      
+	white-space: -moz-pre-wrap;  
+	white-space: -pre-wrap;      
+	white-space: -o-pre-wrap; 
+	word-wrap: break-word;      
+}
+
 .question-row .question-row-container{
 	width:100%;
-	padding:50px; 
+	padding:20px; 
 	padding-bottom:0px;
-	background:#e5e5ff;
+
 }
 
 .question-row .question-row-container table{
@@ -21,6 +42,10 @@
 
 .question-container .answer-container{
 	padding-left:25px;
+}
+.question-num{
+	color: white;
+	font-size:80%;
 }
 
 .answer-row-container{
@@ -56,6 +81,7 @@
 	-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
 	background-color: #DDDDFF !important;
+
 }
 
 .question-text{
@@ -116,8 +142,7 @@
 
 .space td {
 	width:100%;
-	height:50px;
-	background:#e5e5ff;
+	height:10px;
 }
 
 .main-table .header-container{
@@ -128,28 +153,29 @@
 
 .main-table-header-row{
 	border-bottom:3px solid white;
-	-webkit-box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 1px 3px 2px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 3px 2px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 3px 2px 1px rgba(0,0,0,0.75);
 }
-
 
 .header-table{
 	width:100%;
 	margin:0;
 	padding:0;
 	background:#FEFEFE;
-	-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.75);
 }
+
 .new-exam-btn{
 	width:100%;
 	margin-bottom:5px;
-	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
 }
+
 .header-table h1{
 	display: table-cell; 
 	vertical-align: middle;
@@ -168,23 +194,16 @@
 	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
 }
 .main-table-container{
-	padding:0;
+	padding-top:10px;
 	margin:0;
 	width:100%;
 }
 
 .main-table{
 	word-wrap: break-word;
-	border:3px solid white;
 	color: black;
-	background:#0b2238;
-	padding: 65px;
-	width: 100%; 
-	margin:0 auto;
-	margin-left: 29px;
-	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	width:100%;
+	padding:20px;
 }
 
 .main-table td{
@@ -215,6 +234,38 @@
 	 color:black;
 	 background: #AAAABB;
 	 border:1px solid white;
+	-webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+}
+
+.exam-selector .add-exam-tab  a {
+	 width:100%;
+	 color:white;
+	 background: #2c8ab8;
+	-webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+}
+
+.exam-selector .add-exam-tab .active a{
+	 width:100%;
+	 color:black;
+	 background: #2c8ab8;
+	-webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+}
+.exam-selector .add-exam-tab a:hover{
+	 width:100%;
+	 color:black;
+	 background: #DDEDFF;
+	-webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+}
+.black-text {
+	color:black;
 }
 
 .edit-single-exam{
@@ -222,7 +273,7 @@
 }
 
 .edit-exams{
-	border: 2px solid grey;
+	/*border: 2px solid #053f79;*/
 	border-top: 0;
 	border-bottom:0;
 	min-height: 100vh;
@@ -231,10 +282,12 @@
 	margin:0;
 	padding:50px;
 	padding-top:30px;
-	background:#156fa9;
+	/*background:#156fa9;*/
+	background: #fff;
 	-webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+	word-wrap: break-word !important;
 }
 
 .loading{
@@ -251,6 +304,21 @@
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
+}
+/* MATHQUILL: seperate file*/
+
+.mqi {
+	width:500px;
+  color: black;
+  border-color: black;
+  background: white;
+  font-size: 24pt;
+}
+.mqi .mq-matrixed {
+  background: white;
+}
+.mqi .mq-matrixed-container {
+  filter: progid:DXImageTransform.Microsoft.Chroma(color='white');
 }
 
 /* MODAL CSS TODO: seperate file*/
@@ -339,4 +407,26 @@
 
 .x{
 	color:#EE3131;
+}
+
+.main-table-review{
+	word-wrap: break-word;
+	border:3px solid white;
+	color: black;
+	background:#cdebf9;
+	padding: 65px;
+	width: 100%; 
+	margin:0 auto;
+	margin-left: 29px;
+	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+}
+
+.main-table-review td{
+	padding:10px;
+}
+
+.main-table-review tr{
+	padding-left: 10px;
 }

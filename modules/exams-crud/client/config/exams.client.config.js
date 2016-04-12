@@ -20,7 +20,8 @@
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Edit Exams',
-      state: 'edit-exams'
+      state: 'edit-exams',
+	  roles: ['admin']
     });
 
   }

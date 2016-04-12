@@ -1,10 +1,26 @@
-<table>
-	<tr ng-repeat= "attempt in all_attempts">
-		<td>
-			{{attempt.exam_title}}
-		</td>
-		<td>
-			{{attempt.user}}
-		</td>
-	</tr>
-</table>
+<div class="container admin-analysis">
+	<div class="row">
+		<table tr-ng-grid="" items="all_attempts" class="black-text">
+			<thead>
+				<tr>
+					<th field-name="exam_title" display-name="Exam">
+					<th field-name="exam_class" display-name="Class">
+					<th field-name="user.displayName" display-name="Student">
+					<!--<th display-name="Options" enable-filtering="false" enable-sorting="false"></th>-->
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<button class="btn btn-default black-text" ng-click="review_attempt(gridItem)">
+							<i class="glyphicon glyphicon-edit"></i>	
+						</button>
+						<button class="btn btn-default black-text" ng-click="delete_attempt(gridItem)">
+							<i class="glyphicon glyphicon-remove red"></i>	
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
