@@ -171,19 +171,8 @@
 			animation: false,
 			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
 			backdrop: 'static',
-    		keyboard: true,
-    		controller: 'notepadModal'
-    	});	
-	};
-	$scope.open_formula_sheet = function(){
-		  var modalInstance = $uibModal.open({
-			windowClass: 'formula-modal',
-			animation: false,
-			size: 'lg',
-			templateUrl: '/modules/exams-take/client/views/formula-modal.client.view.html',
-			backdrop: 'static',
     		keyboard: false,
-    		controller: 'formulaModal'
+    		controller: 'notepadModal'
 		  });	
 	};
 }

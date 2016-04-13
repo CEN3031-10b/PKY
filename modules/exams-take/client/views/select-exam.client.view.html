@@ -1,9 +1,11 @@
 <!-- The choose-test view -->
 <section id="choose-test" class="container admin-analysis">
 	<div class="alert alert-warning" ng-repeat="attempt in attempts" ng-if="!attempt.submitted">
-		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  		<strong>Warning!</strong> You have a test in session right now. Click <a ng-click="start_exam(attempt.exam)">here</a> to return to {{attempt.exam.title}}
-</div>
+		<div ng-if="attempt != null">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  		<strong>Warning!</strong> You have a test in session right now. Click <a ng-click="start_exam(attempt.exam)">here</a> to return to {{attempt.exam.title}}
+  		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
