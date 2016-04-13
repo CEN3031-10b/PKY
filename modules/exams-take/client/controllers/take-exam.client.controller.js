@@ -153,6 +153,25 @@
 		}	
 		$scope.indx += 1;
 	};
+
+	$scope.checkNextQuestion = function() {
+		if($scope.indx >= $scope.attempt.questions.length - 1){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	$scope.checkPrevQuestion = function() {
+		if($scope.indx <= 0){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	
+
 	$scope.change_question = function(newIndex) {
 		$scope.indx = newIndex;
 	};
