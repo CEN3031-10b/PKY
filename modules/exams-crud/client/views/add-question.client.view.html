@@ -67,20 +67,26 @@
 		</div>
 		<div class="question-content">
 			<h3>Question:</h3>
-	          <span class="btn btn-default btn-file">
-              Select Image <input type="file" nv-file-select uploader="uploader">
-          </span>
-		  
-        <div class="text-center form-group" ng-show="uploader.queue.length">
-          <button class="btn btn-primary" ng-click="uploadProfilePicture();">Upload</button>
-          <button class="btn btn-default" ng-click="cancelUpload();">Cancel</button>
-        </div>
-		
-		<img ng-src="{{question.imageURL}}" class="img-thumbnail user-profile-picture">
-
-	
-	
-			<textarea type="text" ng-model="question.content"></textarea>
+			
+		<div >
+			<span class="btn btn-primary btn-file">
+				Select Image <input type="file" nv-file-select uploader="uploader">
+			</span>
+			<button ng-show="uploader.queue.length" class="btn btn-primary" ng-click="uploadProfilePicture();">Upload</button>
+			<button ng-show="uploader.queue.length" class="btn btn-primary" ng-click="cancelUpload();">Cancel</button>
+			{{image_upload_success}}
+		</div>
+		<br>
+		<div>
+		<img ng-hide="imageURL || !question.imageURL" ng-src="{{question.imageURL}}" class="img-thumbnail user-profile-picture">
+		<img ng-hide="!imageURL || imageURL==null" ng-src="{{imageURL}}" class="img-thumbnail user-profile-picture">
+		<button ng-hide="!question.imageURL" class="btn btn-warning x" type="button" ng-click="delete_image()">
+			Delete Image
+			<i class="glyphicon glyphicon-remove"></i>
+		</button>
+		</div>
+		<h4>Content:</h4>
+		<textarea type="text" ng-model="question.content"></textarea>
 			<pre mathjax="question.content"></pre>
 		</div>
 		<div class="answer-content">	

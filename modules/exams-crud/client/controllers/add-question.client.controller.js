@@ -163,6 +163,8 @@
 		$uibModalInstance.dismiss('cancel');
 	});
 	
+	// ----- image upload -----
+	$scope.imageURL = null;
     // Create file uploader instance
     $scope.uploader = new FileUploader({
       url: 'api/users/picture',
@@ -190,6 +192,7 @@
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
             $scope.imageURL = fileReaderEvent.target.result;
+			$scope.image_upload_success = '';
           }, 0);
         };
       }
@@ -197,13 +200,15 @@
 
     // Called after the user has successfully uploaded a new picture
     function onSuccessItem(fileItem, response, status, headers) {
-	$scope.question.imageURL = response.profileImageURL;
-      // Clear upload buttons
-      cancelUpload();
+		$scope.image_upload_success = 'image uploaded successfully';
+		$scope.question.imageURL = response.profileImageURL;
+		// Clear upload buttons
+		cancelUpload();
     }
 
     // Called after the user has failed to uploaded a new picture
     function onErrorItem(fileItem, response, status, headers) {
+	$scope.image_upload_success = 'error uploading image';
       // Clear upload buttons
       cancelUpload();
     }
@@ -216,8 +221,15 @@
 
     // Cancel the upload process
     function cancelUpload() {
-      $scope.uploader.clearQueue();
+		$scope.imageURL = null;
+		$scope.uploader.clearQueue();
     }
+	
+	$scope.cancelUpload = cancelUpload;
+	
+	$scope.delete_image = function(){
+		$scope.question.imageURL = null;
+	}
 	
   }
   
