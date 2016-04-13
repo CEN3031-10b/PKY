@@ -11,6 +11,7 @@
 				<h1 class="Title">{{attempt.exam_title}}</h1>
 				<h4 class="ClassTitle">{{attempt.exam_class}}</h4>
 				<div class="progress">
+				  <!-- Bootstrap progress bar to show how much time the user has remaining-->
 				  <div class="progress-bar progress-bar-striped active" role="progressbar"
 				   aria-valuemin="0" aria-valuemax="100" style="width:{{percent_remaining}}%"> {{time_remaining}} minutes remaining
 				  </div>
@@ -119,8 +120,8 @@
 			<button class="btn btn-primary"  ng-click="previousQuestion()">
 				<span class="glyphicon glyphicon-arrow-left"></span> Previous  
 				</button>
-				<!-- If you click this button, the mark_for_review variable will be flipped to "true"-->
-				<button class="btn btn-primary" type="button" ng-click="attempt.questions[indx].mark_for_review = !attempt.questions[indx].mark_for_review">
+				<!-- If you click this button, the mark_for_review variable will be flipped to "true". After marking it true, it saves the test so that if you refresh or get disconnected the question will still be marked for review-->
+				<button class="btn btn-primary" type="button" ng-click="attempt.questions[indx].mark_for_review = !attempt.questions[indx].mark_for_review; save_attempt()">
 					 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
 				</button>
 				<button class="btn btn-primary"  ng-click="nextQuestion()">
@@ -142,9 +143,11 @@
 			</h2>
 	<!--	{{attempt.start_time}} -->
 		</div>
-		<text class="link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" ng-click="change_question($index)" >
+		<text 
+		class = "link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" 
+		ng-click="change_question($index)" >
 			<!--If mark_for_review is true, display a glyphicon flag next to the question name on the sidebar. If it is not, just display the question name-->
-			<i ng-if="question.mark_for_review===true" class="glyphicon glyphicon-flag"></i>{{'Number ' + ($index + 1)}} <br>
+			<i ng-if="question.mark_for_review===true" class="glyphicon glyphicon-flag review"></i>{{'Number ' + ($index + 1)}} <br>
 		</text>
 	</div>
 </div>

@@ -16,7 +16,9 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
-	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	// $scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	// indx is a basically a counter for question number. That way you can jump from question 1 to 5 by knowing where in the question array
+	// the desired quesion is. It replaces the need for currentPage
 	$scope.indx = 0;
 	
 	//timer stuff
@@ -35,6 +37,7 @@
 				$scope.percent_remaining = 100;
 				$scope.time_remaining = 0;
 				clearInterval(timer);
+				//Throws the alert that time is up to the user
 				$scope.time_out();
 			}
 		});
