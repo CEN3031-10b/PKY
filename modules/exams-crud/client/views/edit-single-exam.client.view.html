@@ -83,8 +83,8 @@
 										<td class="answer-container">
 											<table class="answer-row-container">
 												<tr class="answer-row" ng-if="question.type === 'fill in the blank' "ng-repeat="answer in question.answers">
-													<td>
-														numeric: {{answer.is_numeric}}
+													<td ng-if="answer.is_numeric">numeric: yes</td>
+													<td ng-if="!answer.is_numeric">numeric: no</td>
 													</td>
 													<td>
 														label: <pre mathjax="answer.label"></pre>

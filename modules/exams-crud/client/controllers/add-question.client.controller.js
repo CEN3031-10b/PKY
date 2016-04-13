@@ -102,6 +102,11 @@
 		if(_question.answers)
 		_question.answers.splice(_index, 1);  
     };
+
+    $scope.remove_standard = function(_question,_index){
+    	if(_question.standards)
+    	_question.standards.splice(_index, 1);
+    }
 	
     $scope.submit = function(){
 		$scope.loading = true;

@@ -4,11 +4,13 @@
 	<tr>
 		<td>
 			<h2 class="modal-title">
-				<span ng-if="!old_question"> Add question to {{selected_exam.title}} for {{selected_exam.class}}</span>
-				<span ng-if="old_question"> Edit question on {{selected_exam.title}} for {{selected_exam.class}}</span>
+				<span ng-if="!old_question"> Add Question to {{selected_exam.title}}</span>
+				<span ng-if="old_question"> Edit Question on {{selected_exam.title}}</span>
 			</h2>
-			<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 			<button class="btn btn-primary" type="button" ng-click="submit()">Submit</button>
+			<br>
+			<br>
+			<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 		</td>
 	</tr>
 	<tr>
@@ -54,24 +56,29 @@
 			<div class="btn btn-primary" ng-click="add_new_standard(question)">
 				<span>Add a new standard</span>
 				<i class="glyphicon glyphicon-plus"></i>
-			</div>
+			</div>			
 			<table class="mc-answer">
 					<tr ng-repeat="standard in question.standards track by $index">
 						<td>
 							<select ng-model="question.standards[$index]">
 								<option ng-repeat="s in standards" value="{{s._id}}">{{s.code}}</option>
 							</select>
+							<button class="btn btn-warning x" type="button" ng-click="remove_standard(question,$index)">
+								Delete
+								<i class="glyphicon glyphicon-remove"></i>
+							</button>
 						</td>
 					</tr>
 			</table>	
 		</div>
 		<div class="question-content">
 			<h3>Question:</h3>
-				<div class="btn btn-primary" style="margin-bottom:15px" ng-click="add_new_standard(question)">
+				<div class="btn btn-primary" style="margin-bottom:15px">
 					<span>Upload a Picture Question</span>
 					<i class="glyphicon glyphicon-plus"></i>
 				</div>
 			<textarea type="text" ng-model="question.content"></textarea>
+			Preview:
 			<pre mathjax="question.content"></pre>
 		</div>
 		<div class="answer-content">	
@@ -84,20 +91,24 @@
 			<table class="mc-answer" ng-if="selected_type === multiple_choice">
 				<tr ng-repeat="answer in question.answers">
 					<td style = "width:100%;">
+						<div>
+							{{$index + 1}})
+							<div style="float:right">
+								<button class="btn btn-primary mc_incorrect" type="button" 
+								ng-click="answer.correct = !answer.correct" 
+								ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
+								Correct Answer 
+									<i class="glyphicon glyphicon-ok"></i>
+								</button>						
+								<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
+									Delete 
+									<i class="glyphicon glyphicon-remove"></i>
+								</button>
+							</div>
+						</div>
 						<textarea type="text" ng-model="answer.content"></textarea>
+						Preview:
 						<pre mathjax="answer.content"></pre>
-					</td>
-					<td nowrap>	
-						<button class="btn btn-primary mc_incorrect" type="button" 
-						ng-click="select_mc_answer($index)" 
-						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
-						Correct Answer 
-							<i class="glyphicon glyphicon-ok"></i>
-						</button>
-						<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
-							Delete 
-							<i class="glyphicon glyphicon-remove"></i>
-						</button>		
 					</td>
 				</tr>
 			</table>
@@ -105,20 +116,24 @@
 			<table class="mc-answer" ng-if="selected_type === multiple_select">
 				<tr ng-repeat="answer in question.answers">
 					<td style="width:100%">
+						<div>
+							{{$index + 1}})
+							<div style="float:right">
+								<button class="btn btn-primary mc_incorrect" type="button" 
+								ng-click="answer.correct = !answer.correct" 
+								ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
+								Correct Answer 
+									<i class="glyphicon glyphicon-ok"></i>
+								</button>						
+								<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
+									Delete 
+									<i class="glyphicon glyphicon-remove"></i>
+								</button>
+							</div>
+						</div>
 						<textarea type="text" ng-model="answer.content"></textarea>
+						Preview:
 						<pre mathjax="answer.content"></pre>
-					</td>
-					<td nowrap>	
-						<button class="btn btn-primary mc_incorrect" type="button" 
-						ng-click="answer.correct = !answer.correct" 
-						ng-class="{'disabled':!answer.correct,'mc_correct':answer.correct}" >
-						Correct Answer 
-							<i class="glyphicon glyphicon-ok"></i>
-						</button>						
-						<button class="btn btn-warning x" type="button" ng-click="remove_answer(question,$index)">
-							Delete 
-							<i class="glyphicon glyphicon-remove"></i>
-						</button>	
 					</td>
 				</tr>
 			</table>
@@ -126,21 +141,26 @@
 			<table class="mc-answer" ng-if="selected_type === fill_in_the_blank">
 				<tr ng-repeat="answer in question.answers">
 					<td>
-						<input type="checkbox" ng-model="answer.is_numeric"> 
+						Words/Numeric
+						<input type="checkbox" ng-model="answer.is_numeric" style="width:55px float:center"> 
 					</td>
 					<td>
+						Label:
 						<textarea type="text" ng-model="answer.label"></textarea>
 						<pre mathjax="answer.label"></pre>
 					</td>					
 					<!-- numeric answer -->
 					<td ng-show="answer.is_numeric">
+						Answer:
 						<input class="form-control" type="number" ng-model="answer.value">
 					</td>
 					<td ng-show="answer.is_numeric">
+						Tolerance:
 						<input class="form-control" type="number" ng-model="answer.tolerance" min="0">
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
+						Answer:
 						<textarea type="text" ng-model="answer.content"></textarea>
 						<pre mathjax="answer.content"></pre>
 					</td>
