@@ -430,3 +430,7 @@
 .main-table-review tr{
 	padding-left: 10px;
 }
+
+.review{
+	color: red;
+}

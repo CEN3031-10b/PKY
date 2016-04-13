@@ -65,11 +65,11 @@ exports.delete = function (req, res) {
 exports.updateAnswers = function(req, res){
 	// check if its past the allotted time
 	var attempt = req.attempt;
+	//Check through all of the questions in the attempt
 	for(var i = 0; i < attempt.questions.length; i++){
 		for(var j = 0; j < req.body.questions.length; j++){
-			console.log('before if');
+			//If the question IDs match up save the mark_for_review variable to the server
 			if(attempt.questions[i]._id.equals(req.body.questions[j]._id)){
-				console.log('inside if');
 				attempt.questions[i].mark_for_review = req.body.questions[j].mark_for_review;
 			}
 		}
