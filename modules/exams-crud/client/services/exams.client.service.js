@@ -12,7 +12,8 @@
 		// exams
       return {
         get_exams : function(questions,answers){
-          return $http.get(exam_url_base +'/?questions=' + (questions === 1) + '&answers=' + (answers === 1));
+          return $http.get(exam_url_base);
+		  //+'/?questions=' + (questions === 1) + '&answers=' + (answers === 1)
         },
         get_exam : function(id){
           return $http.get(exam_url_base + '/' + id);

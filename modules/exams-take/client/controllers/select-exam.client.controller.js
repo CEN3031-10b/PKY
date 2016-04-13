@@ -12,6 +12,7 @@
 	$scope.exams = exams.data;
 	$scope.attempts = [];
 	$scope.error = null;
+	$scope.selected_mode = "take";
 	
 	ExamsAnalysisService.get_attempts()
 	.then(function(response){

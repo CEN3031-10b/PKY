@@ -17,6 +17,13 @@ pre {
 	float:right;
 }
 
+.grey-text{
+	color:#888888;
+}
+.attempt-info{
+	color:#888888;
+	font-size: 10px;
+}
 .btn-circle.btn {
   width: 50px;
   height: 50px;

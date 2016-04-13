@@ -34,6 +34,10 @@ var QuestionSchema = new Schema({
 		type: Number,
 		required: true  
 	},
+	imageURL:{
+		type: String,
+		default: null
+	},
 	answers: [{
 		label:{
 			type: String,
