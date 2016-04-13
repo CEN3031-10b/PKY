@@ -65,6 +65,15 @@ exports.delete = function (req, res) {
 exports.updateAnswers = function(req, res){
 	// check if its past the allotted time
 	var attempt = req.attempt;
+	for(var i = 0; i < attempt.questions.length; i++){
+		for(var j = 0; j < req.body.questions.length; j++){
+			console.log('before if');
+			if(attempt.questions[i]._id.equals(req.body.questions[j]._id)){
+				console.log('inside if');
+				attempt.questions[i].mark_for_review = req.body.questions[j].mark_for_review;
+			}
+		}
+	}
 	attempt.student_answers = req.body.student_answers;
 	attempt.save(function (err) {
 		if (err) {
