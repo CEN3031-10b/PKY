@@ -67,10 +67,19 @@
 		</div>
 		<div class="question-content">
 			<h3>Question:</h3>
-				<div class="btn btn-primary" style="margin-bottom:15px" ng-click="add_new_standard(question)">
-					<span>Upload a Picture Question</span>
-					<i class="glyphicon glyphicon-plus"></i>
-				</div>
+	          <span class="btn btn-default btn-file">
+              Select Image <input type="file" nv-file-select uploader="uploader">
+          </span>
+		  
+        <div class="text-center form-group" ng-show="uploader.queue.length">
+          <button class="btn btn-primary" ng-click="uploadProfilePicture();">Upload</button>
+          <button class="btn btn-default" ng-click="cancelUpload();">Cancel</button>
+        </div>
+		
+		<img ng-src="{{question.imageURL}}" class="img-thumbnail user-profile-picture">
+
+	
+	
 			<textarea type="text" ng-model="question.content"></textarea>
 			<pre mathjax="question.content"></pre>
 		</div>

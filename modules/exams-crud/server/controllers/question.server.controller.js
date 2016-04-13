@@ -15,7 +15,6 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
 	var question = new Question(req.body);
-	console.log(question);
 	question.save(function (err,q) {
 		if (err) {
 			return res.status(400).send({
@@ -61,6 +60,9 @@ exports.update = function (req, res) {
 	question.type = req.body.type;
 	question.standards = req.body.standards;
 	question.points = req.body.points;
+	question.imageURL = req.body.imageURL;
+	console.log("HEREEEEEEEEEEEEEEEEE");
+	console.log(question.imageURL);
 	question = new Question(question);
 	
 	question.save(function (err, q) {

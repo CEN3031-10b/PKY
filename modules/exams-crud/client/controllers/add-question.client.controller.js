@@ -5,13 +5,12 @@
     .module('exams')
     .controller('AddQuestionController', AddQuestionController);
 
-  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards'];
+  AddQuestionController.$inject = ['$window','$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards', 'FileUploader'];
 
-  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
+  function AddQuestionController($window, $timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards, FileUploader) {
     
 	// init
 	$scope.standards = standards.data;
-	console.log(standards.data);
 	$scope.selected_exam = selected_exam;
 	$scope.selected_type = null;
 	$scope.old_question = null;
@@ -115,6 +114,7 @@
 				old_question.points = response.data.points;
 				old_question.standards = response.data.standards;
 				old_question.answers = response.data.answers;
+				old_question.imageURL = response.data.imageURL;
 				selected_exam.version++;
 				$scope.ok();
 			}, function(error){
@@ -162,6 +162,62 @@
 		event.preventDefault();
 		$uibModalInstance.dismiss('cancel');
 	});
+	
+    // Create file uploader instance
+    $scope.uploader = new FileUploader({
+      url: 'api/users/picture',
+      alias: 'newProfilePicture',
+      onAfterAddingFile: onAfterAddingFile,
+      onSuccessItem: onSuccessItem,
+      onErrorItem: onErrorItem
+    });
+
+    // Set file uploader image filter
+    $scope.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    function onAfterAddingFile(fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            $scope.imageURL = fileReaderEvent.target.result;
+          }, 0);
+        };
+      }
+    }
+
+    // Called after the user has successfully uploaded a new picture
+    function onSuccessItem(fileItem, response, status, headers) {
+	$scope.question.imageURL = response.profileImageURL;
+      // Clear upload buttons
+      cancelUpload();
+    }
+
+    // Called after the user has failed to uploaded a new picture
+    function onErrorItem(fileItem, response, status, headers) {
+      // Clear upload buttons
+      cancelUpload();
+    }
+
+    // Change user profile picture
+    $scope.uploadProfilePicture = function() {
+      // Start upload
+      $scope.uploader.uploadAll();
+    }
+
+    // Cancel the upload process
+    function cancelUpload() {
+      $scope.uploader.clearQueue();
+    }
 	
   }
   
