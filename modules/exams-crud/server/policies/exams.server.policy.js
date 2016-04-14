@@ -33,13 +33,13 @@ exports.invokeRolesPolicies = function () {
       permissions: 'get'
     }, {
       resources: '/api/exams/:examId',
-      permissions: null
+      permissions: []
     }, {
       resources: '/api/exams/class/:classId',
-      permissions: null
+      permissions: []
     }, {
       resources: '/api/exams/:examId/questions/:questionId',
-      permissions: null
+      permissions: []
     }]
   }]);
 };
