@@ -103,6 +103,18 @@ exports.listAll = function (req, res) {
       });
     } 
 	else {
+		for(var h = 0; h < exams.length; ++h){
+			for(var i = 0; i < exams[h].questions.length; ++i){
+				if(req.query.questions === 'false'){
+					exams[h].questions[i] = null;
+				}
+				else if(req.query.answers == 'false' || !req.admin){
+					for(var j = 0; j < exams[h].questions[i].answers.length; j++){
+						exams[h].questions[i].answers[j] = null;
+					}
+				}
+			}
+		}
 		res.json(exams);
     }
   });
@@ -131,10 +143,7 @@ exports.examByID = function (req, res, next, id) {
         message: 'No exam with that identifier has been found'
       });
     }
-    
-	//res.json(exam);
-	
-	// TODO: find out why this is really slow on gets
+   
 	req.exam = exam;
     next();
   });

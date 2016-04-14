@@ -39,6 +39,13 @@
 	};
 	
 	$scope.set_answers($scope.attempt);
+	
+	$scope.get_alert_type = function(_question){
+		if(_question.points_earned != _question.data.points){
+			return "danger";
+		}
+		return "success";
+	};
   }
   
 })();

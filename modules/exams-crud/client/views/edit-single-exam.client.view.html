@@ -35,7 +35,7 @@
 						<tr><td style="padding:5px"><strong>Allotted time:        </strong>  {{exam.allotted_time }} minutes</td></tr>
 						<tr><td style="padding:5px"><strong>Available attempts:   </strong>  {{exam.allowed_attempts }}</td></tr>
 						<tr><td ng-if="exam.published" style="padding:5px"><strong>Available to students:</strong> yes</td></tr>
-						<tr><td ng-if="!exam.published" style="padding:5px"><strong>Available to students:</strong>  no{{exam.published }}</td></tr>
+						<tr><td ng-if="!exam.published" style="padding:5px"><strong>Available to students:</strong>  no</td></tr>
 					</table>
 				</td>
 			</tr>
@@ -83,8 +83,8 @@
 										<td class="answer-container">
 											<table class="answer-row-container">
 												<tr class="answer-row" ng-if="question.type === 'fill in the blank' "ng-repeat="answer in question.answers">
-													<td>
-														numeric: {{answer.is_numeric}}
+													<td ng-if="answer.is_numeric">numeric: yes</td>
+													<td ng-if="!answer.is_numeric">numeric: no</td>
 													</td>
 													<td>
 														label: <pre mathjax="answer.label"></pre>

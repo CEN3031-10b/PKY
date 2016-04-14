@@ -16,10 +16,11 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
-	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	// $scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	// indx is a basically a counter for question number. That way you can jump from question 1 to 5 by knowing where in the question array
+	// the desired quesion is. It replaces the need for currentPage
 	$scope.indx = 0;
 	
-
 	//timer stuff
 	$scope.percent_remaining = 0;
 	$scope.time_remaining = $scope.attempt.exam_allotted_time;
@@ -32,11 +33,14 @@
 		$scope.$apply(function(){
 			$scope.time_remaining = endTime-Math.floor(timeElasped);
 			$scope.percent_remaining = Math.abs($scope.time_remaining)/endTime*100;
+			if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
+				$scope.percent_remaining = 100;
+				$scope.time_remaining = 0;
+				clearInterval(timer);
+				//Throws the alert that time is up to the user
+				$scope.time_out();
+			}
 		});
-		if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
-			$scope.submit_attempt();
-			clearInterval(timer);
-		}
 	}, 1000);
 
     $scope.random = function() {
@@ -71,6 +75,10 @@
 			$scope.error = error;
 		});
 	};
+
+	$scope.time_out = function(){
+		confirm("Time is up! On the actual test you would have to stop now.");
+	}
 	
 	$scope.save_answer = function(_question,_answer){
 
@@ -146,6 +154,28 @@
 		$scope.indx += 1;
 	};
 
+	$scope.checkNextQuestion = function() {
+		if($scope.indx >= $scope.attempt.questions.length - 1){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	$scope.checkPrevQuestion = function() {
+		if($scope.indx <= 0){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	
+
+	$scope.change_question = function(newIndex) {
+		$scope.indx = newIndex;
+	};
+
 	$scope.open_calculator = function(){
 		  var modalInstance = $uibModal.open({
 			windowClass: 'calc-modal',
@@ -155,6 +185,28 @@
     		keyboard: false,
     		controller: 'calculatorModal'
 		  });	
+	};
+
+	$scope.open_notepad = function(){
+		  var modalInstance = $uibModal.open({
+			windowClass: 'notepad-modal',
+			animation: false,
+			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
+			backdrop: 'static',
+    		keyboard: false,
+    		controller: 'notepadModal'
+		  });	
+	};
+	$scope.open_formula_sheet = function(){
+		  var modalInstance = $uibModal.open({
+			windowClass: 'formula-modal',
+			animation: false,
+			size: 'lg',
+			templateUrl: '/modules/exams-take/client/views/formula-modal.client.view.html',
+			backdrop: 'static',
+     		keyboard: false,
+    		controller: 'formulaModal'
+	  });	
 	};
 }
   

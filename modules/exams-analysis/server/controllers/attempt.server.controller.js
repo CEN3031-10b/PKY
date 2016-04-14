@@ -8,6 +8,21 @@ var path = require('path'),
   Exam = mongoose.model('Exam'),
   Attempt = mongoose.model('Attempt'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  
+  
+  
+var clear_attempt_answers = function(_attempt){
+	for(var i = 0; i <_attempt.questions.length; ++i){
+		for(var j = 0; j <_attempt.questions[i].data.answers.length; ++j){
+			_attempt.questions[i].data.answers[j].value = null;
+			_attempt.questions[i].data.answers[j].tolerance = null;
+			_attempt.questions[i].data.answers[j].correct = null;
+			if(_attempt.questions[i].data.type === 'fill in the blank'){
+				_attempt.questions[i].data.answers[j].content = null;
+			}
+		}					
+	}
+};
 
 exports.create = function (req, res) {
   var attempt = new Attempt(req.attempt);
@@ -25,16 +40,8 @@ exports.create = function (req, res) {
 					message: errorHandler.getErrorMessage(err)
 				});
 			}
-			for(var i = 0; i < a.questions.length; ++i){
-				for(var j = 0; j < a.questions[i].data.answers.length; ++j){
-					a.questions[i].data.answers[j].value = null;
-					a.questions[i].data.answers[j].tolerance = null;
-					a.questions[i].data.answers[j].correct = null;
-					if(a.questions[i].data.type === 'fill in the blank'){
-						a.questions[i].data.answers[j].content = null;
-					}
-				}					
-			}
+			
+			clear_attempt_answers(a);
 
 			res.json(a);
 		});
@@ -45,19 +52,28 @@ exports.create = function (req, res) {
 // only admins can delete
 exports.delete = function (req, res) {
 	Attempt.findByIdAndRemove(req.params.attemptId, function(err, attempt){
-	if (err) {
-		return res.status(400).send({
-			message: errorHandler.getErrorMessage(err)
-		});
-	} else {
-		res.json(attempt);
-	}
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(attempt);
+		}
 	});
 };
 
 exports.updateAnswers = function(req, res){
 	// check if its past the allotted time
 	var attempt = req.attempt;
+	//Check through all of the questions in the attempt
+	for(var i = 0; i < attempt.questions.length; i++){
+		for(var j = 0; j < req.body.questions.length; j++){
+			//If the question IDs match up save the mark_for_review variable to the server
+			if(attempt.questions[i]._id.equals(req.body.questions[j]._id)){
+				attempt.questions[i].mark_for_review = req.body.questions[j].mark_for_review;
+			}
+		}
+	}
 	attempt.student_answers = req.body.student_answers;
 	attempt.save(function (err) {
 		if (err) {
@@ -72,16 +88,8 @@ exports.updateAnswers = function(req, res){
 						message: errorHandler.getErrorMessage(err)
 					});
 				}
-				for(var i = 0; i < a.questions.length; ++i){
-					for(var j = 0; j < a.questions[i].data.answers.length; ++j){
-						a.questions[i].data.answers[j].value = null;
-						a.questions[i].data.answers[j].tolerance = null;
-						a.questions[i].data.answers[j].correct = null;
-						if(a.questions[i].data.type === 'fill in the blank'){
-							a.questions[i].data.answers[j].content = null;
-						}
-					}					
-				}
+
+				clear_attempt_answers(a);
 				res.json(a);
 			});
 		}
@@ -94,6 +102,7 @@ exports.getSingleAttemptByReqUser = function (req, res, next) {
 			});
 		}
 		else{
+			clear_attempt_answers(req.attempt);
 			res.json(req.attempt);
 		}
 };
@@ -116,6 +125,9 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 			});
 		} 
 		else{
+			for(var i = 0; i < attempts.length; ++i){
+				clear_attempt_answers(attempts[i]);
+			}				
 			res.json(attempts);			
 		}
 	});
@@ -123,6 +135,7 @@ exports.getAllAttemptsByReqUser = function (req, res, next) {
 };
 
 exports.getAllAttempts = function (req, res, next) {
+	// admin only route
 	Attempt.find({})
 	.sort('-created')
 	.populate('user')
@@ -230,8 +243,16 @@ exports.gradeAttempt = function(req,res,next){
 							}
 						}
 						else{
-							// must be exact (temp)
-							if(attempt.questions[i].data.answers[j].content === attempt.student_answers[k].content){
+							// not case sensitive
+							var correctAnswer = attempt.questions[i].data.answers[j].content;
+								correctAnswer = correctAnswer.replace(/\s+/g, '').toLowerCase();
+								console.log("correctAnswer");						
+								console.log(correctAnswer);						
+							var studentAnswer = attempt.student_answers[k].content;
+								studentAnswer = studentAnswer.replace(/\s+/g, '').toLowerCase();
+								console.log("studentAnswer");								
+								console.log(studentAnswer);
+							if(studentAnswer === correctAnswer){
 								attempt.questions[i].points_earned += points_per_answer;
 							}
 						}

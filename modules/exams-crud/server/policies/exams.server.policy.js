@@ -25,17 +25,30 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId/questions/:questionId',
       permissions: '*'
     }]
+  },
+  {
+    roles: ['user'],
+    allows: [{
+      resources: '/api/exams',
+      permissions: 'get'
+    }, {
+      resources: '/api/exams/:examId',
+      permissions: null
+    }, {
+      resources: '/api/exams/class/:classId',
+      permissions: null
+    }, {
+      resources: '/api/exams/:examId/questions/:questionId',
+      permissions: null
+    }]
   }]);
 };
 
 
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
-
-  // If an article is being processed and the current user created it then allow any manipulation
-  if (req.article && req.user && req.article.user && req.article.user.id === req.user.id) {
-    return next();
-  }
+  req.admin = roles.indexOf('admin') >= 0;
+  console.log(roles, req.route.path, req.method);
 
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {

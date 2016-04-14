@@ -5,74 +5,80 @@
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
 <div class = "col-md-12 main-table-container">
-		<table class="main-table-review">
-	<tr ng-repeat="question in attempt.questions">
-		<td style="padding-bottom: 30px; border: 10px solid white;">
-			<!-- replace with ng-include -->
-			<table ng-if="question.data.type === multiple_choice">
-				<tr>
-					<td>
-						<!--implememting mathjax font for the question text-->
-						<pre mathjax="question.data.content"></pre>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="radio" 
-						ng-model="question.selected_answer" 
-						value="{{answer._id}}" disabled>
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === multiple_select">
-				<tr>
-					<td>
-						<!--implememting mathjax font for the question text-->
-						<pre mathjax="question.data.content"></pre>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						<input type="checkbox" 
-						ng-model="answer.correct" 
-						value="{{answer._id}}" disabled>
-							{{answer.content}}
-						</input>
-					</td>
-				</tr>
-			</table>
-			<table ng-if="question.data.type === fill_in_the_blank">
-				<tr>
-					<td>
-						<!--implememting mathjax font for the question text-->
-						<pre mathjax="question.data.content"></pre>
-					</td>
-				</tr>
-				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
-						{{answer.label}}
-					</td>
-					<!-- numeric answer -->
-					<td ng-show="answer.is_numeric">
-						<input class="form-control" type="number" ng-model="answer.value" disabled>
-					</td>
-					<!-- non numeric -->
-					<td ng-show="!answer.is_numeric">
-						<textarea class="form-control" ng-model="answer.content" disabled></textarea>
-					</td>
-				</tr>
-			</table>
-			<table ng-repeat="standard in question.data.standards">
-				<tr>
-					<td>
-						{{standard.code}} {{standard.content}}
-					</td>
-				</tr>
-			</table>
-			points earned: {{question.points_earned + "/" + question.data.points}}
-		</td>
-	</tr>
-</table>
+	<table class="main-table-review">
+		<tr ng-repeat="question in attempt.questions">
+			<td style="padding-bottom: 30px; border: 10px solid #cdebf9;">
+				<i ng-if="question.points_earned !== question.data.points" style="font-size:30px;" class="points x glyphicon glyphicon-remove"></i>
+				<i ng-if="question.points_earned === question.data.points" style="color:green; font-size:30px;" class="points glyphicon glyphicon-ok"></i>
+				<table ng-if="question.data.type === multiple_choice">
+					<tr>
+					<td></td>
+						<td>
+							<!--implememting mathjax font for the question text-->
+							<pre mathjax="question.data.content"></pre>
+						</td>
+					</tr>
+					<tr ng-repeat="answer in question.data.answers">
+						<td style="padding-left:20px">
+							<input type="radio" 
+							ng-model="question.selected_answer" 
+							value="{{answer._id}}" disabled>							
+							</input>
+						</td>
+						<td><pre mathjax="answer.content"></pre></td>
+					</tr>
+				</table>
+				<table ng-if="question.data.type === multiple_select">
+					<tr>
+						<td></td>
+						<td>
+							<!--implememting mathjax font for the question text-->
+							<pre mathjax="question.data.content"></pre>
+						</td>
+					</tr>
+					<tr ng-repeat="answer in question.data.answers">
+						<td style="padding-left:20px">
+							<input type="checkbox" 
+							ng-model="answer.correct" 
+							value="{{answer._id}}" disabled>
+							</input>
+							
+						</td>
+						<td><pre mathjax="answer.content"></pre></td>
+					</tr>
+				</table>
+				<table ng-if="question.data.type === fill_in_the_blank">
+					<tr>
+						<td></td>
+						<td>
+							<!--implememting mathjax font for the question text-->
+							<pre mathjax="question.data.content"></pre>
+						</td>
+					</tr>
+					<tr ng-repeat="answer in question.data.answers">
+						<td style="padding-left:20px">
+							<pre mathjax="answer.label"></pre>
+						</td>
+						<!-- numeric answer -->
+						<td ng-show="answer.is_numeric">
+							<input class="form-control" type="number" ng-model="answer.value" disabled>
+						</td>
+						<!-- non numeric -->
+						<td ng-show="!answer.is_numeric">
+							<textarea class="form-control" ng-model="answer.content" disabled></textarea>
+						</td>
+					</tr>
+				</table>
+				<table ng-repeat="standard in question.data.standards">
+					<tr>
+						<td>
+							<uib-alert type="{{get_alert_type(question)}}">
+								<strong>{{standard.code}}</strong> {{standard.content}}
+							</uib-alert>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 </div>

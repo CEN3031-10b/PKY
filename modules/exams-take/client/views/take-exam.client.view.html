@@ -3,7 +3,7 @@
 
 	<div class="col-lg-10 black-text">
 	<div class="admin-analysis">
-		<h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
+		<!--h1 ng-show="loading" style="font-weight:150%"> LOADING </h1-->
 		<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 		<pre ng-show="error">{{error | json}}</pre>
 		<div ng-if="!error">
@@ -11,37 +11,43 @@
 				<h1 class="Title">{{attempt.exam_title}}</h1>
 				<h4 class="ClassTitle">{{attempt.exam_class}}</h4>
 				<div class="progress">
+				  <!-- Bootstrap progress bar to show how much time the user has remaining-->
 				  <div class="progress-bar progress-bar-striped active" role="progressbar"
 				   aria-valuemin="0" aria-valuemax="100" style="width:{{percent_remaining}}%"> {{time_remaining}} minutes remaining
 				  </div>
 				</div>
 			</div>
 			<div class="exam-buttons">
-				<button class="btn btn-primary"  ng-click="previousQuestion()">
-				<span class="glyphicon glyphicon-arrow-left"></span>
-				</button>
-				<div class="btn-group" uib-dropdown is-open="status.isopen">
-					<button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-					{{indx+1 + " / " +attempt.questions.length}} <span class="caret"></span>
-					</button>
-					<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-					<li ng-repeat="i in attempt.questions" role="menuitem" ng-click="selectQuestion(i)"><a href="#">{{$index+1}}</a></li>
-					</ul>
+				<div class="exam-buttons">
+					<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
+						 Submit  <i class="glyphicon glyphicon-plus"></i>
+					</button>	
 				</div>
-				<button class="btn btn-primary"  ng-click="nextQuestion()">
-				<span class="glyphicon glyphicon-arrow-right"></span>
-				</button>
-				<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
-					<i class="glyphicon glyphicon-modal-window"></i> Calculator
-				</button>
-				<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-					<i class="glyphicon glyphicon-plus"></i> Submit
-				</button>	
+				<div>
+					&nbsp
+				</div>
+				<div>
+					&nbsp
+				</div>
+				<div class="exam-buttons">
+					<button class="btn btn-primary" type="button" ng-click="open_formula_sheet()">
+						 Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
+					</button>
+					<button class="btn btn-primary" type="button" ng-click="open_notepad()">
+						 Notepad  <i class="glyphicon glyphicon-pencil"></i>
+					</button>
+					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
+						 Calculator  <i class="glyphicon glyphicon-modal-window"></i>
+					</button>
+					<!--button type="button" class="btn btn-default btn-circle" ng-click="previousQuestion()"><i class="glyphicon glyphicon-arrow-left"></i></button>
+					<button type="button" class="btn btn-default btn-circle" ng-click="nextQuestion()"><i class="glyphicon glyphicon-arrow-right"></i></button-->
+				</div>
 			</div>
 		</div>
 		<br>
 		<br><div class="titleHeader" style="height:60px;">&nbsp</div>
 		<br>
+		
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
 			<div class="QuestionNumber">{{$index+1}})</div>
 			<table ng-show="question.data.type === multiple_choice">
@@ -105,56 +111,44 @@
 					</td>
 				</tr>
 			</table>
+
+		<div class="loading ng-hide" ng-show="loading">
+	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
+		</div>
+		<br><br><br><br><br>
+		<div align = "center">
+			<button class="btn btn-primary" ng-disabled="checkPrevQuestion()" ng-click="previousQuestion()">
+				<span class="glyphicon glyphicon-arrow-left"></span> Previous  
+				</button>
+				<!-- If you click this button, the mark_for_review variable will be flipped to "true". After marking it true, it saves the test so that if you refresh or get disconnected the question will still be marked for review-->
+				<button class="btn btn-primary" type="button" ng-click="attempt.questions[indx].mark_for_review = !attempt.questions[indx].mark_for_review; save_attempt()">
+					 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
+				</button>
+				<button class="btn btn-primary" ng-disabled="checkNextQuestion()" ng-click="nextQuestion()">
+				 Next <span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+			</div>
 		</div>
 	</div>
 	</div>
 	
 	<div class="col-lg-2">
-		<div></div>
+		<br>
+		<br>
+		</br>
+		<br>
 		<div class=exam-timer>
-			{{attempt.start_time}}
+			<h2>
+				Questions:
+			</h2>
+	<!--	{{attempt.start_time}} -->
 		</div>
-		<div ng-repeat="question in attempt.questions">
-			{{'Question ' + ($index + 1)}}
-		</div>
+		<text 
+		class = "link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" 
+		ng-click="change_question($index)" >
+			<!--If mark_for_review is true, display a glyphicon flag next to the question name on the sidebar. If it is not, just display the question name-->
+			<i ng-if="question.mark_for_review===true" class="glyphicon glyphicon-flag review"></i>{{' Number ' + ($index + 1)}} <br>
+		</text>
 	</div>
 </div>
 </div>
-
-
-
-
-<!--
-<h1>{{attempt.exam_title}}</h1>
-<h4>{{attempt.exam_class}}</h4>
-<h1 ng-show="loading" style="font-weight:150%"> LOADING </h1>
-<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
-<pre ng-show="error"> {{error | json}}</pre>
-	<table class = "tablePadding">
-		<tr class = "tablePadding">
-			<td class = "buttonTable">
-				<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-					<i class="glyphicon glyphicon-plus">Submit</i>
-				</button>	
-			</td>
-			<td class = "buttonTable">
-				<button id="myBtn" class="btn btn-primary" type="button" ng-click="open_calculator()">
-					<i class="glyphicon glyphicon-modal-window">Calculator</i>
-				</button>
-			</td>
-			<td class = "buttonTable">
-				<button class="btn btn-default"  ng-click="previousQuestion()">
-					<span class="glyphicon glyphicon-arrow-left"></span>
-				</button>
-			</td>
-			<td class = "buttonTable">
-				<div> {{indx + 1}} / {{attempt.questions.length}}<div>
-			</td>
-			<td class = "buttonTable">
-				<button class="btn btn-default"  ng-click="nextQuestion()">
-					<span class="glyphicon glyphicon-arrow-right"></span>
-				</button>
-			</td>
-		</tr>
-	</table>	
--->

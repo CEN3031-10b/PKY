@@ -413,7 +413,7 @@
 	word-wrap: break-word;
 	border:3px solid white;
 	color: black;
-	background:#cdebf9;
+	background:white;
 	padding: 65px;
 	width: 100%; 
 	margin:0 auto;
@@ -429,4 +429,8 @@
 
 .main-table-review tr{
 	padding-left: 10px;
+}
+
+.review{
+	color: red;
 }

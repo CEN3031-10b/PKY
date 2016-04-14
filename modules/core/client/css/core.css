@@ -59,17 +59,6 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
-.section { 
-  z-index: 1;
-  min-height:420px;
-  width: 100%; 
-  overflow:hidden !important;
-  height:100%;
-  padding-top:100px;
-  padding-bottom:50px; 
-  display:none;
-  top:0;
-  }
 
   #head{
     display: block;
@@ -110,7 +99,7 @@ a:hover .header-profile-image {
   width: 100%; 
   overflow:hidden !important;
   height:100%;
-  padding-top:100px;
+  padding-top:42px;
   padding-bottom:50px; 
   display:none;
   top:0;
@@ -157,8 +146,9 @@ a:hover .header-profile-image {
 .title,
 .subtitle { 
   font-family: 'Wire One', Helvetica, Arial, sans-serif !important;
-  font-size:5em;
-  margin-bottom:15px; 
+  font-size:6em;
+  margin-top: 0px;
+  margin-bottom:0px; 
   color: #fff !important; 
   line-height:1em;
 }
