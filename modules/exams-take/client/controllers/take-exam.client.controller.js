@@ -16,6 +16,9 @@
 	$scope.fill_in_the_blank = 'fill in the blank';
 	$scope.loading = true;
 	$scope.error = null;
+	$scope.calc_opened = false;
+	$scope.notepad_opened = false;
+	$scope.formula_opened = false;
 	// $scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
 	// indx is a basically a counter for question number. That way you can jump from question 1 to 5 by knowing where in the question array
 	// the desired quesion is. It replaces the need for currentPage
@@ -170,7 +173,6 @@
 			return false;
 	}
 
-	
 
 	$scope.change_question = function(newIndex) {
 		$scope.indx = newIndex;
@@ -183,7 +185,9 @@
 			templateUrl: '/modules/exams-take/client/views/calc-modal.client.view.html',
 			backdrop: 'static',
     		keyboard: false,
-    		controller: 'calculatorModal'
+    		controller: 'calculatorModal',
+			backdropClass: 'calc-modal',
+			openedClass: 'calc-open',
 		  });	
 	};
 
@@ -194,7 +198,8 @@
 			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
 			backdrop: 'static',
     		keyboard: false,
-    		controller: 'notepadModal'
+    		controller: 'notepadModal',
+			backdropClass: 'calc-modal'
 		  });	
 	};
 	$scope.open_formula_sheet = function(){
@@ -205,9 +210,15 @@
 			templateUrl: '/modules/exams-take/client/views/formula-modal.client.view.html',
 			backdrop: 'static',
      		keyboard: false,
-    		controller: 'formulaModal'
-	  });	
+    		controller: 'formulaModal',
+			backdropClass: 'calc-modal'
+		});		
+		modalInstance.result.then(function() {
+			console.log("here");
+		});
 	};
+	
+
 }
   
 })();

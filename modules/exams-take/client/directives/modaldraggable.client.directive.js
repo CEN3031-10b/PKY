@@ -4,42 +4,44 @@
   angular.module('exams-take')
     .directive('modaldraggable', modaldraggable);
 
-  modaldraggable.$inject = ['$document'];
+  modaldraggable.$inject = ['$document', '$timeout'];
 
-  function modaldraggable($document) {
-	return function (scope, element) {
-		var startX = 0,
-		startY = 0,
-		x = 0,
-		y = 0;
-		element= angular.element(document.getElementsByClassName("modal-dialog"));
-		element.css({
-			position: 'fixed',
-			cursor: 'move'
-		});
+  function modaldraggable($document,$timeout) {
+	return function (scope, element, attr) {
+		// use timeout so that the querySelector runs after the DOM has loaded
+		$timeout(function(){		
+			var startX = 0, startY = 0, x = 0, y = 0;
+			var dialog = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-dialog'));
+			var header = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-header'));
+			dialog.css({
+				position: 'fixed',
+				cursor: 'move'
+			});
 
-		element.on('mousedown', function (event) {
-			// Prevent default dragging of selected content
-			event.preventDefault();
-			startX = event.screenX - x;
-			startY = event.screenY - y;
-			$document.on('mousemove', mousemove);
-			$document.on('mouseup', mouseup);
-		});
+			header.on('mousedown', function (event) {
+				// Prevent default dragging of selected content
+				event.preventDefault();
+				startX = event.screenX - x;
+				startY = event.screenY - y;
+				$document.on('mousemove', mousemove);
+				$document.on('mouseup', mouseleave);
+				//header.on('mouseleave', mouseleave);
+			});
 
-		function mousemove(event) {
-			y = event.screenY - startY;
-			x = event.screenX - startX;
-			element.css({
-			top: y + 'px',
-			left: x + 'px'
-		});
-		}
-
-		function mouseup() {
-			$document.unbind('mousemove', mousemove);
-			$document.unbind('mouseup', mouseup);
-		}
+			function mousemove(event) {
+				y = event.screenY - startY;
+				x = event.screenX - startX;
+				dialog.css({
+					top: y + 'px',
+					left: x + 'px'
+				});
+			}
+			function mouseleave(){
+				$document.unbind('mousemove', mousemove);
+				$document.unbind('mouseup', mouseleave);
+				//header.unbind('mouseleave', mouseleave);
+			}
+		},0);
 	};
  }
 }());

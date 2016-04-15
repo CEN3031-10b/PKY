@@ -109,6 +109,7 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 .calc-modal .modal-dialog{
 	width: 400px;
 }
+
 .calc-modal .modal-content{
 	width:100%;
 	padding: 20px;
@@ -123,13 +124,10 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	padding:0;
 	margin:0;
 }
-.modal-backdrop{
+
+.calc-modal.modal-backdrop{
 	z-index: -10 !important;
 	background: transparent !important;
-}
-
-.modal-open{
-	z-index: -11 !important;
 }
 
 .calc-modal{
@@ -137,11 +135,50 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	bottom: auto;
 	overflow: visible;
 }
-/*.formula-modal{
+
+/* notepad modal */
+
+.notepad-modal.modal-content{
+	width:100%;
+}
+
+.notepad-modal.modal-body{
+
+}
+.notepad-modal.modal-backdrop{
+	z-index: -10 !important;
+	background: transparent !important;
+}
+
+.notepad-modal{
 	right: auto;
 	bottom: auto;
-	overflow:auto
-}*/
+	overflow: visible;
+}
+
+.notepad-modal .modal-header{
+
+}
+
+.calc-open{
+
+}
+
+.notepad-modal .modal-dialog{
+	width: 600px;
+}
+
+.notepad-modal .modal-body{
+	height: 400px;
+}
+
+.modal-open{
+	z-index: -11 !important;
+}
+
+.modal-dialog{
+
+}
 
 @media screen and (min-width: 992px) {
 	section#choose-test .test-con {
