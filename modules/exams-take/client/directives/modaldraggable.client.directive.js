@@ -11,6 +11,7 @@
 		// use timeout so that the querySelector runs after the DOM has loaded
 		$timeout(function(){		
 			var startX = 0, startY = 0, x = 0, y = 0;
+			// the modaldraggable directive should have the class of the modal, ex: modaldraggable="calc-modal"
 			var dialog = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-dialog'));
 			var header = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-header'));
 			dialog.css({

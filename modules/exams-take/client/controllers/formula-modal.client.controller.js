@@ -12,7 +12,11 @@
 	$scope.exitFormula = function () {
       $uibModalInstance.dismiss('exitFormula');
     };
-
+	// prevent browser navigation underneath modal
+	$scope.$on('$locationChangeStart', function(event) {
+		event.preventDefault();
+		$uibModalInstance.dismiss('cancel');
+	});
 }
   
 })();
