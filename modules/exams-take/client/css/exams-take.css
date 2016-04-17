@@ -12,6 +12,13 @@ pre {
 	padding:0;
 }
 
+.greyLine{
+	border-bottom: 1px solid #bfbfbf;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
 .exam-header{
 	float:left;
 }
