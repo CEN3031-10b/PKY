@@ -27,6 +27,13 @@ module.exports = {
       ]
     },
     css: 'public/dist/application.min.css',
-    js: 'public/dist/application.min.js'
+    js: 'public/dist/application.min.js',
+	img: [
+      'modules/**/*/img/**/*.jpg',
+      'modules/**/*/img/**/*.png',
+      'modules/**/*/img/**/*.gif',
+      'modules/**/*/img/**/*.svg'
+    ],
+    views: ['modules/*/client/views/**/*.html'],
   }
 };

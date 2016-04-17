@@ -759,6 +759,13 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 	};
 	
 	$scope.set_answers($scope.attempt);
+	
+	$scope.get_alert_type = function(_question){
+		if(_question.points_earned != _question.data.points){
+			return "danger";
+		}
+		return "success";
+	};
   }
   
 })();
@@ -948,13 +955,12 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     .module('exams')
     .controller('AddQuestionController', AddQuestionController);
 
-  AddQuestionController.$inject = ['$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards'];
+  AddQuestionController.$inject = ['$window','$timeout','$scope','$rootScope','$state','$stateParams', 'ExamsService', 'Authentication', '$uibModalInstance', '$document', 'selected_exam','old_question','standards', 'FileUploader'];
 
-  function AddQuestionController($timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards) {
+  function AddQuestionController($window, $timeout, $scope, $rootScope, $state, $stateParams, ExamsService, Authentication, $uibModalInstance, $document, selected_exam, old_question, standards, FileUploader) {
     
 	// init
 	$scope.standards = standards.data;
-	console.log(standards.data);
 	$scope.selected_exam = selected_exam;
 	$scope.selected_type = null;
 	$scope.old_question = null;
@@ -1045,6 +1051,11 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 		if(_question.answers)
 		_question.answers.splice(_index, 1);  
     };
+
+    $scope.remove_standard = function(_question,_index){
+    	if(_question.standards)
+    	_question.standards.splice(_index, 1);
+    }
 	
     $scope.submit = function(){
 		$scope.loading = true;
@@ -1058,6 +1069,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 				old_question.points = response.data.points;
 				old_question.standards = response.data.standards;
 				old_question.answers = response.data.answers;
+				old_question.imageURL = response.data.imageURL;
 				selected_exam.version++;
 				$scope.ok();
 			}, function(error){
@@ -1105,6 +1117,74 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 		event.preventDefault();
 		$uibModalInstance.dismiss('cancel');
 	});
+	
+	// ----- image upload -----
+	$scope.imageURL = null;
+    // Create file uploader instance
+    $scope.uploader = new FileUploader({
+      url: 'api/users/picture',
+      alias: 'newProfilePicture',
+      onAfterAddingFile: onAfterAddingFile,
+      onSuccessItem: onSuccessItem,
+      onErrorItem: onErrorItem
+    });
+
+    // Set file uploader image filter
+    $scope.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function (item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    function onAfterAddingFile(fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            $scope.imageURL = fileReaderEvent.target.result;
+			$scope.image_upload_success = '';
+          }, 0);
+        };
+      }
+    }
+
+    // Called after the user has successfully uploaded a new picture
+    function onSuccessItem(fileItem, response, status, headers) {
+		$scope.image_upload_success = 'image uploaded successfully';
+		$scope.question.imageURL = response.profileImageURL;
+		// Clear upload buttons
+		cancelUpload();
+    }
+
+    // Called after the user has failed to uploaded a new picture
+    function onErrorItem(fileItem, response, status, headers) {
+	$scope.image_upload_success = 'error uploading image';
+      // Clear upload buttons
+      cancelUpload();
+    }
+
+    // Change user profile picture
+    $scope.uploadProfilePicture = function() {
+      // Start upload
+      $scope.uploader.uploadAll();
+    }
+
+    // Cancel the upload process
+    function cancelUpload() {
+		$scope.imageURL = null;
+		$scope.uploader.clearQueue();
+    }
+	
+	$scope.cancelUpload = cancelUpload;
+	
+	$scope.delete_image = function(){
+		$scope.question.imageURL = null;
+	}
 	
   }
   
@@ -1488,7 +1568,8 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 		// exams
       return {
         get_exams : function(questions,answers){
-          return $http.get(exam_url_base +'/?questions=' + (questions === 1) + '&answers=' + (answers === 1));
+          return $http.get(exam_url_base);
+		  //+'/?questions=' + (questions === 1) + '&answers=' + (answers === 1)
         },
         get_exam : function(id){
           return $http.get(exam_url_base + '/' + id);
@@ -1876,7 +1957,58 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 	$scope.exitCalc = function () {
       $uibModalInstance.dismiss('exitCalc');
     };
+	// prevent browser navigation underneath modal
+	$scope.$on('$locationChangeStart', function(event) {
+		event.preventDefault();
+		$uibModalInstance.dismiss('cancel');
+	});
+}
+  
+})();
 
+(function () {
+  'use strict';
+
+  angular
+    .module('exams-take')
+    .controller('formulaModal', formulaModal);
+
+  formulaModal.$inject = ['$scope', '$rootScope', '$window','$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal', '$uibModalInstance'];
+
+  function formulaModal($scope, $rootScope, $window,$state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal, $uibModalInstance) {
+	
+	$scope.exitFormula = function () {
+      $uibModalInstance.dismiss('exitFormula');
+    };
+	// prevent browser navigation underneath modal
+	$scope.$on('$locationChangeStart', function(event) {
+		event.preventDefault();
+		$uibModalInstance.dismiss('cancel');
+	});
+}
+  
+})();
+(function () {
+  'use strict';
+
+  angular
+    .module('exams-take')
+    .controller('notepadModal', notepadModal);
+
+  notepadModal.$inject = ['$scope', '$rootScope', '$window','$state', '$stateParams', 'ExamsService','ExamsAnalysisService' ,'Authentication', '$uibModal', '$uibModalInstance','attempt'];
+
+  function notepadModal($scope, $rootScope, $window,$state, $stateParams, ExamsService,ExamsAnalysisService, Authentication, $uibModal, $uibModalInstance, attempt) {
+	
+	$scope.attempt = attempt;
+	
+	$scope.exitCalc = function () {
+      $uibModalInstance.dismiss('exitCalc');
+    };
+	// prevent browser navigation underneath modal
+	$scope.$on('$locationChangeStart', function(event) {
+		event.preventDefault();
+		$uibModalInstance.dismiss('cancel');
+	});
 }
   
 })();
@@ -1895,10 +2027,42 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 	$scope.exams = exams.data;
 	$scope.attempts = [];
 	$scope.error = null;
+	$scope.selected_mode = "take";
+	
+	// from edit exams page
+	$scope.calculate_points = function(_exam){
+		_exam.point_total = 0;
+		for(var i = 0; i <_exam.questions.length; ++i){
+			if(_exam.questions[i].points != null){
+				_exam.point_total += Number(_exam.questions[i].points);
+			}
+			else{
+				_exam.point_total = 'One or more questions with undefined point value.';
+				break;
+			}
+		}
+	};	
+	
+	// set point_total attribute of each exam
+	for(var i = 0; i < $scope.exams.length; ++i){
+		$scope.calculate_points($scope.exams[i]);
+	}
+
+	$scope.calculate_remaining_attempts = function(_attempts, _exams){
+		for(var i = 0; i < _exams.length; ++i){
+			_exams[i].remaining_attempts = _exams[i].allowed_attempts;
+			for(var j = 0; j < _attempts.length; ++j){
+				if(_exams[i]._id === _attempts[j].exam._id && _attempts[j].submitted){
+					_exams[i].remaining_attempts--;
+				}
+			}
+		}
+	};
 	
 	ExamsAnalysisService.get_attempts()
 	.then(function(response){
 		$scope.attempts = response.data;
+		$scope.calculate_remaining_attempts($scope.attempts, $scope.exams); 
 	}, function(error){
 		$scope.error = error;
 	});
@@ -1940,12 +2104,17 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 	$scope.multiple_choice = 'multiple choice';
 	$scope.multiple_select = 'multiple select';
 	$scope.fill_in_the_blank = 'fill in the blank';
-	$scope.loading = true;
+	$scope.loading = false;
+	$scope.init_loading = true;
 	$scope.error = null;
-	$scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	$scope.calc_opened = false;
+	$scope.notepad_opened = false;
+	$scope.formula_opened = false;
+	// $scope.currentPage = 0; //Page numbering starts at 0-- view displays "currentPage+1" so that users see pages starting at page # 1
+	// indx is a basically a counter for question number. That way you can jump from question 1 to 5 by knowing where in the question array
+	// the desired quesion is. It replaces the need for currentPage
 	$scope.indx = 0;
 	
-
 	//timer stuff
 	$scope.percent_remaining = 0;
 	$scope.time_remaining = $scope.attempt.exam_allotted_time;
@@ -1958,11 +2127,14 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 		$scope.$apply(function(){
 			$scope.time_remaining = endTime-Math.floor(timeElasped);
 			$scope.percent_remaining = Math.abs($scope.time_remaining)/endTime*100;
+			if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
+				$scope.percent_remaining = 100;
+				$scope.time_remaining = 0;
+				clearInterval(timer);
+				//Throws the alert that time is up to the user
+				$scope.time_out();
+			}
 		});
-		if ($scope.percent_remaining>100 || $scope.time_remaining < 0) {
-			$scope.submit_attempt();
-			clearInterval(timer);
-		}
 	}, 1000);
 
     $scope.random = function() {
@@ -1976,11 +2148,11 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 	// create a new attempt or return one in progress for the specified exam
 	ExamsAnalysisService.create_attempt($stateParams.eID)
 	.then(function(response){
-		$scope.loading = false;
+		$scope.init_loading = false;
 		$scope.attempt = response.data;
 		$scope.set_answers($scope.attempt);
 	}, function(error){
-		$scope.loading = false;
+		$scope.init_loading = false;
 		$scope.error = error;
 	});
 	
@@ -1997,6 +2169,10 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 			$scope.error = error;
 		});
 	};
+
+	$scope.time_out = function(){
+		confirm("Time is up! On the actual test you would have to stop now.");
+	}
 	
 	$scope.save_answer = function(_question,_answer){
 
@@ -2072,16 +2248,84 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
 		$scope.indx += 1;
 	};
 
+	$scope.checkNextQuestion = function() {
+		if($scope.indx >= $scope.attempt.questions.length - 1){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	$scope.checkPrevQuestion = function() {
+		if($scope.indx <= 0){
+			return true;
+		}
+		else
+			return false;
+	}
+
+	$scope.change_question = function(newIndex) {
+		$scope.indx = newIndex;
+	};
+
 	$scope.open_calculator = function(){
-		  var modalInstance = $uibModal.open({
+		$scope.calc_opened = true;
+		var modalInstance = $uibModal.open({
 			windowClass: 'calc-modal',
 			animation: false,
 			templateUrl: '/modules/exams-take/client/views/calc-modal.client.view.html',
 			backdrop: 'static',
-    		keyboard: false,
-    		controller: 'calculatorModal'
-		  });	
+			keyboard: false,
+			controller: 'calculatorModal',
+			backdropClass: 'calc-modal',
+			openedClass: 'calc-open',
+		});	
+		modalInstance.result.then(null,
+		function() {
+			$scope.calc_opened = false;
+		});
 	};
+
+	$scope.open_notepad = function(){
+		$scope.notepad_opened = true;
+		var modalInstance = $uibModal.open({
+			windowClass: 'notepad-modal',
+			animation: false,
+			templateUrl: '/modules/exams-take/client/views/notes-modal.client.view.html',
+			backdrop: 'static',
+			keyboard: false,
+			controller: 'notepadModal',
+			backdropClass: 'calc-modal',
+			resolve: {
+				attempt: function(){
+					return $scope.attempt;
+				}
+			}
+		});	
+		modalInstance.result.then(null, 
+		function() {
+			$scope.notepad_opened = false;
+		});
+	};
+	$scope.open_formula_sheet = function(){
+		$scope.formula_opened = true;
+		var modalInstance = $uibModal.open({
+			windowClass: 'formula-modal',
+			animation: false,
+			size: 'lg',
+			templateUrl: '/modules/exams-take/client/views/formula-modal.client.view.html',
+			backdrop: 'static',
+     		keyboard: false,
+    		controller: 'formulaModal',
+			backdropClass: 'calc-modal'
+		});		
+		modalInstance.result.then(null,
+		function(){
+			$scope.formula_opened = false;
+		});
+	};
+	
+
 }
   
 })();
@@ -2092,42 +2336,45 @@ angular.module('exams').directive('mathjax', ["$compile", function ($compile) {
   angular.module('exams-take')
     .directive('modaldraggable', modaldraggable);
 
-  modaldraggable.$inject = ['$document'];
+  modaldraggable.$inject = ['$document', '$timeout'];
 
-  function modaldraggable($document) {
-	return function (scope, element) {
-		var startX = 0,
-		startY = 0,
-		x = 0,
-		y = 0;
-		element= angular.element(document.getElementsByClassName("modal-dialog"));
-		element.css({
-			position: 'fixed',
-			cursor: 'move'
-		});
+  function modaldraggable($document,$timeout) {
+	return function (scope, element, attr) {
+		// use timeout so that the querySelector runs after the DOM has loaded
+		$timeout(function(){		
+			var startX = 0, startY = 0, x = 0, y = 0;
+			// the modaldraggable directive should have the class of the modal, ex: modaldraggable="calc-modal"
+			var dialog = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-dialog'));
+			var header = angular.element(document.querySelector('.' + attr.modaldraggable + ' .modal-header'));
+			dialog.css({
+				position: 'fixed',
+				cursor: 'move'
+			});
 
-		element.on('mousedown', function (event) {
-			// Prevent default dragging of selected content
-			event.preventDefault();
-			startX = event.screenX - x;
-			startY = event.screenY - y;
-			$document.on('mousemove', mousemove);
-			$document.on('mouseup', mouseup);
-		});
+			header.on('mousedown', function (event) {
+				// Prevent default dragging of selected content
+				event.preventDefault();
+				startX = event.screenX - x;
+				startY = event.screenY - y;
+				$document.on('mousemove', mousemove);
+				$document.on('mouseup', mouseleave);
+				//header.on('mouseleave', mouseleave);
+			});
 
-		function mousemove(event) {
-			y = event.screenY - startY;
-			x = event.screenX - startX;
-			element.css({
-			top: y + 'px',
-			left: x + 'px'
-		});
-		}
-
-		function mouseup() {
-			$document.unbind('mousemove', mousemove);
-			$document.unbind('mouseup', mouseup);
-		}
+			function mousemove(event) {
+				y = event.screenY - startY;
+				x = event.screenX - startX;
+				dialog.css({
+					top: y + 'px',
+					left: x + 'px'
+				});
+			}
+			function mouseleave(){
+				$document.unbind('mousemove', mousemove);
+				$document.unbind('mouseup', mouseleave);
+				//header.unbind('mouseleave', mouseleave);
+			}
+		},0);
 	};
  }
 }());
