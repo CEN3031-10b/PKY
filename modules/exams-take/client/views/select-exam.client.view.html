@@ -3,9 +3,7 @@
 	<div class="alert alert-warning" ng-repeat="attempt in attempts" ng-if="!attempt.submitted && !attempt.isDismissed">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="attempt.isDismissed = true">&times;</a>
 	  		<strong>Warning!</strong> You have a test in session right now. Click <a style="cursor:pointer" ng-click="start_exam(attempt.exam)">here</a> to return to {{attempt.exam.title}}
-
 	</div>
-	
 	<uib-tabset>
 		<uib-tab ng-click="selected_mode='take'" active="true">
 			<uib-tab-heading>

@@ -74,6 +74,7 @@ exports.updateAnswers = function(req, res){
 			}
 		}
 	}
+	attempt.notes = req.body.notes;
 	attempt.student_answers = req.body.student_answers;
 	attempt.save(function (err) {
 		if (err) {

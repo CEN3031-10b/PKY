@@ -6,8 +6,10 @@ pre {
 }
 
 .titleHeader{
-	height:60px;
 	border-bottom: 2px solid #bebebe;
+	width:100%;
+	margin:0;
+	padding:0;
 }
 
 .exam-header{
@@ -172,6 +174,25 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	height: 400px;
 }
 
+.formula-modal .modal-dialog{
+	width: 650px;
+}
+
+.formula-modal .modal-body{
+	height: 400px;
+}
+
+.formula-modal.modal-backdrop{
+	z-index: -10 !important;
+	background: transparent !important;
+}
+
+.formula-modal{
+	right: auto;
+	bottom: auto;
+	overflow: visible;
+}
+
 .modal-open{
 	z-index: -11 !important;
 }
@@ -186,7 +207,11 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 		margin: 10px;
 	}
 }
-
+.take-container.container
+{
+    min-width: 1500px;
+    margin: 0 auto;
+}
 .link-hover{
 	color: white;
 }
@@ -203,4 +228,13 @@ section#choose-test .test-con a.start-test:hover, section#choose-test .test-con 
 	height: 600px;
 	display: table;
     margin: 0 auto;
+}
+
+.loading-answers{
+	background:white;
+	color:black;
+	border-radius: 1000px;
+    border: 2px solid blue;
+	height:65px;
+	width:64px;
 }

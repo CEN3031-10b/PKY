@@ -1,55 +1,70 @@
 <div class="container-full">
 <div class="row">
-
+	<div class="col-lg-1" style="margin:0; padding:0;width:130px"  >
+		<br>
+		<br>
+		<br>
+		<div class="exam-timer" ng-hide="init_loading || error">
+			<div class="progress">
+			<!-- Bootstrap progress bar to show how much time the user has remaining-->
+				<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{percent_remaining}}%"> 
+					<span>{{time_remaining}} minutes remaining</span>
+				</div>
+			</div>
+			<h3>
+				<strong>Questions:</strong>
+			</h3>
+		</div>
+		<text 
+		class = "link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" 
+		ng-click="change_question($index)" >
+		<!--If mark_for_review is true, display a glyphicon flag next to the question name on the sidebar. If it is not, just display the question name-->
+		<i ng-if="question.mark_for_review===true" class="glyphicon glyphicon-flag review"></i>{{' Number ' + ($index + 1)}} <br>
+		</text>
+	</div>
 	<div class="col-lg-10 black-text">
 	<div class="admin-analysis">
 		<!--h1 ng-show="loading" style="font-weight:150%"> LOADING </h1-->
 		<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 		<pre ng-show="error">{{error | json}}</pre>
 		<div ng-if="!error">
-			<div class="exam-header">
-				<h1 class="Title">{{attempt.exam_title}}</h1>
-				<h4 class="ClassTitle">{{attempt.exam_class}}</h4>
-				<div class="progress">
-				  <!-- Bootstrap progress bar to show how much time the user has remaining-->
-				  <div class="progress-bar progress-bar-striped active" role="progressbar"
-				   aria-valuemin="0" aria-valuemax="100" style="width:{{percent_remaining}}%"> {{time_remaining}} minutes remaining
-				  </div>
-				</div>
+			<div class="exam-header" ng-hide="init_loading">
+				<h1 class="Title">{{attempt.exam_title}} <span class="grey-text" style="font-size:12px"><strong>{{attempt.exam_class}}</strong></span></h1>
+			<div style="height:10px"></div>
+			<button class="btn btn-primary" ng-disabled="checkPrevQuestion()" ng-click="previousQuestion()">
+				<span class="glyphicon glyphicon-arrow-left"></span> 
+			</button>
+			<!-- If you click this button, the mark_for_review variable will be flipped to "true". After marking it true, it saves the test so that if you refresh or get disconnected the question will still be marked for review-->
+			<button class="btn btn-primary" type="button" ng-click="attempt.questions[indx].mark_for_review = !attempt.questions[indx].mark_for_review; save_attempt()">
+				Mark for Review  <i class="glyphicon glyphicon-flag"></i>
+			</button>
+			<button class="btn btn-primary" ng-disabled="checkNextQuestion()" ng-click="nextQuestion()">
+				<span class="glyphicon glyphicon-arrow-right"></span>
+			</button>
+			<button class="btn btn-info" type="button" ng-click="open_formula_sheet()"ng-disabled="formula_opened">
+				Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
+			</button>
+			<button class="btn btn-info" type="button" ng-click="open_notepad()" ng-disabled="notepad_opened">
+				Notepad  <i class="glyphicon glyphicon-pencil"></i>
+			</button>
+			<button class="btn btn-info" type="button" ng-click="open_calculator()" ng-disabled="calc_opened">
+				Calculator  <i class="glyphicon glyphicon-modal-window"></i>
+			</button>
 			</div>
-			<div class="exam-buttons">
+			<div class="exam-buttons" ng-hide="init_loading">
 				<div class="exam-buttons">
-					<button class="btn btn-primary" type="button" ng-click="submit_attempt()">
-						 Submit  <i class="glyphicon glyphicon-plus"></i>
+					<button class="btn btn-success btn-lg" type="button" ng-click="submit_attempt()">
+						 <strong style="font-size:20px">Submit  <i class="glyphicon glyphicon-plus"></i></strong>
 					</button>	
-				</div>
-				<div>
-					&nbsp
-				</div>
-				<div>
-					&nbsp
-				</div>
-				<div class="exam-buttons">
-					<button class="btn btn-primary" type="button" ng-click="open_formula_sheet()">
-						 Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
-					</button>
-					<button class="btn btn-primary" type="button" ng-click="open_notepad()">
-						 Notepad  <i class="glyphicon glyphicon-pencil"></i>
-					</button>
-					<button class="btn btn-primary" type="button" ng-click="open_calculator()">
-						 Calculator  <i class="glyphicon glyphicon-modal-window"></i>
-					</button>
-					<!--button type="button" class="btn btn-default btn-circle" ng-click="previousQuestion()"><i class="glyphicon glyphicon-arrow-left"></i></button>
-					<button type="button" class="btn btn-default btn-circle" ng-click="nextQuestion()"><i class="glyphicon glyphicon-arrow-right"></i></button-->
 				</div>
 			</div>
 		</div>
+		<div style="clear:both"></div>
+		<div class="titleHeader" ng-hide="init_loading">&nbsp</div>
 		<br>
-		<br><div class="titleHeader" style="height:60px;">&nbsp</div>
-		<br>
-		
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
-			<div class="QuestionNumber">{{$index+1}})</div>
+			<div class="QuestionNumber"><strong style="padding:0; margin: 0;width:50px; height:50px; border:2px solid grey; padding:5px">{{($index+1)}}</strong></div>
+			<br>
 			<table ng-show="question.data.type === multiple_choice">
 				<tr>
 				<td></td>
@@ -111,44 +126,15 @@
 					</td>
 				</tr>
 			</table>
-
-		<div class="loading ng-hide" ng-show="loading">
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-1 pull-right" style="margin:0; padding:0;width:50px" >
+		<br>
+		<br>
+		<div class="loading-answers ng-hide" ng-show="loading">
 	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
 		</div>
-		<br><br><br><br><br>
-		<div align = "center">
-			<button class="btn btn-primary" ng-disabled="checkPrevQuestion()" ng-click="previousQuestion()">
-				<span class="glyphicon glyphicon-arrow-left"></span> Previous  
-				</button>
-				<!-- If you click this button, the mark_for_review variable will be flipped to "true". After marking it true, it saves the test so that if you refresh or get disconnected the question will still be marked for review-->
-				<button class="btn btn-primary" type="button" ng-click="attempt.questions[indx].mark_for_review = !attempt.questions[indx].mark_for_review; save_attempt()">
-					 Mark for Review  <i class="glyphicon glyphicon-flag"></i>
-				</button>
-				<button class="btn btn-primary" ng-disabled="checkNextQuestion()" ng-click="nextQuestion()">
-				 Next <span class="glyphicon glyphicon-arrow-right"></span>
-				</button>
-			</div>
-		</div>
-	</div>
-	</div>
-	
-	<div class="col-lg-2">
-		<br>
-		<br>
-		</br>
-		<br>
-		<div class=exam-timer>
-			<h2>
-				Questions:
-			</h2>
-	<!--	{{attempt.start_time}} -->
-		</div>
-		<text 
-		class = "link-hover" style="cursor:pointer" ng-repeat="question in attempt.questions" 
-		ng-click="change_question($index)" >
-			<!--If mark_for_review is true, display a glyphicon flag next to the question name on the sidebar. If it is not, just display the question name-->
-			<i ng-if="question.mark_for_review===true" class="glyphicon glyphicon-flag review"></i>{{' Number ' + ($index + 1)}} <br>
-		</text>
 	</div>
 </div>
 </div>
