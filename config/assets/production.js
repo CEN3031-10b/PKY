@@ -32,7 +32,11 @@ module.exports = {
       'modules/**/*/img/**/*.jpg',
       'modules/**/*/img/**/*.png',
       'modules/**/*/img/**/*.gif',
-      'modules/**/*/img/**/*.svg'
+      'modules/**/*/img/**/*.svg',
+      'img/**/*.jpg',
+      'img/**/*.png',
+      'img/**/*.gif',
+      'img/**/*.svg',
     ],
     views: ['modules/*/client/views/**/*.html'],
   }
