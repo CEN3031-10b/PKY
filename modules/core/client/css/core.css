@@ -1,5 +1,5 @@
 html {
-  background:#0175CA url(../modules/core/img/blue-geo-tiles.png) no-repeat center center fixed; 
+  background:#0175CA url(/modules/core/client/img/blue-geo-tiles.png) no-repeat center center fixed; 
   min-height:100%;
   -webkit-background-size: cover;
      -moz-background-size: cover;
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	word-wrap: break-word !important;
+  word-wrap: break-word !important;
   overflow-y: scroll;
   background:transparent;
   min-height:100%;  
