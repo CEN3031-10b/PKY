@@ -27,10 +27,22 @@
 		<!--h1 ng-show="loading" style="font-weight:150%"> LOADING </h1-->
 		<h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 		<pre ng-show="error">{{error | json}}</pre>
-		<div ng-if="!error">
-			<div class="exam-header" ng-hide="init_loading">
+		<div ng-if="!error" style="vertical-align:bottom;">
+			<div class="exam-header" ng-hide="init_loading" style="vertical-align:bottom;">
 				<h1 class="Title">{{attempt.exam_title}} <span class="grey-text" style="font-size:12px"><strong>{{attempt.exam_class}}</strong></span></h1>
-			<div style="height:10px"></div>
+			</div>
+			<div class="exam-buttons" ng-hide="init_loading">
+				<div class="exam-buttons">
+					<button class="btn btn-success btn-lg" type="button" ng-click="submit_attempt()">
+						 <strong style="font-size:20px">Submit<i class="glyphicon glyphicon-plus"></i></strong>
+					</button>	
+				</div>
+			</div>
+		</div>
+		<div style="clear:both"></div>
+		<div class="titleHeader" ng-hide="init_loading">&nbsp</div>
+		<div>&nbsp</div>
+		<div align = "center">
 			<button class="btn btn-primary" ng-disabled="checkPrevQuestion()" ng-click="previousQuestion()">
 				<span class="glyphicon glyphicon-arrow-left"></span> 
 			</button>
@@ -50,16 +62,7 @@
 			<button class="btn btn-info" type="button" ng-click="open_calculator()" ng-disabled="calc_opened">
 				Calculator  <i class="glyphicon glyphicon-modal-window"></i>
 			</button>
-			</div>
-			<div class="exam-buttons" ng-hide="init_loading">
-				<div class="exam-buttons">
-					<button class="btn btn-success btn-lg" type="button" ng-click="submit_attempt()">
-						 <strong style="font-size:20px">Submit  <i class="glyphicon glyphicon-plus"></i></strong>
-					</button>	
-				</div>
-			</div>
 		</div>
-		<div style="clear:both"></div>
 		<div class="titleHeader" ng-hide="init_loading">&nbsp</div>
 		<br>
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
