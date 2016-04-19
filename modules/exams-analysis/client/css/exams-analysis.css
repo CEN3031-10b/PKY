@@ -17,6 +17,7 @@
 .points {
     background: #cdebf9;
     padding: 5px;
-    border-radius: 100%;
+    border-top-left-radius:2em;
+	border-bottom-left-radius:2em;
     color: white;
 }

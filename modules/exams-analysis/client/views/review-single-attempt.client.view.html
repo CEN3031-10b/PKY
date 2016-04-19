@@ -1,15 +1,20 @@
-<h1>{{attempt.exam_title}}</h1>
-<h4>{{attempt.exam_class}}</h4>
-<br>
-<br>
 <h1 ng-show="error" style="font-weight:150%"> ERROR </h1>
 <pre ng-show="error"> {{error | json}}</pre>
-<div class = "col-md-12 main-table-container">
-	<table class="main-table-review">
-		<tr ng-repeat="question in attempt.questions">
-			<td style="padding-bottom: 30px; border: 10px solid #cdebf9;">
-				<i ng-if="question.points_earned !== question.data.points" style="font-size:30px;" class="points x glyphicon glyphicon-remove"></i>
-				<i ng-if="question.points_earned === question.data.points" style="color:green; font-size:30px;" class="points glyphicon glyphicon-ok"></i>
+<div class="container row admin-analysis" style="1px solid red">
+<div class="col-md-12 main-table-container">
+<div class="black-text">
+<h1>{{attempt.exam_title}}</h1>
+<h4>{{attempt.exam_class}}</h4>
+</div>
+	<table class="main-tabdfgle-review" ng-repeat="question in attempt.questions">
+			<tr style="border-top:2px solid #bebebe;"><td>&nbsp</td></tr>
+		<tr><td>&nbsp</td></tr>
+		<tr>
+		<td style="vertical-align:top; margin-bottom:10px;">				<i ng-if="question.points_earned !== question.data.points" style="font-size:30px;" class="points x glyphicon glyphicon-remove"></i>
+				<i ng-if="question.points_earned === question.data.points" style="color:green; font-size:30px;" class="points glyphicon glyphicon-ok"></i></td>
+			<td style="padding-bottom: 30px;"></td>
+			<td  style="vertical-align:text-top; padding-top:0px"><div class="black-text QuestionNumber" style="padding:8px;border:2px solid grey;"><strong style="font-size:26px;">{{($index+1)}}</strong></div></td>
+			<td>
 				<table ng-if="question.data.type === multiple_choice">
 					<tr>
 					<td></td>
@@ -81,4 +86,5 @@
 			</td>
 		</tr>
 	</table>
+</div>
 </div>
