@@ -13,7 +13,7 @@
 		<td style="vertical-align:top; margin-bottom:10px;">				<i ng-if="question.points_earned !== question.data.points" style="font-size:30px;" class="points x glyphicon glyphicon-remove"></i>
 				<i ng-if="question.points_earned === question.data.points" style="color:green; font-size:30px;" class="points glyphicon glyphicon-ok"></i></td>
 			<td style="padding-bottom: 30px;"></td>
-			<td  style="vertical-align:text-top; padding-top:0px"><div class="black-text QuestionNumber" style="padding:8px;border:2px solid grey;"><strong style="font-size:26px;">{{($index+1)}}</strong></div></td>
+			<td  style="vertical-align:text-top; padding-top:0px"><div class="black-text QuestionNumber" style="width:100%;padding:8px;border:2px solid grey;"><strong style="font-size:26px;">{{($index+1)}}</strong></div></td>
 			<td>
 				<table ng-if="question.data.type === multiple_choice">
 					<tr>
