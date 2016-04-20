@@ -76,6 +76,9 @@
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
 			<div class="QuestionNumber"><strong style="padding:0; margin: 0;width:50px; height:50px; border:2px solid grey; padding:5px">{{($index+1)}}</strong></div>
 			<br>
+			<div style="width:100%">
+				<img style ="max-width:100%" ng-hide="!question.data.imageURL || question.data.imageURL==null" ng-src="{{question.data.imageURL}}">
+			</div>
 			<table ng-show="question.data.type === multiple_choice">
 				<tr>
 				<td></td>
@@ -134,7 +137,7 @@
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
-						<textarea class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}"></textarea>
+						<textarea style="width:100px" class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}"></textarea>
 					</td>
 				</tr>
 			</table>

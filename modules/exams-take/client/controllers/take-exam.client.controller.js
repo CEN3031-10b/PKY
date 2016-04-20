@@ -161,7 +161,7 @@
 				}
 				unanswered_string += (unanswered[i]+1) + seperator;
 			}
-			if(!confirm("Warning, you left these questions unanswered:\n " + unanswered_string)){
+			if(!confirm("Warning, you left these questions unanswered:\n " + unanswered_string + '\n\n Submit anyways?')){
 				return;
 			}
 		}

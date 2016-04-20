@@ -16,40 +16,41 @@
 						<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 1'" ng-init="exam.show_info=false">
 							<td class="exam-name">{{exam.title}}
 								<div uib-collapse="!exam.show_info">
-									<div class="well well-lg">
-										<table>
+									<div>
+										<table style="font-size:12px">
+										<tr><td style="height:5px"></td></tr>
 											<tr>
 												<td style="float:left">
-													Time alloted: 
+													Time allotted:&nbsp 
 												</td>
 												<td style="float:left">
-													<strong>{{exam.allotted_time }} minutes</strong>
+													<strong>  {{exam.allotted_time }} minutes</strong>
 												</td>
 											</tr>
 											<tr>
 												<td style="float:left">
-													Attempts Remaining: 
+													Attempts remaining:&nbsp 
 												</td>
 												<td style="float:left">
-													<strong>{{exam.remaining_attempts}}</strong>
+													<strong>  {{exam.remaining_attempts}}</strong>
 												</td>
 											</tr>
 											<tr>
 												<td style="float:left">
-													Total Points: 
+													Total Points:&nbsp  
 												</td>
 												<td style="float:left">
-													<strong>{{exam.point_total}}</strong>
+													<strong>  {{exam.point_total}}</strong>
 												</td>
 											</tr>
-											<!--tr>
+											<tr>
 												<td style="float:left">
-													Total Questions: 
+													Number of questions:&nbsp  
 												</td>
 												<td style="float:left">
-													<strong></strong>
+													<strong>{{exam.questions.length}}</strong>
 												</td>
-											</tr-->
+											</tr>
 										</table>
 									</div>
 								</div>
@@ -67,30 +68,39 @@
 						<tr ng-repeat="exam in exams" ng-if="exam.class==='Algebra 2'" ng-init="exam.show_info=false">
 							<td class="exam-name">{{exam.title}}
 								<div uib-collapse="!exam.show_info">
-									<div class="well well-lg">
-										<table>
+									<div>
+										<table style="font-size:12px">
+										<tr><td style="height:5px"></td></tr>
 											<tr>
 												<td style="float:left">
-													Time alloted: 
+													Time allotted:&nbsp   
 												</td>
 												<td style="float:left">
-													<strong>{{exam.allotted_time }} minutes</strong>
+													<strong>  {{exam.allotted_time }} minutes</strong>
 												</td>
 											</tr>
 											<tr>
 												<td style="float:left">
-													Attempts Remaining: 
+													Attempts remaining:&nbsp  
 												</td>
 												<td style="float:left">
-													<strong>{{exam.remaining_attempts}}</strong>
+													<strong>  {{exam.remaining_attempts}}</strong>
 												</td>
 											</tr>
 											<tr>
 												<td style="float:left">
-													Total Points: 
+													Total Points:&nbsp 
 												</td>
 												<td style="float:left">
-													<strong>{{exam.point_total}}</strong>
+													<strong>  {{exam.point_total}}</strong>
+												</td>
+											</tr>
+											<tr>
+												<td style="float:left">
+													Number of questions:&nbsp  
+												</td>
+												<td style="float:left">
+													<strong>{{exam.questions.length}}</strong>
 												</td>
 											</tr>
 										</table>
