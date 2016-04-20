@@ -65,16 +65,6 @@ module.exports = {
     callbackURL: '/api/auth/paypal/callback',
     sandbox: true
   },
-   mailer: {
-   from:'PK-Yonge EOC Web Portal',
-   options: {
-     service:'gmail',
-     auth: {
-       user:'pkyeoc@gmail.com',
-       pass:'6ttdd4O3habD'
-     }
-   }
- },
   // mailer: {
   //   from: process.env.MAILER_FROM || 'MAILER_FROM',
   //   options: {
