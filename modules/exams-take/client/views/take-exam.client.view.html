@@ -32,6 +32,8 @@
 				<h1 class="Title">{{attempt.exam_title}}</h1>
 				<div style="height:5px"></div>
 				<span class="grey-text" style="font-size:16px"><strong>{{attempt.exam_class}}</strong></span>
+				<div style="height:8px"></div>
+				<span class="grey-text" style="font-size:12px"><strong>Attempt {{attempt.attempt_number+1}}</strong></span>
 			</div>
 			<div class="exam-buttons" ng-hide="init_loading">
 				<div class="exam-buttons">
@@ -42,9 +44,9 @@
 			</div>
 		</div>
 		<div style="clear:both"></div>
-		<div class="greyLine" ng-hide="init_loading">&nbsp</div>
+		<div class="greyLine" ng-hide="init_loading || error">&nbsp</div>
 		<div>&nbsp</div>
-			<div style="float:left">
+			<div style="float:left" ng-hide="init_loading || error">
 				<button class="btn btn-primary" ng-disabled="checkPrevQuestion()" ng-click="previousQuestion()">
 					<span class="glyphicon glyphicon-arrow-left"></span> 
 				</button>
@@ -56,7 +58,7 @@
 					<span class="glyphicon glyphicon-arrow-right"></span>
 				</button>
 			</div>
-			<div style="float:right">
+			<div style="float:right" ng-hide="init_loading || error">
 				<button class="btn btn-info" type="button" ng-click="open_formula_sheet()"ng-disabled="formula_opened">
 					Formula Sheet  <i class="glyphicon glyphicon-list-alt"></i>
 				</button>
@@ -69,7 +71,7 @@
 			</div>
 
 		<div style="clear:both"></div>
-		<div class="greyLine" ng-hide="init_loading">&nbsp</div>
+		<div class="greyLine" ng-hide="init_loading || error">&nbsp</div>
 		<br>
 		<div ng-repeat="question in attempt.questions" ng-show="indx === $index">
 			<div class="QuestionNumber"><strong style="padding:0; margin: 0;width:50px; height:50px; border:2px solid grey; padding:5px">{{($index+1)}}</strong></div>
@@ -117,6 +119,7 @@
 			</table>
 			<table ng-show="question.data.type === fill_in_the_blank">
 				<tr>
+				<td></td>
 					<td>
 						<pre mathjax="question.data.content"></pre>
 					</td>
@@ -126,8 +129,8 @@
 						<pre mathjax="answer.label"></pre>
 					</td>
 					<!-- numeric answer -->
-					<td ng-show="answer.is_numeric">
-						<input class="form-control" type="number" ng-model="answer.value"  ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}">
+					<td ng-show="answer.is_numeric" style="width:50px">
+						<input style="width:100px" class="form-control" type="number" ng-model="answer.value"  ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}">
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
@@ -141,7 +144,7 @@
 	<div class="col-lg-1 pull-right" style="margin:0; padding:0;width:50px" >
 		<br>
 		<br>
-		<div class="loading-answers ng-hide" ng-show="loading">
+		<div class="loading-answers ng-hide" ng-show="loading || init_loading">
 	 		<img src="modules/core/client/img/loaders/loader.gif" align = "center">
 		</div>
 	</div>

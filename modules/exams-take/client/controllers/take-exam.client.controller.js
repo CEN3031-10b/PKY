@@ -227,7 +227,12 @@
 			backdrop: 'static',
      		keyboard: false,
     		controller: 'formulaModal',
-			backdropClass: 'calc-modal'
+			backdropClass: 'calc-modal',
+			resolve: {
+				exam_class: function(){
+					return $scope.attempt.exam_class;
+				}
+			}
 		});		
 		modalInstance.result.then(null,
 		function(){

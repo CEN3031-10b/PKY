@@ -5,7 +5,8 @@
 	        <h4 class="modal-title">Formula Sheet</h4>
 	    </div>
 		<div class="modal-body" style="height: 400px; width: auto; overflow-y: scroll;">
-			<img src="/modules/core/client/img/formulaSheet.png"></img>
+			<img ng-if="exam_class === 'Algebra 1'" src="/modules/core/client/img/formulaSheetAlgebra1.png"></img>
+			<img ng-if="exam_class === 'Algebra 2'" src="/modules/core/client/img/formulaSheetAlgebra2.png"></img>
 		</div>
 	</div>
 </html>
