@@ -22,7 +22,7 @@ body {
 	line-height: 1;
 	font-size:100%;
 	overflow: hidden;
-	background: url(../Images/arrows.gif) no-repeat -1000px -1000px;
+	background: url(/modules/calculator/client/img/arrows.gif) no-repeat -1000px -1000px;
 }
 ol, ul {
 	list-style: none;
@@ -67,7 +67,7 @@ table {
 	float: left;
 	/*background-color: #f9f9f9;*/
 	overflow: hidden;
-	background: url(../Images/lightGrey.png) repeat;
+	background: url(/modules/calculator/client/img/lightGrey.png) repeat;
 }
 #calculatorwidget{
 	margin-top: 0;
@@ -139,7 +139,7 @@ table {
 }
 
 #RCL {background-image: none; }
-input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.png"); }
+input.disabled[type="button"]#RCL{ background-image: url("/modules/calculator/client/img/mediumGrey.png"); }
 
 
 #RCL, #ANS{  /*fixing added padding on these buttons*/
@@ -234,7 +234,7 @@ input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.p
 	/*background-color:#f3f3f3;*/
 	border-bottom: solid 1px #ccc;
 	border-top: solid 1px #ccc;
-	background: url(../Images/lightGrey.png) repeat;
+	background: url(/modules/calculator/client/img/lightGrey.png) repeat;
 	overflow:hidden;
 }
 .calcControls #calcSwitch a.active {
@@ -338,7 +338,7 @@ input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.p
 	border:solid 1px #EDEDED;
 	text-align: center;
 	/*background-color: #e5e5e5;*/
-	background: url(../Images/lightGrey.png) repeat;
+	background: url(/modules/calculator/client/img/lightGrey.png) repeat;
 }
 .platform_linux #memorystatus {
     width: 23px;
@@ -392,7 +392,7 @@ input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.p
 }
 .graphControls {
 	/*background-color:#F9F9F9;*/
-	background: url(../Images/lightGrey.png) repeat;
+	background: url(/modules/calculator/client/img/lightGrey.png) repeat;
 	height:45px;
 	padding-left:10px;
 	position:absolute;
@@ -408,7 +408,7 @@ input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.p
 }
 .graphControls a {
 	text-indent:-9999px;
-	background:url(../Images/arrows.gif) no-repeat;
+	background:url(/modules/calculator/client/img/arrows.gif) no-repeat;
 	height:20px;
 	width:25px;
 	padding:0px;
@@ -478,7 +478,7 @@ input.disabled[type="button"]#RCL{ background-image: url("../Images/mediumGrey.p
 	display: block;
 }
 #togglegraph {
-	background: url(../Images/mediumGrey.png) repeat;/*path will need to update*/
+	background: url(/modules/calculator/client/img/mediumGrey.png) repeat;/*path will need to update*/
 }
 .nograph .calcGraph {
 	display:none;
@@ -578,7 +578,7 @@ canvas#canvas {
     position: inherit;
 }
 #resetgraph, #previous5, #next5, #calczoomin, #calczoomout {
-	background: #fff url(../Images/arrows.gif) no-repeat 3px -382px;
+	background: #fff url(/modules/calculator/client/img/arrows.gif) no-repeat 3px -382px;
 	padding-left: 18px;
 }
 #resetgraph:hover, #previous5:hover, #next5:hover, #calczoomin:hover, #calczoomout:hover {
@@ -624,7 +624,7 @@ canvas#canvas {
 	border: solid 1px #999;
 	margin: 5px;
 	/*background-color: #fdfdfd;*/
-	background: url(../Images/white.png) repeat;
+	background: url(/modules/calculator/client/img/white.png) repeat;
 }
 #datatable th {
 	border: solid 1px #000;
@@ -766,7 +766,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 }
 .TDS_CCInvert #minus, .TDS_CCInvert #resetgraph, .TDS_CCInvert #previous5, .TDS_CCInvert #next5, .TDS_CCInvert #calczoomin, .TDS_CCInvert #calczoomout, .TDS_CCInvert .graphControls a,
 .TDS_CCWhiteN #minus, .TDS_CCWhiteN #resetgraph, .TDS_CCWhiteN #previous5, .TDS_CCWhiteN #next5, .TDS_CCWhiteN #calczoomin, .TDS_CCWhiteN #calczoomout, .TDS_CCWhiteN .graphControls a{
-	background-image: url("../Images/arrows_white.gif");
+	background-image: url("/modules/calculator/client/img/arrows_white.gif");
 	}
 .TDS_CCInvert .matricesContainer .tab{
 	border-right: #fff;
@@ -810,7 +810,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 	background-color: #000 !important;
 }
 .TDS_CCYellowB #minus, .TDS_CCYellowB #resetgraph, .TDS_CCYellowB #previous5, .TDS_CCYellowB #next5, .TDS_CCYellowB #calczoomin, .TDS_CCYellowB #calczoomout, .TDS_CCYellowB .graphControls a{
-	background-image: url("../Images/arrows_yellow.gif");
+	background-image: url("/modules/calculator/client/img/arrows_yellow.gif");
 	}
 .TDS_CCYellowB .matricesContainer .tab{
 	border-right: #FFCC00;
@@ -1024,7 +1024,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 }
 #minus {
 	text-indent: -9999px;
-	background-image: url(../Images/arrows.gif);
+	background-image: url(/modules/calculator/client/img/arrows.gif);
 	background-position: 50% -436px;
 	background-repeat: no-repeat;
 }
@@ -1065,7 +1065,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 	display: block;
 }
 .regressions #regressions, .regresionModes .active {
-	background: url(../Images/mediumGrey.png) repeat;/*path will need to update*/
+	background: url(/modules/calculator/client/img/mediumGrey.png) repeat;/*path will need to update*/
 }
 .regressions #togglegraph {
 	background: none;
@@ -1101,7 +1101,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 .yNumb th {
 	border: 1px solid #c3c4c4;
 	font-weight: bold;
-	background: url(../Images/lightGrey.png) repeat;/*path will need to update*/
+	background: url(/modules/calculator/client/img/lightGrey.png) repeat;/*path will need to update*/
 	line-height: 1.5em;
 	text-align: left;
 	padding-left: .3em;
@@ -1158,7 +1158,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
     min-height: 314px;
 }
 .matrices #matrices {
-	background: url(../Images/mediumGrey.png) repeat;/*path will need to update*/
+	background: url(/modules/calculator/client/img/mediumGrey.png) repeat;/*path will need to update*/
 }
 .matrices #togglegraph {
 	background: none;
@@ -1256,7 +1256,7 @@ body.TDS_CCYellow .matricesContainer .tab a, body.TDS_CCYellow2  .matricesContai
 	border-right: solid 1px #000;
 	margin: 3px;
 	width: 25px;
-	background-image: url(../Images/lightGrey.png); /*path will need to update*/
+	background-image: url(/modules/calculator/client/img/lightGrey.png); /*path will need to update*/
 }
 .matricesContainer .tab.active {
 	border: 1px solid #000;
@@ -1331,7 +1331,7 @@ a.disabled, input[type="button"].disabled {
 }
 input[type="button"].disabled {
 
-	background-image: url(../Images/mediumGrey.png);
+	background-image: url(/modules/calculator/client/img/mediumGrey.png);
 }
 
 
@@ -1443,7 +1443,7 @@ input[type="button"].disabled {
 
 /* Disabled SquareRoot Background glitch ... please fix this in the future*/
 .calculatorWidget a#sqrt{
-	background-image: url(../images/sqroot.png) !important;
+	background-image: url(/modules/calculator/client/img/sqroot.png) !important;
 	background-repeat: no-repeat;
 	background-position: 0px -5px;
 	display: block;
@@ -1479,7 +1479,7 @@ input[type="button"].disabled {
 .TDS_PS_L4 .calculatorWidget a#sqrt
 {
 	padding: 25px 44px 0 0;
-	background-image: url("../images/sqroot-zoomed.png") !important;
+	background-image: url("/modules/calculator/client/img/sqroot-zoomed.png") !important;
 	background-position: 7px -5px;
 }
 .TDS_PS_L2.TDS_CCInvert .calculatorWidget a#sqrt,
