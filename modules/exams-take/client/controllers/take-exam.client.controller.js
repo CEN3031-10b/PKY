@@ -45,7 +45,7 @@
 				$scope.time_out();
 			}
 		});
-	}, 1000);
+	}, 2000);
 
     $scope.random = function() {
         return 0.5 - Math.random();
@@ -82,7 +82,25 @@
 
 	$scope.time_out = function(){
 		confirm("Time is up! On the actual test you would have to stop now.");
-	}
+	};
+	
+	$scope.check_answers = function(_attempt){
+		var unanswered_indices = [];
+		for(var i = 0; i < _attempt.questions.length; ++i){
+			var found_answer = false;
+			for(var j=0; j < _attempt.student_answers.length; ++j){
+				if(_attempt.questions[i].data._id === _attempt.student_answers[j].question_id){
+					found_answer = true;
+					break;
+				}
+			}
+			if(!found_answer){
+				unanswered_indices.push(i);
+			}
+		}
+		
+		return unanswered_indices;
+	};
 	
 	$scope.save_answer = function(_question,_answer){
 
@@ -103,6 +121,7 @@
 		});
 	
 		$scope.save_attempt();
+		$scope.check_answers($scope.attempt);
 	};
 
 	// populate view with previous answers
@@ -131,6 +150,22 @@
 	};
 	
 	$scope.submit_attempt = function(){
+		
+		var unanswered = $scope.check_answers($scope.attempt);
+		if(unanswered.length > 0){
+			var unanswered_string = "";
+			for(var i = 0; i < unanswered.length; ++i){
+				var seperator = ', ';
+				if(i+1 === unanswered.length){
+					seperator = '';
+				}
+				unanswered_string += (unanswered[i]+1) + seperator;
+			}
+			if(!confirm("Warning, you left these questions unanswered:\n " + unanswered_string)){
+				return;
+			}
+		}
+		
 		clearInterval(timer);
 		$scope.loading = true;
 		ExamsAnalysisService.submit_attempt($scope.attempt)

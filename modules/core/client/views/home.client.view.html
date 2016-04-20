@@ -1,5 +1,5 @@
 <!-- Main (Home) section -->
-<section class="section" id="head">
+<section class="section" id="head" ng-controller="HomeController">
 	<div id="home-con" class="container">
 		<div class="row">
 			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">	
@@ -7,7 +7,8 @@
 				<p></p>
 				<img class="text-right padding home-img" src="modules/core/client/img/pkylogo.jpg" align = "center">
 				<p></p>
-				<p><a class="btn btn-default btn-lg start-test" ui-sref="exams-take.select">Select Practice Exam</a></p>	
+				<p ng-if="authentication.user"><a class="btn btn-default btn-lg start-test" ui-sref="exams-take.select">Select Practice Exam</a></p>	
+				<p ng-if="!authentication.user"><a class="btn btn-default btn-lg start-test" ui-sref="authentication.signin">Login</a></p>
 			</div> 
 		</div> 
 	</div>
