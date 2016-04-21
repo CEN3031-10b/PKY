@@ -81,12 +81,12 @@
 			</div>
 			<table ng-show="question.data.type === multiple_choice">
 				<tr>
-				<td></td>
 					<td>
 						<pre mathjax="question.data.content"></pre>
 					</td>
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">
+				<td><table><tr>
 					<td style="padding-left:20px">
 						<input type="radio" 
 						ng-model="question.selected_answer" 
@@ -98,16 +98,17 @@
 					<td>
 						<pre mathjax="answer.content"></pre>
 					</td>
+				</tr></table></td>
 				</tr>
 			</table>
 			<table ng-show="question.data.type === multiple_select">
 				<tr>
-				<td></td>
 					<td>
 						<pre mathjax="question.data.content"><pre>
 					</td>
 				</tr>
 				<tr ng-repeat="answer in question.data.answers">
+					<td><table><tr>
 					<td class="choice" style="padding-left:20px">
 						<input type="checkbox" 
 						ng-model="answer.correct" 
@@ -118,17 +119,18 @@
 					<td>
 						<pre mathjax="answer.content"></pre>
 					</td>
+					</tr></table></td>
 				</tr>
 			</table>
 			<table ng-show="question.data.type === fill_in_the_blank">
 				<tr>
-				<td></td>
 					<td>
 						<pre mathjax="question.data.content"></pre>
 					</td>
 				</tr>
+				<td><table>
 				<tr ng-repeat="answer in question.data.answers">
-					<td style="padding-left:20px">
+					<td style="padding-left:20px; text-align:right">
 						<pre mathjax="answer.label"></pre>
 					</td>
 					<!-- numeric answer -->
@@ -137,9 +139,10 @@
 					</td>
 					<!-- non numeric -->
 					<td ng-show="!answer.is_numeric">
-						<textarea style="width:100px" class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}"></textarea>
+						<input type= "text" style="width:100px" class="form-control" ng-model="answer.content" ng-change="save_answer(question.data,answer)" ng-model-options="{debounce: 1000}">
 					</td>
 				</tr>
+				</table></td>
 			</table>
 		</div>
 	</div>
