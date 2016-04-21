@@ -37,10 +37,22 @@ angular.module('exams').directive('mathjax', function ($compile) {
 			if(!html){
 				return;
 			} 
-			html = html.replace(/\$([^$]+)\$/g, "<span mathjax-bind=\"$1\"></span>");                
+			html = html.replace(/\$([^$]+)\$/g, "<katex>$1</katex>");                
 			ele.html(html);
 			$compile(ele.contents())(scope);
 		});
 	}
   };
 });
+
+
+angular.module('exams')
+    .directive('katex', function () {
+       return {
+            restrict: 'AE',
+            link: function (scope, element) {
+                var text = element.html();
+                katex.render(text, element[0]);
+            }
+        };
+    });
