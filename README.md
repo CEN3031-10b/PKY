@@ -2,14 +2,14 @@
 A web-based application that allows students at [PK Yonge Developmental Research School](http://pkyonge.ufl.edu/) (in Gainesville, FL) to practice for their end-of-course exams.
 This application was created for the Introduction to Software Engineering (CEN3031) class at the University of Florida, using the MEAN stack.
 
-The group working on this project (as of Spring 2016) consists of the following members:
+Spring 2016 CEN3031-10b group:
 - Travis Atkins [@Atkins945](https://github.com/Atkins945)
-- James Bocinsky [@jbocinsky](https://github.com/jbocinsky)
-- Brandon Duong [@Bduong30](https://github.com/Bduong30)
+- James Bocinsky [@jbocinsky](https://github.com/jbocinsky) project contact
+- Brandon Duong [@Bduong30](https://github.com/Bduong30) project contact
 - Kevin Marin [@KMarin](https://github.com/KMarin)
 - Michael Rodriguez [@microdr](https://github.com/microdr)
 
-The group working on this project (as of Fall 2015) consists of the following members:
+Fall 2015 CEN3031-9C group:
 - Bailey Anderson [@baileyanderson](https://github.com/baileyanderson)
 - Cody Fitzpatrick [@CodyFitzpatrick](https://github.com/CodyFitzpatrick)
 - Nicola Frachesen [@Nicola37](https://github.com/Nicola37)
@@ -20,124 +20,101 @@ The group working on this project (as of Fall 2015) consists of the following me
 
 ## Deployment
 
-#### Site URL: http://pky-eoc.herokuapp.com/
-Our app is deployed through HEROKU. Deployment information can be found [here](https://devcenter.heroku.com/articles/deploying-nodejs). Please contact [@Nicola37](https://github.com/Nicola37) for further deployment questions.
+#### Site URL: https://still-mountain-43055.herokuapp.com
+Our app is deployed through HEROKU. Deployment information can be found [here](https://devcenter.heroku.com/articles/deploying-nodejs).
 
 ### Running the App Locally
 - Install all necessary packages and libraries by following [this installation guide](https://docs.google.com/document/d/1B7aqptx0jsWHLqm7W9BT1oKHYNCKkvwtjjUtsj6C-ks/edit?pli=1) 
 - After cloning the remote repository to a local repository on your computer and navigating to the directory in which the app contents are located, you can run the app by using Grunt, "The Javascript Task Runner". Please see the below terminal commands that detail this process. The repository only needs to be cloned once, during the installation of the app.
 
 ```sh
-$ git clone https://github.com/CEN3031-Project-9C/PK-Yonge-App
-$ cd PK-Yonge-App
-$ grunt
+$ git clone https://github.com/CEN3031-10b/PKY
+$ cd PKY
+$ grunt --force
 
 ```
 
-**Note!** This app was developed using Node version 0.12.7. A newer version of Node may cause this app to run differently or break altogether. 
-
 ### Updating the database connection
-- In the file `PK-Yonge-App\config\env\development.js`
+- In the file `PK-Yonge-App\config\env\local-development.js`
 - Change lines 6 to 14 to be your respective login credentials and mongoLab information
 
-## Completed Features
-- Allow a user to **create an account**, **modify their profile information**, **log in**, **log out**, and **retrieve a forgotten password**.
-    - We used the default MEAN application's functionality in the "users" module for this, located in `modules/users/`.
-    - User details are saved in the `users` collection in MongoDB.
-    - Email credentials used to send the forgotten password emails are located in `config/env/local.js`.
-    -  Emailing scripts are located in `scripts/reset-password.js/` 
-- Allow a user to **select a test** they'd like to take.
-    - Accomplished via custom functionality in the "choose-test" module, located in `modules/choose-test/`.
-    - The user's test choice is stored within a templated object that is created and then saved as a document in the `user_sessions` collection in MongoDB (in `modules/choose-test/choose-test.client.controller.js`). This specific document (as each user_session is associated with a different testing session) should be updated as the user takes the test  in order to save their answers, notes, mark-for-review flags, etcetera, but as described below in the "Buggy Features" section, this functionality is not working.
-- Allow the user to **take a test** (view questions specific to their chosen test, select answers, and save those answers).
-    - As follows are various working features that aid in the test-taking process.
-        - A basic four function calculator
-        - Formula Sheet
-        - Navigation between different questions
-        - Notepad that properly stores notes for every individual question
-        - Mark for review and that will be reflected in the drop down navigation, and on the individual questions
-        - Pop-up warnings when navigating between questions without answering
-        - Pop-up warnings when there are questions unanswered when submitting the test
-        - Pop-up warnings when time is up
-    - The user_session object (that is first instantiated and then stored in the `user_sessions` collection in MongoDB via `$scope.startTest` function in `modules/choose-test/choose-test.client.controller.js`) is updated as the user takes the test (i.e. if the user selects an answer for question 1, then the value is updated in slot 0 in the `user_answers' array - this array is a property of the `user_session` object in the aforementioned controller  as well as a property of the document in the `user_sessions` collection in MongoDB); this is done for all properties:
-        - `time`
-        - `complete`
-        - `user_notepad`
-        - `user_answer`
-        - `review`
-        - `correct`
-    - Please note how the aforementioned property names and types are consistent across the application in the MongoDB collections and the Mongoose Schema "Models" found throughout the application. Some of the aforementioned propeties are updated explicity as the user takes the test (i.e. user_notepad if user updates a question's notes, user_answer if they select or change an answer to a question, review if they mark a question for a review) but time, completed, and correct, are updated in the background (time is counted down as the user takes the test, complete is marked true if the user has answered the question, and correct is marked true if the user got the question correct during the grading process).
-- Allow the user to **review test performance** for a previously-taken test.
-    - The user can see how they did on a test they just submitted, but this information is only stored locally and there is no page for the user to review ALL of their previous tests (see "Buggy Features" section).
+## Features completed
+* Taking an exam    
+    * multiple choice, multiple select, fill in the blank (numerical or text) question types
+    * formula sheet, scientific calculator, and notes in draggable modals
+* View previous exam attempts
+	* Student
+	  * View all previous attempts, see which standards are associated with each question   
+	* Admin
+	  * View and search through all student attempts
+	  * Delete student attempts
+* Create/edit exams panel for teachers
+    * Exams
+      * Time allotted, avaialable to students, number of allowed attempts properties of an exam
+    * Questions can have:
+      * multiple standards
+      * a picture
+      * MathJax equations for question content and answers
+* EOC standards
+   * Student
+      * view all standards, and see instructor's notes for specific standards
+   * Admin
+      * create, read, update, and delete standards
+* Equation rendering
+   * Adapted angular directive to render latex code between two $ signs in math-jax tagged elements
 
-## Incomplete Features Being Implemented 2016
-- **Saving the user's test information to the database**. This information is currently being stored locally on the user's computer and is lost after the user exits the application.
-- **Allowing the user to view their previous tests via the "Review Tests" page**. This page is supposed to display all of the user's previous tests and allow them to review each test (i.e. their answers for each question, the correct answer for each question, the standard being tested for each question, and their overall grade on the test)
-    - The user should also be able to **resume paused tests** from this page (i.e. hop back into a previous testing session), if this functionality is desired
-- The **test timer**, which is displayed when a user is taking a test and offers them a visual cue as to how much time they have remaining for their test, does not pause and resume correctly.
+## TODO list
+* Implement more EOC question types
+	* Drag and drop
+ 	* Grid
+	* More types  [here](http://www.fsassessments.org/wp-content/uploads/2015/11/FSA-Practice-Test-Quick-Guide_FINAL.pdf)
+* 	Add question image to edit-exams panel and single exam attempt views
+*   Approve user sign up only with valid PKY email
+*  	Allow teacher to edit students attempts
+*  	Allow for hard deadline of timer (exam property)
+*  	MathJax vs Katex
+    * Decide which equation rendering library to use. Katex is faster, but is less feature complete than MathJax.
+* 	Randomize question and answer option for an exam
+* 	Mathquill equation response for fill in the blank questions
+* 	Add process environment variables for lost password email retrieval to heroku
+* 	Update information menu content
 
-These bugs are explained further on the *Issues* page (https://github.com/CEN3031-Project-9C/PK-Yonge-App/issues).
-
-## Unstarted Features
-- Test question types
-    - Drag-and-drop
-    - Graphing
-- Test-taking features
-    - Line reader
-    - Zoom in and out
-- Allow the user to take the test as a guest
-    - This may only require a "guest" account that the user is automatically logged in to after select to take a test as a guest
-- Use WolframAlpha API to render algebric expressions (rather than in plain text)
-- Administrative panel for teachers and faculty to create tests, add questions, and manage testing sessions (i.e. provide access to specific students, start and begin the test session, hide/display grades, etc.)
+## Known issues
+* see github issues
 
 ## Screenshots 
-The homepage.
+The landing page.
+![Homepage](modules/core/client/img/screenshots/sp16/landingPage?raw=true)
 
-![Homepage](modules/core/client/img/screenshots/homepage.PNG?raw=true)
+Selecting a practice exam.
+![Homepage](modules/core/client/img/screenshots/sp16/selectExamPage?raw=true)
 
-Reading instructions for the test.
+Taking a practice exam.
+![Homepage](modules/core/client/img/screenshots/sp16/takeExamPage?raw=true)
 
-![Instructions](modules/core/client/img/screenshots/instructions.PNG?raw=true)
+Viewing a graded exam attempt.
+![Homepage](modules/core/client/img/screenshots/sp16/viewExamAttempt?raw=true)
 
-Signing in.
+Student view of EOC standards.
+![Homepage](modules/core/client/img/screenshots/sp16/studentViewStandards?raw=true)
 
-![Sign in](modules/core/client/img/screenshots/signIn.PNG?raw=true)
+Admin create/edit exams page.
+![Homepage](modules/core/client/img/screenshots/sp16/adminEditExams?raw=true)
 
-Taking a mutiple choice question.
-
-![Test](modules/core/client/img/screenshots/basicTest.PNG?raw=true)
-
-Taking a muti-select question.
-
-![Test](modules/core/client/img/screenshots/checkbox.PNG?raw=true)
-
-Taking a fill in the blank question with calculator.
-
-![Test](modules/core/client/img/screenshots/calculator.PNG?raw=true)
-
-Mark for review feature
-
-![Test](modules/core/client/img/screenshots/mark.PNG?raw=true)
-
-Timer Feature
-
-![Test](modules/core/client/img/screenshots/markNTimer.PNG?raw=true)
-
-Grading a test.
-
-![Test](modules/core/client/img/screenshots/gradeTest.PNG?raw=true)
+Admin view of student exam attempts.
+![Homepage](modules/core/client/img/screenshots/sp16/adminViewStudentAttempts?raw=true)
 
 ## Credits
 
-This project incorporates a number of open source projects:
-
+* [Scientific calculator used in FSA EOC exams](http://www.fsassessments.org/?s=calculator+download&submit=&rtree=&cat=)
+* [trNgGrid](https://github.com/MoonStorm/trNgGrid)
+* [MathJax](https://www.mathjax.org/)
+* [Katex](https://github.com/Khan/KaTeX)
+* [Mathquill](http://mathquill.com/)
 * [MEAN Stack](http://mean.io/#!/) - MongoDB, Express, Angular, and Node
-* [AngularJS] - HTML enhanced for web apps!
+* [AngularJS] - HTML enhanced for web apps
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework [@tjholowaychuk]
 * [MongoDB](https://www.mongodb.org/) - NoSQL Database 
 * [jQuery] - For basic Javascript functionalities
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [Thom Porter](http://www.thomporter.com/apps/angularjs_calc) - Calculator used in the app
-
-And of course the PK-Yonge-App lives here on GitHub, in [this public repository](https://github.com/CEN3031-Project-9C/PK-Yonge-App).
