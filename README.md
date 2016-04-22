@@ -84,25 +84,25 @@ $ grunt --force
 
 ## Screenshots 
 The landing page.
-![Homepage](modules/core/client/img/screenshots/sp16/landingPage?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/landingPage.png?raw=true)
 
 Selecting a practice exam.
-![Homepage](modules/core/client/img/screenshots/sp16/selectExamPage?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/selectExamPage.png?raw=true)
 
 Taking a practice exam.
-![Homepage](modules/core/client/img/screenshots/sp16/takeExamPage?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/takeExamPage.png?raw=true)
 
 Viewing a graded exam attempt.
-![Homepage](modules/core/client/img/screenshots/sp16/viewExamAttempt?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/viewExamAttempt.png?raw=true)
 
 Student view of EOC standards.
-![Homepage](modules/core/client/img/screenshots/sp16/studentViewStandards?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/studentViewStandards.png?raw=true)
 
 Admin create/edit exams page.
-![Homepage](modules/core/client/img/screenshots/sp16/adminEditExams?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/adminEditExams.png?raw=true)
 
 Admin view of student exam attempts.
-![Homepage](modules/core/client/img/screenshots/sp16/adminViewStudentAttempts?raw=true)
+![Homepage](modules/core/client/img/screenshots/sp16/adminViewStudentAttempts.png?raw=true)
 
 ## Credits
 
